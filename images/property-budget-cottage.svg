@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340" role="img" aria-label="Budget Cottages in Kodaikanal placeholder image">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e3a4a"/>
+      <stop offset="100%" stop-color="#1f8fa8"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="340" fill="url(#g)"/>
+  <circle cx="600" cy="0" r="300" fill="#ffffff" opacity="0.06"/>
+  <circle cx="0" cy="340" r="170" fill="#000000" opacity="0.08"/>
+  <text x="24" y="316" font-family="Poppins, Arial, sans-serif" font-size="18" font-weight="600" fill="#ffffff">Budget Cottages in Kodaikanal</text>
+</svg>

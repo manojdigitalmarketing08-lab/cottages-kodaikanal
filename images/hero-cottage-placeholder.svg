@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Cottages Kodaikanal — Hero Placeholder placeholder image">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e3a4a"/>
+      <stop offset="100%" stop-color="#17627a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#g)"/>
+  <circle cx="1600" cy="0" r="800" fill="#ffffff" opacity="0.06"/>
+  <circle cx="0" cy="900" r="450" fill="#000000" opacity="0.08"/>
+  <text x="24" y="876" font-family="Poppins, Arial, sans-serif" font-size="18" font-weight="600" fill="#ffffff">Cottages Kodaikanal — Hero Placeholder</text>
+</svg>

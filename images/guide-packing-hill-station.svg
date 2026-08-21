@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="170" viewBox="0 0 220 170" role="img" aria-label="Packing & Prep Guide placeholder image">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6b98a0"/>
+      <stop offset="100%" stop-color="#1f8fa8"/>
+    </linearGradient>
+  </defs>
+  <rect width="220" height="170" fill="url(#g)"/>
+  <circle cx="220" cy="0" r="110" fill="#ffffff" opacity="0.06"/>
+  <circle cx="0" cy="170" r="85" fill="#000000" opacity="0.08"/>
+  <text x="24" y="146" font-family="Poppins, Arial, sans-serif" font-size="18" font-weight="600" fill="#ffffff">Packing & Prep Guide</text>
+</svg>

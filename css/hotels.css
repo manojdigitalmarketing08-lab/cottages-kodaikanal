@@ -1,0 +1,1412 @@
+/* ==========================================================================
+   Hotels in Kodaikanal — page-specific styles
+   Built on top of styles.css tokens (colors, spacing, radius, shadow, type).
+   All selectors namespaced "ht-" so nothing here touches index.html or
+   kodaikanal-homestay.html. Animation patterns follow the 25-pattern
+   hotel-booking design plan: glass hero, bento grid, flip cards, tabs,
+   sticky-scroll editorial, drag carousel, countdown, magnetic buttons.
+   ========================================================================== */
+
+:root {
+  --ht-overlay: linear-gradient(180deg, rgba(16, 62, 78, 0.55) 0%, rgba(16, 62, 78, 0.72) 55%, rgba(16, 62, 78, 0.88) 100%);
+}
+
+/* ==========================================================================
+   Global reveal system — opacity + translateY, staggered by JS.
+   Progressive enhancement: [data-reveal] content is fully visible by
+   default. Only once html.js (set synchronously in <head>, before this
+   stylesheet can even be blamed for a flash) confirms JS is running does
+   the hidden-until-scrolled state apply — so a blocked/broken/slow script
+   never leaves real content permanently invisible.
+   ========================================================================== */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms var(--ease-premium), transform 600ms var(--ease-premium);
+  will-change: opacity, transform;
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   1. Hero — Split-Search Hero (#1)
+   ========================================================================== */
+.ht-hero {
+  position: relative;
+  min-height: 462px;
+  display: flex;
+  align-items: center;
+  padding-block: var(--space-6);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ht-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.ht-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 65%;
+}
+
+.ht-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ht-overlay);
+  z-index: -1;
+}
+
+.ht-hero-inner {
+  width: 100%;
+  display: grid;
+  gap: var(--space-6);
+}
+
+.ht-hero-copy {
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+  color: #fff;
+}
+
+.ht-hero-copy .eyebrow {
+  color: var(--color-highlight);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.85rem;
+  margin: 0 0 var(--space-3);
+}
+
+.ht-hero-copy h1 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 var(--space-3);
+  color: #fff;
+}
+
+.ht-hero-copy .ht-hero-subhead {
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 var(--space-5);
+  max-width: 54ch;
+  margin-inline: auto;
+}
+
+/* Pull the search card up over the hero photo's bottom edge instead of
+   leaving a plain white gap between the photo and the card — overrides
+   styles.css's smaller positive top margin, scoped to this page only
+   since index.html never loads this stylesheet. The card itself is only
+   ~326px wide and centered, so on narrow viewports its negative margins
+   leave a band on the left/right edges taller than the card can cover;
+   without a matching fill there, raw white page background shows through
+   between the photo and the stat strip below. var(--color-primary-dark)
+   matches .ht-stat-strip's own background, so that flanking band reads as
+   a continuation of the strip instead of a gap. */
+.hero-search-wrap {
+  margin-top: calc(-1 * var(--space-6));
+  background: var(--color-primary-dark);
+}
+
+@media (max-width: 640px) {
+  .ht-hero {
+    align-items: stretch;
+  }
+}
+
+/* ==========================================================================
+   2. Trust / Stat strip (#2) + Marquee (#13)
+   ========================================================================== */
+.ht-stat-strip {
+  padding-block: var(--space-6);
+  background: var(--color-primary-dark);
+  color: #fff;
+}
+
+.ht-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.ht-stat-num {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-highlight);
+}
+
+.ht-stat-label {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.82);
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .ht-stat-row {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: var(--space-5);
+  }
+}
+
+.ht-marquee {
+  margin-top: var(--space-5);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.ht-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: var(--space-6);
+  animation: ht-marquee 28s linear infinite;
+}
+
+.ht-marquee:hover .ht-marquee-track {
+  animation-play-state: paused;
+}
+
+.ht-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.ht-marquee-item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-highlight);
+  flex-shrink: 0;
+}
+
+@keyframes ht-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ht-marquee-track { animation: none; }
+}
+
+/* ==========================================================================
+   3. Why Choose a Hotel — photo-backed bento tiles (#14)
+   ========================================================================== */
+.ht-benefit-bento {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--space-4);
+  height: 460px;
+}
+
+.ht-benefit-tile {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.ht-benefit-tile.is-large {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+}
+
+.ht-benefit-tile:not(.is-large):nth-of-type(2) { grid-column: 2; grid-row: 1; }
+.ht-benefit-tile:not(.is-large):nth-of-type(3) { grid-column: 2; grid-row: 2; }
+.ht-benefit-tile:not(.is-large):nth-of-type(4) { grid-column: 2; grid-row: 3; }
+
+.ht-benefit-tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ht-benefit-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(16, 62, 78, 0.92) 0%, rgba(16, 62, 78, 0.55) 55%, rgba(16, 62, 78, 0.15) 100%);
+}
+
+.ht-benefit-tile-body {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-4);
+  color: #fff;
+}
+
+.ht-benefit-tile.is-large .ht-benefit-tile-body {
+  padding: var(--space-5);
+}
+
+.ht-benefit-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: var(--space-2);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ht-benefit-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ht-benefit-tile.is-large .ht-benefit-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.ht-benefit-tile.is-large .ht-benefit-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ht-benefit-tile-body h3 {
+  font-size: 1rem;
+  margin: 0 0 4px;
+  color: #fff;
+}
+
+.ht-benefit-tile.is-large .ht-benefit-tile-body h3 {
+  font-size: 1.3rem;
+}
+
+.ht-benefit-tile-body p {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
+  line-height: 1.45;
+}
+
+.ht-benefit-tile.is-large .ht-benefit-tile-body p {
+  font-size: 0.95rem;
+  max-width: 42ch;
+}
+
+@media (max-width: 900px) {
+  .ht-benefit-bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    height: auto;
+  }
+  .ht-benefit-tile.is-large {
+    grid-column: 1;
+    grid-row: auto;
+    aspect-ratio: 16 / 10;
+  }
+  /* Same specificity as the desktop placement rules above, so source
+     order (this comes later) decides the winner without needing !important */
+  .ht-benefit-tile:not(.is-large):nth-of-type(2),
+  .ht-benefit-tile:not(.is-large):nth-of-type(3),
+  .ht-benefit-tile:not(.is-large):nth-of-type(4) {
+    grid-column: 1;
+    grid-row: auto;
+    aspect-ratio: 16 / 7;
+  }
+}
+
+/* Shared snap-scroll carousel arrows — used by Featured Hotels */
+.ht-carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  z-index: 5;
+  cursor: pointer;
+}
+
+.ht-carousel-nav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.ht-carousel-nav.prev { left: -8px; }
+.ht-carousel-nav.next { right: -8px; }
+
+@media (max-width: 640px) {
+  .ht-carousel-nav { display: none; }
+}
+
+/* ==========================================================================
+   4. Featured Hotels — horizontal snap-scroll row (#3 pattern, reused) +
+   Expandable card (#4) + room-type toggle (#17)
+   ========================================================================== */
+.ht-hotels-track-wrap {
+  position: relative;
+}
+
+.ht-hotels-track {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: var(--space-2);
+  scrollbar-width: none;
+}
+
+.ht-hotels-track::-webkit-scrollbar {
+  display: none;
+}
+
+.ht-hotel-card {
+  flex: 0 0 min(320px, 82vw);
+  scroll-snap-align: start;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.ht-hotel-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.ht-hotel-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ht-hotel-badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  background: var(--color-highlight);
+  color: var(--color-highlight-text);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.ht-hotel-body {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.ht-hotel-body h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.ht-hotel-meta {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.ht-hotel-teaser {
+  font-size: 0.92rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* Expandable accordion (native <details>) */
+.ht-hotel-details {
+  margin-top: auto;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-3);
+}
+
+.ht-hotel-details summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: 0.9rem;
+}
+
+.ht-hotel-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.ht-hotel-details summary .ht-chevron {
+  width: 18px;
+  height: 18px;
+  transition: transform 250ms var(--ease-premium);
+}
+
+.ht-hotel-details[open] summary .ht-chevron {
+  transform: rotate(180deg);
+}
+
+.ht-hotel-details-panel {
+  overflow: hidden;
+  height: 0;
+  transition: height 300ms var(--ease-premium);
+}
+
+.ht-hotel-details-panel p {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  padding-top: var(--space-3);
+  margin: 0;
+}
+
+.ht-hotel-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-3);
+}
+
+.ht-hotel-cta .ht-hotel-reserve {
+  width: 100%;
+  min-height: 44px;
+  font-size: 0.9rem;
+}
+
+.ht-hotel-call-link {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ht-hotel-call-link:hover {
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   5. How Booking Works — Zig-zag step timeline (#6)
+   ========================================================================== */
+.ht-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  counter-reset: step;
+}
+
+.ht-steps::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--color-steel-dark) 0 10px, transparent 10px 18px);
+  z-index: 0;
+}
+
+.ht-step {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.ht-step-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-3);
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.2rem;
+  transform: scale(0);
+  transition: transform 400ms var(--ease-premium);
+}
+
+.ht-step.is-visible .ht-step-icon {
+  transform: scale(1);
+}
+
+.ht-step h3 {
+  font-size: 1.1rem;
+  margin: 0 0 6px;
+}
+
+.ht-step p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .ht-steps {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+  .ht-steps::before {
+    top: 0;
+    bottom: 0;
+    left: 27px;
+    width: 2px;
+    height: auto;
+    right: auto;
+    background: repeating-linear-gradient(180deg, var(--color-steel-dark) 0 10px, transparent 10px 18px);
+  }
+  /* 3 children (icon, h3, p) auto-placed into a 2-column grid wrap the 3rd
+     item — the paragraph — onto row 2 of the 56px icon column instead of
+     row 2 of the text column, squashing it to a 56px-wide sliver. Explicit
+     placement keeps the icon spanning both rows in column 1 and both text
+     children in column 2. */
+  .ht-step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--space-1) var(--space-3);
+    text-align: left;
+    align-items: start;
+  }
+  .ht-step-icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    margin: 0;
+  }
+  .ht-step h3 {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .ht-step p {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+/* ==========================================================================
+   6. Why Choose Us — Flip cards (#7)
+   ========================================================================== */
+.ht-flip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .ht-flip-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .ht-flip-grid { grid-template-columns: 1fr; }
+}
+
+.ht-flip-card {
+  perspective: 1200px;
+  height: 190px;
+}
+
+.ht-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 500ms var(--ease-premium);
+  transform-style: preserve-3d;
+}
+
+.ht-flip-card:hover .ht-flip-inner,
+.ht-flip-card.is-flipped .ht-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.ht-flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--space-2);
+}
+
+.ht-flip-front {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+}
+
+.ht-flip-front svg { width: 34px; height: 34px; }
+
+.ht-flip-front span {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+
+.ht-flip-back {
+  background: var(--color-primary);
+  color: #fff;
+  transform: rotateY(180deg);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.ht-flip-back p {
+  color: #fff;
+}
+
+/* ==========================================================================
+   7. Experiences & Activities — Tabs (#8) + hover-reveal (#5)
+   ========================================================================== */
+.ht-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-5);
+}
+
+.ht-tab-btn {
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: #fff;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.ht-tab-btn.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.ht-tab-panels {
+  position: relative;
+  min-height: 420px;
+}
+
+.ht-tab-panel {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.ht-tab-panel.is-active {
+  display: grid;
+  animation: ht-tab-in 320ms var(--ease-premium);
+}
+
+@keyframes ht-tab-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .ht-tab-panel { grid-template-columns: 1fr; }
+  .ht-tab-panels { min-height: 0; }
+}
+
+.ht-exp-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--shadow-sm);
+}
+
+.ht-exp-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ht-exp-panel {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -100%;
+  padding: var(--space-4);
+  background: rgba(16, 62, 78, 0.88);
+  color: #fff;
+  transition: bottom 300ms ease;
+}
+
+.ht-exp-card:hover .ht-exp-panel,
+.ht-exp-card.is-active .ht-exp-panel {
+  bottom: 0;
+}
+
+.ht-exp-panel h3 {
+  font-size: 1rem;
+  margin: 0 0 6px;
+  color: #fff;
+}
+
+.ht-exp-panel p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.45;
+}
+
+.ht-exp-name-strip {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: var(--space-3);
+  background: linear-gradient(0deg, rgba(16, 62, 78, 0.85), transparent);
+}
+
+.ht-exp-card:hover .ht-exp-name-strip,
+.ht-exp-card.is-active .ht-exp-name-strip {
+  opacity: 0;
+}
+
+.ht-exp-name-strip h3 {
+  color: #fff;
+  font-size: 0.98rem;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Tour Packages — card grid
+   ========================================================================== */
+.ht-package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .ht-package-grid { grid-template-columns: 1fr; }
+}
+
+.ht-package-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.ht-package-card.is-popular {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.ht-package-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+}
+
+.ht-package-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ht-package-badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.ht-package-badge.is-popular {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.ht-package-body {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.ht-package-body h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.ht-package-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.ht-package-list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.ht-package-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+}
+
+.ht-package-body > p {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.ht-package-body .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* ==========================================================================
+   8. Deals & Offers — Countdown banner (#9)
+   ========================================================================== */
+.ht-deal-banner {
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-5);
+  background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-primary) 100%);
+  background-size: 200% 200%;
+  animation: ht-deal-shift 8s ease infinite;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+@keyframes ht-deal-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ht-deal-banner { animation: none; }
+}
+
+.ht-deal-copy h3 {
+  margin: 0 0 6px;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.ht-deal-copy p {
+  margin: 0;
+  max-width: 46ch;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.92rem;
+}
+
+.ht-countdown {
+  display: flex;
+  gap: 10px;
+}
+
+.ht-countdown-unit {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  text-align: center;
+  min-width: 62px;
+}
+
+.ht-countdown-unit strong {
+  display: block;
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.ht-countdown-unit span {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.ht-deal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .ht-deal-grid { grid-template-columns: 1fr; }
+}
+
+.ht-deal-card {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.ht-deal-card h4 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  color: var(--color-primary);
+}
+
+.ht-deal-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   9. Guest Reviews — Drag carousel (#10) + count-up (#24)
+   ========================================================================== */
+.ht-reviews-wrap {
+  position: relative;
+}
+
+.ht-reviews-track {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.ht-reviews-track::-webkit-scrollbar { display: none; }
+.ht-reviews-track.is-dragging { cursor: grabbing; }
+
+.ht-review-card {
+  flex: 0 0 min(360px, 85vw);
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.ht-review-card .quote-mark {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--color-steel-dark);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.ht-review-card blockquote {
+  margin: var(--space-2) 0 var(--space-4);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+.ht-review-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ht-review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.ht-review-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.ht-review-place {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.ht-review-stars {
+  color: var(--color-star);
+  font-size: 0.85rem;
+}
+
+.ht-review-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: var(--space-4);
+}
+
+.ht-review-dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+  border: none;
+  padding: 0;
+  transition: width 250ms var(--ease-premium), background 250ms ease;
+  cursor: pointer;
+}
+
+.ht-review-dots button.is-active {
+  width: 24px;
+  background: var(--color-primary);
+}
+
+/* ==========================================================================
+   10. Travel Guides — Sticky scroll editorial (#11)
+   ========================================================================== */
+.ht-guides {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 900px) {
+  .ht-guides {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ht-guides-sticky {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 900px) {
+  .ht-guides-sticky {
+    position: sticky;
+    top: calc(var(--header-height) + 24px);
+    align-self: start;
+  }
+}
+
+.ht-guides-sticky img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ht-guide-item {
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  opacity: 0.4;
+  transition: opacity 400ms ease;
+}
+
+.ht-guide-item:first-child { padding-top: 0; }
+.ht-guide-item:last-child { border-bottom: none; }
+
+.ht-guide-item.is-active {
+  opacity: 1;
+}
+
+.ht-guide-item h3 {
+  font-size: 1.15rem;
+  margin: 0 0 var(--space-2);
+}
+
+.ht-guide-item p {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-3);
+}
+
+.ht-guide-item a {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   11. WhatsApp Booking Promo — Card stack (#21) + magnetic CTA (#23)
+   ========================================================================== */
+.ht-promo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .ht-promo {
+    grid-template-columns: 1fr 380px;
+  }
+}
+
+.ht-promo-copy h2 { margin-top: 0; }
+
+.ht-promo-list {
+  list-style: none;
+  margin: var(--space-4) 0 var(--space-5);
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.ht-promo-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.ht-promo-list svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-success);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ht-stack {
+  position: relative;
+  height: 320px;
+}
+
+.ht-stack-card {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 220px;
+  height: 300px;
+  background: #fff;
+  border-radius: 22px;
+  border: 6px solid var(--color-primary-dark);
+  box-shadow: var(--shadow-lg);
+  padding: 14px;
+  transition: transform 500ms var(--ease-premium);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ht-stack-card:nth-child(1) { transform: rotate(-8deg) translateX(-26px); z-index: 1; }
+.ht-stack-card:nth-child(2) { transform: rotate(0deg) translateX(0); z-index: 2; }
+.ht-stack-card:nth-child(3) { transform: rotate(8deg) translateX(26px); z-index: 1; }
+
+.ht-stack.is-fanned .ht-stack-card:nth-child(1) { transform: rotate(-12deg) translateX(-44px) translateY(-6px); }
+.ht-stack.is-fanned .ht-stack-card:nth-child(3) { transform: rotate(12deg) translateX(44px) translateY(-6px); }
+
+.ht-chat-bubble {
+  border-radius: 12px;
+  padding: 7px 10px;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  max-width: 88%;
+}
+
+.ht-chat-bubble.in {
+  align-self: flex-start;
+  background: var(--color-bg-alt);
+  color: var(--color-text);
+  border-bottom-left-radius: 2px;
+}
+
+.ht-chat-bubble.out {
+  align-self: flex-end;
+  background: var(--color-primary);
+  color: #fff;
+  border-bottom-right-radius: 2px;
+}
+
+/* Magnetic button wrapper — JS applies inline transform */
+.ht-magnetic {
+  display: inline-flex;
+  transition: transform 150ms ease-out;
+}
+
+/* ==========================================================================
+   12. FAQ — reuses styles.css's .faq-list/.faq-item (same as the homepage);
+   only the heading centering is added here, scoped to this page.
+   ========================================================================== */
+#faq .section-heading {
+  margin-inline: auto;
+  text-align: center;
+}
+
+/* ==========================================================================
+   13. Final CTA
+   ========================================================================== */
+.ht-final-cta {
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  color: #fff;
+  text-align: center;
+}
+
+.ht-final-cta h2 {
+  color: #fff;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin: 0 0 var(--space-3);
+}
+
+.ht-final-cta p {
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 56ch;
+  margin: 0 auto var(--space-6);
+}
+
+.ht-final-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+}
+
+/* ==========================================================================
+   Sticky mobile CTA bar (#19) — page-specific, mirrors main.js pattern
+   ========================================================================== */
+.ht-mobile-cta-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  display: flex;
+  gap: 10px;
+  padding: 10px var(--space-3);
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  background: #fff;
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  transform: translateY(100%);
+  transition: transform 300ms var(--ease-premium);
+}
+
+.ht-mobile-cta-bar.is-visible {
+  transform: translateY(0);
+}
+
+.ht-mobile-cta-bar .btn {
+  flex: 1;
+  min-height: 46px;
+}
+
+@media (min-width: 900px) {
+  .ht-mobile-cta-bar { display: none; }
+}
+
+/* ==========================================================================
+   Progress-linked section dots (#16, desktop only)
+   ========================================================================== */
+.ht-section-dots {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 80;
+}
+
+@media (min-width: 1200px) {
+  .ht-section-dots { display: flex; }
+}
+
+.ht-section-dots button {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 200ms ease, background 200ms ease;
+}
+
+.ht-section-dots button.is-active {
+  background: var(--color-primary);
+  transform: scale(1.4);
+}
+
+/* ==========================================================================
+   Shared section-scroll offset (accounts for sticky header)
+   ========================================================================== */
+main section[id] {
+  scroll-margin-top: calc(var(--header-height) + 12px);
+}
