@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="350" height="210" viewBox="0 0 350 210" role="img" aria-label="Group Stay – Stay, Breakfast and Dinner placeholder image">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e3a4a"/>
+      <stop offset="100%" stop-color="#1f8fa8"/>
+    </linearGradient>
+  </defs>
+  <rect width="350" height="210" fill="url(#g)"/>
+  <circle cx="350" cy="0" r="175" fill="#ffffff" opacity="0.06"/>
+  <circle cx="0" cy="210" r="105" fill="#000000" opacity="0.08"/>
+  <text x="24" y="186" font-family="Poppins, Arial, sans-serif" font-size="18" font-weight="600" fill="#ffffff">Group Stay — ₹555/Person</text>
+</svg>

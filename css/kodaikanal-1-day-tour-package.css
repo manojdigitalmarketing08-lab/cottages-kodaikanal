@@ -1,0 +1,200 @@
+/* ==========================================================================
+   1 Day Tour Package — dedicated stylesheet for
+   kodaikanal-1-day-tour-package.html. Reuses the site's core deep
+   cyan-teal design tokens and Poppins font from css/styles.css (see
+   :root there), so this page matches every other inner page instead of
+   running its own palette/typeface. Selectors are scoped under
+   .tp1-page main so nothing here can leak into the shared header/footer.
+   ========================================================================== */
+
+:root {
+  --tp1-bg: var(--color-bg-alt);
+  --tp1-surface: var(--color-surface);
+  --tp1-ink: var(--color-text);
+  --tp1-ink-soft: var(--color-text-muted);
+  --tp1-accent: var(--color-primary);
+  --tp1-line: rgba(20, 80, 102, 0.14);
+  --tp1-serif: var(--font-heading);
+  --tp1-sans: var(--font-body);
+}
+
+.tp1-page main {
+  background: var(--tp1-surface);
+  color: var(--tp1-ink);
+  font-family: var(--tp1-sans);
+}
+
+.tp1-page main section {
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+:where(.tp1-page main) h1,
+:where(.tp1-page main) h2,
+:where(.tp1-page main) h3,
+:where(.tp1-page main) h4 {
+  font-family: var(--tp1-serif);
+  color: var(--tp1-ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+:where(.tp1-page main) h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+:where(.tp1-page main) h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.25; }
+:where(.tp1-page main) p { font-size: clamp(1rem, 1.05vw, 1.1rem); line-height: 1.7; color: var(--tp1-ink-soft); }
+
+/* --------------------------------- Reveal --------------------------------- */
+.tp1-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tp1-page [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+html:not(.js) .tp1-page [data-reveal] { opacity: 1; transform: none; }
+
+/* ------------------------------- Shared bits ------------------------------- */
+.tp1-eyebrow {
+  display: block;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tp1-accent);
+  margin: 0 0 0.9rem;
+}
+.tp1-eyebrow-center { text-align: center; }
+
+.tp1-section-head { max-width: 46rem; margin: 0 0 3rem; }
+.tp1-section-head-center { margin-inline: auto; text-align: center; }
+.tp1-section-head-center .tp1-section-sub { margin-inline: auto; }
+.tp1-section-sub { margin-top: 0.9rem; }
+
+.tp1-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 2rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.tp1-btn:hover { transform: translateY(-3px); }
+.tp1-btn-primary { background: var(--gradient-cta); color: var(--color-cta-text); }
+.tp1-btn-primary:hover { background: var(--gradient-cta-hover); }
+.tp1-btn-outline { background: transparent; border-color: rgba(255,255,255,0.7); color: #fff; }
+.tp1-btn-outline:hover { background: rgba(255,255,255,0.15); }
+.tp1-btn-outline-dark { background: transparent; border-color: var(--tp1-accent); color: var(--tp1-accent); }
+.tp1-btn-outline-dark:hover { background: var(--tp1-accent); color: #fff; }
+
+/* --------------------------------- Hero --------------------------------- */
+.tp1-hero { position: relative; height: 100vh; min-height: 560px; max-height: 900px; display: flex; align-items: center; color: #fff; }
+.tp1-hero-media { position: absolute; inset: 0; z-index: 0; }
+.tp1-hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.tp1-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,32,40,0.6) 0%, rgba(12,32,40,0.58) 45%, rgba(8,22,28,0.88) 100%); }
+.tp1-hero-content { position: relative; z-index: 1; padding-block: 3rem; }
+.tp1-hero-content h1 { color: #fff; font-size: clamp(2.25rem, 5vw, 3.5rem); }
+.tp1-hero-sub { color: rgba(255,255,255,0.88); max-width: 42rem; margin-top: 1rem; }
+.tp1-hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.75rem; }
+
+/* ------------------------------ Trust strip ------------------------------ */
+.tp1-trust { background: var(--tp1-bg); }
+.tp1-trust-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.tp1-trust-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; background: var(--tp1-surface); border: 1px solid var(--tp1-line); border-radius: var(--radius-lg); padding: 1.5rem; }
+.tp1-trust-icon { width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--tp1-bg); color: var(--tp1-accent); }
+.tp1-trust-icon svg { width: 22px; height: 22px; }
+.tp1-trust-num { font-family: var(--tp1-serif); font-size: 1.15rem; font-weight: 600; color: var(--tp1-ink); }
+.tp1-trust-card p { margin: 0; font-size: 0.92rem; }
+
+/* -------------------------------- Included -------------------------------- */
+.tp1-guide-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.tp1-guide-card { background: var(--tp1-surface); border: 1px solid var(--tp1-line); border-radius: var(--radius-lg); padding: 1.75rem; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.tp1-guide-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.tp1-guide-card h4 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+.tp1-guide-card p { margin: 0; font-size: 0.95rem; }
+
+/* ------------------------------- Itinerary -------------------------------- */
+.tp1-itinerary { background: var(--tp1-accent); }
+.tp1-itinerary .tp1-eyebrow, .tp1-itinerary h2, .tp1-itinerary .tp1-section-sub { color: #fff; }
+.tp1-itinerary .tp1-section-sub { color: rgba(255,255,255,0.82); }
+.tp1-itinerary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+.tp1-day-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: var(--radius-lg); padding: 2rem; }
+.tp1-day-num { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-highlight); margin-bottom: 0.9rem; }
+.tp1-route-line { font-family: var(--tp1-serif); font-size: 1.05rem; color: #fff; margin-bottom: 1.25rem; }
+.tp1-day-card p { color: rgba(255,255,255,0.78); margin: 0; }
+.tp1-stop-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tp1-stop-chip { background: rgba(255,255,255,0.12); border-radius: var(--radius-pill); padding: 0.5rem 0.9rem; font-size: 0.82rem; color: rgba(255,255,255,0.92); transition: background 0.2s ease, transform 0.2s ease; }
+.tp1-stop-chip:hover { background: var(--color-highlight); color: var(--tp1-accent); transform: translateY(-2px); }
+
+/* ------------------------------- Attractions ------------------------------- */
+.tp1-places-lead { border-radius: var(--radius-lg); overflow: hidden; position: relative; margin-bottom: 1.5rem; }
+.tp1-places-lead img { width: 100%; height: 280px; object-fit: cover; display: block; }
+.tp1-places-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.25rem 1.5rem; background: linear-gradient(0deg, rgba(16,62,78,0.85), rgba(16,62,78,0)); color: #fff; font-size: 0.95rem; }
+.tp1-places-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.tp1-place-tile { position: relative; border-radius: var(--radius-md); overflow: hidden; }
+.tp1-place-tile img { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.tp1-place-tile:hover img { transform: scale(1.08); }
+.tp1-place-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.9rem 1rem; background: linear-gradient(0deg, rgba(16,62,78,0.88), rgba(16,62,78,0)); color: #fff; font-size: 0.78rem; line-height: 1.4; }
+
+/* --------------------------------- Pricing --------------------------------- */
+.tp1-pricing-grid { display: flex; justify-content: center; }
+.tp1-pricing-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; max-width: 900px; margin-inline: auto; }
+.tp1-pricing-grid-2 .tp1-price-card { max-width: none; }
+.tp1-price-card { max-width: 420px; width: 100%; background: var(--tp1-surface); border: 1px solid var(--tp1-line); border-radius: var(--radius-lg); padding: 2.25rem; text-align: center; box-shadow: var(--shadow-md); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.tp1-price-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.tp1-price-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--color-star); display: inline-block; padding: 0.35rem 0.9rem; border-radius: var(--radius-pill); margin-bottom: 1rem; }
+.tp1-price-value { font-family: var(--tp1-serif); font-size: 2.5rem; color: var(--tp1-accent); margin: 0.5rem 0; }
+.tp1-price-value span { font-size: 1rem; font-weight: 400; color: var(--tp1-ink-soft); }
+.tp1-price-includes { font-size: 0.92rem; margin-bottom: 1.5rem; }
+
+/* ------------------------------- Exclusions ------------------------------- */
+.tp1-exclusions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.tp1-exclusion-item { display: flex; align-items: center; gap: 0.6rem; background: var(--tp1-surface); border: 1px solid var(--tp1-line); border-radius: var(--radius-sm); padding: 1rem 1.1rem; font-size: 0.92rem; color: var(--tp1-ink-soft); transition: transform 0.2s ease, border-color 0.2s ease; }
+.tp1-exclusion-item:hover { transform: translateY(-3px); border-color: var(--color-warning); }
+.tp1-exclusion-item::before { content: '\00d7'; color: var(--color-pin); font-weight: 900; font-size: 1rem; }
+
+/* -------------------------------- Timeline -------------------------------- */
+.tp1-timeline { display: flex; align-items: flex-start; gap: 0; }
+.tp1-timeline-step { flex: 1; text-align: center; padding-inline: 0.5rem; }
+.tp1-step-num { display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 1px solid var(--tp1-line); font-family: var(--tp1-serif); font-weight: 600; color: var(--tp1-accent); margin-bottom: 1rem; transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease; }
+.tp1-timeline-step:hover .tp1-step-num { background: var(--tp1-accent); color: #fff; transform: scale(1.08); }
+.tp1-timeline-step h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+.tp1-timeline-step p { font-size: 0.88rem; margin: 0; }
+.tp1-timeline-line { flex: 0 0 3rem; height: 1px; background: var(--tp1-line); margin-top: 1.75rem; }
+
+/* ----------------------------------- FAQ ----------------------------------- */
+.tp1-faq-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.tp1-faq-col-heading { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tp1-accent); margin-bottom: 1rem; }
+.tp1-faq-item { border-bottom: 1px solid var(--tp1-line); }
+.tp1-faq-question { width: 100%; text-align: left; background: none; border: none; padding: 1rem 0; font-family: var(--tp1-sans); font-size: 0.95rem; font-weight: 600; color: var(--tp1-ink); display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; cursor: pointer; }
+.tp1-faq-question span { color: var(--tp1-accent); font-size: 1.1rem; transition: transform 0.2s ease; }
+.tp1-faq-item.is-open .tp1-faq-question span { transform: rotate(45deg); }
+.tp1-faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.tp1-faq-answer p { margin: 0 0 1rem; font-size: 0.9rem; }
+.tp1-faq-item.is-open .tp1-faq-answer { max-height: 220px; }
+
+/* -------------------------------- Final CTA -------------------------------- */
+.tp1-final-cta { position: relative; padding-block: 5rem; color: #fff; text-align: center; }
+.tp1-final-cta-media { position: absolute; inset: 0; z-index: 0; }
+.tp1-final-cta-media img { width: 100%; height: 100%; object-fit: cover; }
+.tp1-final-cta-scrim { position: absolute; inset: 0; background: rgba(12,32,40,0.72); }
+.tp1-final-cta-content { position: relative; z-index: 1; max-width: 42rem; margin-inline: auto; }
+.tp1-final-cta-content h2 { color: #fff; }
+.tp1-final-cta-content p { color: rgba(255,255,255,0.88); margin-top: 1rem; }
+.tp1-final-cta .tp1-hero-cta { justify-content: center; margin-top: 1.75rem; }
+
+/* -------------------------------- Responsive -------------------------------- */
+@media (max-width: 960px) {
+  .tp1-trust-inner, .tp1-guide-grid, .tp1-itinerary-grid, .tp1-exclusions-grid, .tp1-faq-columns { grid-template-columns: 1fr 1fr; }
+  .tp1-places-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .tp1-trust-inner, .tp1-guide-grid, .tp1-itinerary-grid, .tp1-exclusions-grid, .tp1-faq-columns, .tp1-places-row, .tp1-pricing-grid-2 { grid-template-columns: 1fr; }
+  .tp1-timeline { flex-direction: column; align-items: center; gap: 1.5rem; }
+  .tp1-timeline-line { display: none; }
+}

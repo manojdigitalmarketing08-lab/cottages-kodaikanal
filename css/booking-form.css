@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Booking form partial — Kodaikanal Cottage Booking (split form + map)
+   Self-contained: falls back to its own tokens if styles.css isn't loaded,
+   but reuses the same variable names so it stays visually identical when
+   loaded alongside the main stylesheet.
+   ========================================================================== */
+:root {
+  --color-primary: #145066;
+  --color-bg-alt: #eaf7fa;
+  --color-text: #1c1f24;
+  --color-text-muted: #5c6a6d;
+  --color-border: #dfeaec;
+  --gradient-cta: #2563eb;
+  --gradient-cta-hover: #1e40af;
+  --color-cta-text: #fff;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-5: 32px;
+  --space-6: 40px;
+  --space-7: 48px;
+  --max-width: 1200px;
+  --ease-premium: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.booking {
+  background: var(--color-bg-alt);
+}
+
+.booking .container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+.booking .section-heading {
+  max-width: min(920px, 100%);
+  margin-bottom: var(--space-7);
+}
+
+.booking .section-heading p {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+.booking-grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) {
+  .booking-grid {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+.booking-form {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.form-field label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form-field input,
+.form-field textarea {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  font-family: inherit;
+  font-size: 1rem;
+  min-height: 48px;
+  transition: border-color 200ms var(--ease-premium), box-shadow 200ms var(--ease-premium);
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.form-field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.form-trust {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.booking-aside {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.map-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 0;
+  border-radius: var(--radius-md);
+}
+
+.booking-aside address {
+  font-style: normal;
+  color: var(--color-text);
+}
+
+/* Buttons used inside this partial */
+.booking .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: background 200ms var(--ease-premium);
+}
+
+.booking .btn-primary {
+  background: var(--gradient-cta);
+  color: var(--color-cta-text);
+}
+
+.booking .btn-primary:hover {
+  background: var(--gradient-cta-hover);
+}
+
+.booking .btn-outline {
+  background: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.booking .btn-outline:hover {
+  background: var(--gradient-cta);
+  border-color: transparent;
+  color: var(--color-cta-text);
+}
+
+.booking .btn-block {
+  width: 100%;
+}

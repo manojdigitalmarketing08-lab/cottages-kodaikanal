@@ -1,0 +1,52 @@
+  <!-- ================================================================
+       Kodaikanal Cottage Booking — split form + map
+       ================================================================ -->
+  <section class="booking" id="booking" aria-labelledby="booking-heading">
+    <div class="container">
+      <div class="section-heading">
+        <h2 id="booking-heading">Kodaikanal Cottage Booking — Book Your Stay Today</h2>
+        <p>Share your travel dates and group size, and we'll send a free quote — most enquiries get a response within the hour, no spam, ever. There's no obligation to confirm immediately.</p>
+      </div>
+      <div class="booking-grid">
+        <form class="booking-form" action="#" method="post">
+          <div class="form-field">
+            <label for="guest-name">Name</label>
+            <input type="text" id="guest-name" name="guest-name" autocomplete="name" required />
+          </div>
+          <div class="form-field">
+            <label for="guest-phone">Phone</label>
+            <input type="tel" id="guest-phone" name="guest-phone" inputmode="tel" autocomplete="tel" required />
+          </div>
+          <div class="form-field">
+            <label for="guest-checkin">Check-in Date</label>
+            <input type="date" id="guest-checkin" name="guest-checkin" />
+          </div>
+          <div class="form-field">
+            <label for="guest-count">Number of Guests</label>
+            <input type="number" id="guest-count" name="guest-count" min="1" inputmode="numeric" />
+          </div>
+          <div class="form-field">
+            <label for="guest-message">Message</label>
+            <textarea id="guest-message" name="guest-message"></textarea>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Enquire Now</button>
+          <p class="form-trust">We respond within 1 hour, no spam.</p>
+        </form>
+
+        <aside class="booking-aside">
+          <iframe
+            class="map-frame"
+            title="Map location of Cottages Kodaikanal"
+            src="https://maps.google.com/maps?q=Kodaikanal%20624101&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            loading="lazy"
+          ></iframe>
+          <address>
+            Cottages Kodaikanal<br />
+            Near Zion School Junction, MM Street, Lawsghat Road<br />
+            Kodaikanal - 624101
+          </address>
+          <a class="btn btn-outline" href="tel:+917502345777">Call +91 75023 45777</a>
+        </aside>
+      </div>
+    </div>
+  </section>
