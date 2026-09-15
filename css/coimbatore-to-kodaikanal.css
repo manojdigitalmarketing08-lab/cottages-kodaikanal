@@ -1282,6 +1282,13 @@ html:not(.js) .ctk-page [data-reveal] {
     grid-template-columns: 1fr;
   }
   .ctk-hero-media { order: -1; aspect-ratio: 16/10; }
+  /* .ctk-hero-media is a full-bleed absolutely-positioned backdrop (see
+     base rule above), not an in-flow grid/flex panel like the other
+     components this ruleset targets. The aspect-ratio meant for those
+     collapses this one to a 16:10 sliver pinned to the top of the hero,
+     leaving the copy below it (still sized to fill the full hero height)
+     with no dark backdrop under it — unreadable white-on-light text. */
+  .ctk-hero .ctk-hero-media { aspect-ratio: auto; }
   .ctk-options-strip { grid-template-columns: repeat(2, 1fr); }
   .ctk-option-col { border-bottom: 1px solid var(--ctk-line); }
   .ctk-route-sticky { position: static; }
