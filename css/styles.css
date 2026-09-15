@@ -3299,6 +3299,67 @@ section {
   }
 }
 
+/* ==========================================================================
+   Floating WhatsApp / Call icons — shown on every page, stacked bottom-right
+   ========================================================================== */
+.floating-cta {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.floating-cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+  transition: transform 200ms var(--ease-premium), box-shadow 200ms var(--ease-premium);
+}
+
+.floating-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.floating-cta-btn svg {
+  width: 26px;
+  height: 26px;
+}
+
+.floating-cta-whatsapp {
+  background: #25d366;
+}
+
+.floating-cta-call {
+  background: var(--gradient-cta);
+}
+
+/* Lift above the fixed mobile CTA bar so the two never overlap */
+@media (max-width: 899px) {
+  .floating-cta {
+    right: var(--space-3);
+    bottom: calc(var(--space-3) + 76px);
+  }
+
+  .floating-cta-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .floating-cta-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
 /* Property comparison — a styled table inside a card shell (elevated,
    rounded, zebra rows, icon-led first column) rather than a bare <table> */
 .compare-table-card {

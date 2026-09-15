@@ -43,7 +43,7 @@
 }
 
 :where(.ctk-page main) h2 {
-  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.375rem);
   line-height: 1.1;
 }
 
@@ -122,23 +122,23 @@ html:not(.js) .ctk-page [data-reveal] {
 .ctk-btn:hover { transform: translateY(-2px); }
 
 .ctk-btn-primary {
-  background: var(--ctk-forest);
-  color: #eaf7fa;
+  background: var(--gradient-cta);
+  color: var(--color-cta-text);
 }
-.ctk-btn-primary:hover { background: var(--ctk-forest-dark); }
+.ctk-btn-primary:hover { background: var(--gradient-cta-hover); }
 
 .ctk-btn-outline {
   background: transparent;
-  color: var(--ctk-forest);
-  border-color: var(--ctk-forest);
+  color: var(--gradient-cta);
+  border-color: var(--gradient-cta);
 }
-.ctk-btn-outline:hover { background: var(--ctk-forest); color: #eaf7fa; }
+.ctk-btn-outline:hover { background: var(--gradient-cta); color: var(--color-cta-text); }
 
 .ctk-btn-accent {
-  background: var(--ctk-accent);
-  color: #ffffff;
+  background: var(--gradient-cta);
+  color: var(--color-cta-text);
 }
-.ctk-btn-accent:hover { background: #c98a10; }
+.ctk-btn-accent:hover { background: var(--gradient-cta-hover); }
 
 /* Route line motif — used under the hero and as small dividers */
 .ctk-route-strip {
@@ -161,37 +161,46 @@ html:not(.js) .ctk-page [data-reveal] {
 }
 
 /* ============================================================
-   01 — HERO (split editorial, full-bleed image)
+   01 — HERO (full-bleed photo, copy overlaid on the left)
    ============================================================ */
 .ctk-page main section.ctk-hero {
   position: relative;
-  background: var(--ctk-bg);
   overflow: hidden;
   padding-block: 0;
+  min-height: calc(100svh - var(--header-height));
 }
 
 .ctk-hero-inner {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  align-items: stretch;
-  gap: clamp(1.5rem, 3vw, 3rem);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
   min-height: calc(100svh - var(--header-height));
 }
 
 .ctk-hero-copy {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 56rem;
   padding-block: clamp(1.5rem, 5vw, 2.5rem);
   padding-left: clamp(var(--space-6), 7vw, var(--space-10));
+  color: #fff;
 }
 
-.ctk-hero-copy .ctk-route-strip { margin-bottom: 1.1rem; }
+.ctk-hero-copy .ctk-route-strip { margin-bottom: 1.1rem; color: rgba(255, 255, 255, 0.82); }
+.ctk-hero-copy .ctk-route-strip .ctk-route-dash {
+  background: repeating-linear-gradient(to right, rgba(255, 255, 255, 0.6) 0 6px, transparent 6px 10px);
+}
 
 .ctk-hero-copy h1 {
-  font-size: clamp(1.9rem, 4.2vw, 3.2rem);
-  line-height: 1.06;
-  max-width: 14ch;
+  color: #fff;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  line-height: 1.2;
+  max-width: none;
+  text-shadow: 0 2px 16px rgba(8, 20, 26, 0.35);
 }
 
 .ctk-hero-copy p.ctk-hero-lede {
@@ -199,6 +208,7 @@ html:not(.js) .ctk-page [data-reveal] {
   max-width: 28rem;
   font-size: clamp(0.95rem, 1.1vw, 1.1rem);
   line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .ctk-hero-actions {
@@ -208,12 +218,21 @@ html:not(.js) .ctk-page [data-reveal] {
   flex-wrap: wrap;
 }
 
+.ctk-hero-copy .ctk-btn-outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.ctk-hero-copy .ctk-btn-outline:hover {
+  background: #fff;
+  color: var(--gradient-cta);
+}
+
 .ctk-hero-stats {
   margin-top: 1.8rem;
   display: flex;
   gap: clamp(1.5rem, 4vw, 3rem);
   flex-wrap: wrap;
-  border-top: 1px solid var(--ctk-line);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
   padding-top: 1.2rem;
 }
 
@@ -226,42 +245,55 @@ html:not(.js) .ctk-page [data-reveal] {
   font-family: var(--ctk-sans);
   font-weight: 700;
   font-size: 1.3rem;
-  color: var(--ctk-forest);
+  color: #fff;
 }
 .ctk-hero-stat span {
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ctk-ink-soft);
+  color: rgba(255, 255, 255, 0.78);
 }
 
-/* Image bleeds to the top, right and bottom of the viewport; only the
-   inner edge (against the copy) gets a soft gradient blend instead of
-   a hard seam. */
+/* Photo bleeds edge-to-edge behind the whole hero; copy sits on top with
+   a readability gradient layered between the two. */
 .ctk-hero-media {
-  position: relative;
-  overflow: hidden;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 .ctk-hero-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Portrait source photos are cropped into a wide hero; bias the crop
+     toward the bottom of the frame so the road stays in view instead of
+     being cut off in favor of tree canopy/sky. */
+  object-position: center 80%;
   display: block;
 }
-.ctk-hero-media::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: clamp(3rem, 9vw, 7rem);
-  background: linear-gradient(to right, var(--ctk-bg), transparent);
-  z-index: 1;
-  pointer-events: none;
+
+/* Kodai Road hero: show the full photo instead of a tight cover-crop —
+   letterboxed on a matching dark backdrop instead of zooming in. */
+.ctk-hero-media--contain {
+  background: linear-gradient(160deg, #0d232b, #163a46);
 }
+.ctk-hero-media--contain img {
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Coimbatore hero: already-wide landscape photo with the road centered —
+   no need for the bottom-biased crop used on the portrait route photos. */
+.ctk-hero-media--wide img {
+  object-position: center;
+}
+
 .ctk-hero-media::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(16, 38, 46, 0.28), transparent 45%);
+  background: linear-gradient(90deg, rgba(10, 26, 32, 0.88) 0%, rgba(10, 26, 32, 0.62) 34%, rgba(10, 26, 32, 0.22) 62%, rgba(10, 26, 32, 0) 82%),
+    linear-gradient(180deg, rgba(10, 26, 32, 0.05) 0%, rgba(10, 26, 32, 0.4) 100%);
   pointer-events: none;
 }
 
@@ -275,7 +307,7 @@ html:not(.js) .ctk-page [data-reveal] {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--ctk-forest-soft);
+  color: #fff;
   animation: ctk-scroll-bounce 2.2s ease-in-out infinite;
 }
 @keyframes ctk-scroll-bounce {
@@ -285,23 +317,15 @@ html:not(.js) .ctk-page [data-reveal] {
 
 @media (max-width: 900px) {
   .ctk-hero-inner {
-    grid-template-columns: 1fr;
-    min-height: auto;
+    min-height: 100svh;
   }
   .ctk-hero-copy {
+    max-width: none;
     padding-right: clamp(var(--space-6), 7vw, var(--space-10));
-    padding-top: clamp(6.5rem, 14vw, 8rem);
   }
-  .ctk-hero-media {
-    aspect-ratio: 4 / 3;
+  .ctk-hero-media::after {
+    background: linear-gradient(180deg, rgba(10, 26, 32, 0.35) 0%, rgba(10, 26, 32, 0.55) 55%, rgba(10, 26, 32, 0.82) 100%);
   }
-  .ctk-hero-media::before {
-    inset: 0 0 auto 0;
-    width: auto;
-    height: clamp(2.5rem, 12vw, 4rem);
-    background: linear-gradient(to bottom, var(--ctk-bg), transparent);
-  }
-  .ctk-scroll-indicator { display: none; }
 }
 
 /* ============================================================
