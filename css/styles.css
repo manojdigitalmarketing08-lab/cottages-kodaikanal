@@ -1267,6 +1267,31 @@ section {
 }
 
 /* ==========================================================================
+   Featured Cottages — bedroom-size grid shown right under the hero
+   ========================================================================== */
+.featured-cottages-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .featured-cottages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .featured-cottages-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.featured-cottage-card {
+  flex-basis: auto;
+}
+
+/* ==========================================================================
    3. Trust strip — icon+label row, no card borders
    ========================================================================== */
 .trust-strip {
