@@ -45,8 +45,9 @@
 }
 
 :where(.jsf-page main) h2 {
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.375rem);
   line-height: 1.08;
+  margin-bottom: 1.25rem;
 }
 
 :where(.jsf-page main) h3 {
@@ -145,12 +146,12 @@ html:not(.js) [data-reveal] {
 }
 
 .jsf-btn-primary {
-  background: var(--jsf-accent);
-  color: #fff;
+  background: var(--gradient-cta);
+  color: var(--color-cta-text);
 }
 .jsf-btn-primary:hover {
-  background: var(--jsf-forest);
-  color: #fff;
+  background: var(--gradient-cta-hover);
+  color: var(--color-cta-text);
 }
 
 .jsf-btn-outline {
@@ -227,9 +228,9 @@ html:not(.js) [data-reveal] {
    ================================================================== */
 .jsf-hero {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - var(--header-height));
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   overflow: hidden;
   color: #fff;
   padding-block: 0 !important;
@@ -260,7 +261,7 @@ html:not(.js) [data-reveal] {
 .jsf-hero-inner {
   position: relative;
   z-index: 1;
-  padding-block: 5rem 6.5rem;
+  padding-block: 2rem;
   text-align: center;
 }
 .jsf-hero-copy {
@@ -273,7 +274,7 @@ html:not(.js) [data-reveal] {
 }
 .jsf-hero .jsf-hero-copy h1 {
   font-family: var(--jsf-serif);
-  font-size: clamp(1.9rem, 5.4vw, 4.75rem);
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
   line-height: 1.04;
   color: #fff;
   margin: 0 0 1.1rem;
@@ -351,6 +352,13 @@ html:not(.js) [data-reveal] {
 .jsf-split-inner {
   padding: clamp(3rem, 6vw, 5.5rem);
   max-width: 34rem;
+}
+
+/* Wider copy column just for the "What Is…" heading so its title wraps
+   onto 2 balanced lines instead of 3, instead of leaving a wide empty
+   gap between the narrow 34rem column and the image split. */
+#what-is .jsf-split-inner {
+  max-width: 42rem;
 }
 .jsf-split-inner p {
   margin: 0 0 1.1rem;
@@ -1199,7 +1207,7 @@ html:not(.js) [data-reveal] {
 }
 .jsf-final-cta h2 {
   color: #fff;
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.375rem);
   margin: 0 0 1rem;
 }
 .jsf-final-cta p {
@@ -1287,7 +1295,7 @@ html:not(.js) [data-reveal] {
 
 @media (max-width: 720px) {
   .jsf-hero {
-    min-height: 100vh;
+    min-height: calc(100vh - var(--header-height));
   }
 
   .jsf-masonry {
