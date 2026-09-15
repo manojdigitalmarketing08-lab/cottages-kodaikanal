@@ -131,6 +131,24 @@ html:not(.js) .tp1-page [data-reveal] { opacity: 1; transform: none; }
 .tp1-stop-chip { background: rgba(255,255,255,0.12); border-radius: var(--radius-pill); padding: 0.5rem 0.9rem; font-size: 0.82rem; color: rgba(255,255,255,0.92); transition: background 0.2s ease, transform 0.2s ease; }
 .tp1-stop-chip:hover { background: var(--color-highlight); color: var(--tp1-accent); transform: translateY(-2px); }
 
+.tp1-itin-days { display: flex; flex-direction: column; gap: 2.5rem; }
+.tp1-itin-day { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: var(--radius-lg); padding: 2rem clamp(1.25rem, 3vw, 2.5rem); }
+.tp1-itin-day-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.16); }
+.tp1-itin-day-title { font-family: var(--tp1-serif); font-size: clamp(1.2rem, 2vw, 1.5rem); color: #fff; margin: 0; }
+.tp1-itin-day-tag { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tp1-accent); background: var(--color-highlight); border-radius: var(--radius-pill); padding: 0.35rem 0.85rem; white-space: nowrap; }
+
+.tp1-itin-steps { display: flex; flex-direction: column; }
+.tp1-itin-step { display: grid; grid-template-columns: 5.75rem 1.5rem 1fr; column-gap: 1rem; }
+.tp1-itin-step:not(:last-child) { padding-bottom: 1.6rem; }
+.tp1-itin-time { padding-top: 0.15rem; text-align: right; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em; color: var(--color-highlight); white-space: nowrap; }
+.tp1-itin-marker { position: relative; display: flex; justify-content: center; }
+.tp1-itin-marker::before { content: ''; position: absolute; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--color-highlight); z-index: 1; }
+.tp1-itin-marker::after { content: ''; position: absolute; top: 0.3rem; bottom: -1.6rem; left: 50%; width: 2px; transform: translateX(-50%); background: rgba(255,255,255,0.2); }
+.tp1-itin-step:last-child .tp1-itin-marker::after { display: none; }
+.tp1-itin-content h4 { font-family: var(--tp1-sans); font-size: 1rem; font-weight: 600; color: #fff; margin: 0 0 0.3rem; }
+.tp1-itin-content p { margin: 0; color: rgba(255,255,255,0.78); font-size: 0.92rem; line-height: 1.6; }
+.tp1-itin-note { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.16); font-size: 0.88rem; color: rgba(255,255,255,0.72); }
+
 /* ------------------------------- Attractions ------------------------------- */
 .tp1-places-lead { border-radius: var(--radius-lg); overflow: hidden; position: relative; margin-bottom: 1.5rem; }
 .tp1-places-lead img { width: 100%; height: 280px; object-fit: cover; display: block; }
@@ -197,4 +215,6 @@ html:not(.js) .tp1-page [data-reveal] { opacity: 1; transform: none; }
   .tp1-trust-inner, .tp1-guide-grid, .tp1-itinerary-grid, .tp1-exclusions-grid, .tp1-faq-columns, .tp1-places-row, .tp1-pricing-grid-2 { grid-template-columns: 1fr; }
   .tp1-timeline { flex-direction: column; align-items: center; gap: 1.5rem; }
   .tp1-timeline-line { display: none; }
+  .tp1-itin-step { grid-template-columns: 4.25rem 1.25rem 1fr; column-gap: 0.65rem; }
+  .tp1-itin-time { font-size: 0.74rem; }
 }
