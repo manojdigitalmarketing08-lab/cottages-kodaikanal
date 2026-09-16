@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Kodaikanal Berijam Lake Tour — dedicated stylesheet for
+   kodaikanal-berijam-lake-tour.html. Reuses the site core design tokens
+   and Poppins font from css/styles.css. Selectors are scoped under
+   .tbj-page main so nothing here can leak into the shared header/footer.
+   ========================================================================== */
+
+:root {
+  --tbj-bg: var(--color-bg-alt);
+  --tbj-surface: var(--color-surface);
+  --tbj-ink: var(--color-text);
+  --tbj-ink-soft: var(--color-text-muted);
+  --tbj-accent: var(--color-primary);
+  --tbj-line: rgba(20, 80, 102, 0.14);
+  --tbj-serif: var(--font-heading);
+  --tbj-sans: var(--font-body);
+}
+
+.tbj-page main {
+  background: var(--tbj-surface);
+  color: var(--tbj-ink);
+  font-family: var(--tbj-sans);
+}
+
+.tbj-page main section {
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+:where(.tbj-page main) h1,
+:where(.tbj-page main) h2,
+:where(.tbj-page main) h3,
+:where(.tbj-page main) h4 {
+  font-family: var(--tbj-serif);
+  color: var(--tbj-ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+:where(.tbj-page main) h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+:where(.tbj-page main) h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.25; }
+:where(.tbj-page main) p { font-size: clamp(1rem, 1.05vw, 1.1rem); line-height: 1.7; color: var(--tbj-ink-soft); }
+
+/* --------------------------------- Reveal --------------------------------- */
+.tbj-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tbj-page [data-reveal].is-visible { opacity: 1; transform: none; }
+html:not(.js) .tbj-page [data-reveal] { opacity: 1; transform: none; }
+
+/* ------------------------------- Shared bits ------------------------------- */
+.tbj-eyebrow {
+  display: block;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tbj-accent);
+  margin: 0 0 0.9rem;
+}
+.tbj-eyebrow-center { text-align: center; }
+
+.tbj-section-head { max-width: 46rem; margin: 0 0 3rem; }
+.tbj-section-head-center { margin-inline: auto; text-align: center; }
+.tbj-section-head-center .tbj-section-sub { margin-inline: auto; }
+.tbj-section-sub { margin-top: 0.9rem; }
+
+.tbj-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 2rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.tbj-btn:hover { transform: translateY(-3px); }
+.tbj-btn-primary { background: var(--gradient-cta); color: var(--color-cta-text); }
+.tbj-btn-primary:hover { background: var(--gradient-cta-hover); }
+.tbj-btn-outline { background: transparent; border-color: rgba(255,255,255,0.7); color: #fff; }
+.tbj-btn-outline:hover { background: rgba(255,255,255,0.15); }
+.tbj-btn-outline-dark { background: transparent; border-color: var(--tbj-accent); color: var(--tbj-accent); }
+.tbj-btn-outline-dark:hover { background: var(--tbj-accent); color: #fff; }
+
+/* --------------------------------- Hero --------------------------------- */
+.tbj-hero { position: relative; height: 100vh; min-height: 560px; max-height: 900px; display: flex; align-items: center; color: #fff; }
+.tbj-hero-media { position: absolute; inset: 0; z-index: 0; }
+.tbj-hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.tbj-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,32,40,0.6) 0%, rgba(12,32,40,0.58) 45%, rgba(8,22,28,0.88) 100%); }
+.tbj-hero-content { position: relative; z-index: 1; padding-block: 3rem; }
+.tbj-hero-content h1 { color: #fff; font-size: clamp(2.25rem, 5vw, 3.5rem); }
+.tbj-hero-sub { color: rgba(255,255,255,0.88); max-width: 42rem; margin-top: 1rem; }
+.tbj-hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.75rem; }
+
+/* ------------------------------ Trust strip ------------------------------ */
+.tbj-trust { background: var(--tbj-bg); }
+.tbj-trust-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.tbj-trust-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; background: var(--tbj-surface); border: 1px solid var(--tbj-line); border-radius: var(--radius-lg); padding: 1.5rem; }
+.tbj-trust-icon { width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--tbj-bg); color: var(--tbj-accent); }
+.tbj-trust-icon svg { width: 22px; height: 22px; }
+.tbj-trust-num { font-family: var(--tbj-serif); font-size: 1.15rem; font-weight: 600; color: var(--tbj-ink); }
+.tbj-trust-card p { margin: 0; font-size: 0.92rem; }
+
+/* -------------------------------- Included -------------------------------- */
+.tbj-guide-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.tbj-guide-card { background: var(--tbj-surface); border: 1px solid var(--tbj-line); border-radius: var(--radius-lg); padding: 1.75rem; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.tbj-guide-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.tbj-guide-card h4 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+.tbj-guide-card p { margin: 0; font-size: 0.95rem; }
+
+/* ------------------------------- Itinerary -------------------------------- */
+.tbj-itinerary { background: var(--tbj-accent); }
+.tbj-itinerary .tbj-eyebrow, .tbj-itinerary h2, .tbj-itinerary .tbj-section-sub { color: #fff; }
+.tbj-itinerary .tbj-section-sub { color: rgba(255,255,255,0.82); }
+
+.tbj-itin-days { display: flex; flex-direction: column; gap: 2.5rem; }
+.tbj-itin-day { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: var(--radius-lg); padding: 2rem clamp(1.25rem, 3vw, 2.5rem); }
+.tbj-itin-day-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.16); }
+.tbj-itin-day-title { font-family: var(--tbj-serif); font-size: clamp(1.2rem, 2vw, 1.5rem); color: #fff; margin: 0; }
+.tbj-itin-day-tag { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tbj-accent); background: var(--color-highlight); border-radius: var(--radius-pill); padding: 0.35rem 0.85rem; white-space: nowrap; }
+
+.tbj-itin-steps { display: flex; flex-direction: column; }
+.tbj-itin-step { display: grid; grid-template-columns: 5.75rem 1.5rem 1fr; column-gap: 1rem; }
+.tbj-itin-step:not(:last-child) { padding-bottom: 1.6rem; }
+.tbj-itin-time { padding-top: 0.15rem; text-align: right; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em; color: var(--color-highlight); white-space: nowrap; }
+.tbj-itin-marker { position: relative; display: flex; justify-content: center; }
+.tbj-itin-marker::before { content: ''; position: absolute; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--color-highlight); z-index: 1; }
+.tbj-itin-marker::after { content: ''; position: absolute; top: 0.3rem; bottom: -1.6rem; left: 50%; width: 2px; transform: translateX(-50%); background: rgba(255,255,255,0.2); }
+.tbj-itin-step:last-child .tbj-itin-marker::after { display: none; }
+.tbj-itin-content h4 { font-family: var(--tbj-sans); font-size: 1rem; font-weight: 600; color: #fff; margin: 0 0 0.3rem; }
+.tbj-itin-content p { margin: 0; color: rgba(255,255,255,0.78); font-size: 0.92rem; line-height: 1.6; }
+.tbj-itin-note { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.16); font-size: 0.88rem; color: rgba(255,255,255,0.72); }
+
+/* ------------------------------- Attractions ------------------------------- */
+.tbj-places-lead { border-radius: var(--radius-lg); overflow: hidden; position: relative; margin-bottom: 1.5rem; }
+.tbj-places-lead img { width: 100%; height: 280px; object-fit: cover; display: block; }
+.tbj-places-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.25rem 1.5rem; background: linear-gradient(0deg, rgba(16,62,78,0.85), rgba(16,62,78,0)); color: #fff; font-size: 0.95rem; }
+.tbj-places-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.tbj-place-tile { position: relative; border-radius: var(--radius-md); overflow: hidden; }
+.tbj-place-tile img { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.tbj-place-tile:hover img { transform: scale(1.08); }
+.tbj-place-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.9rem 1rem; background: linear-gradient(0deg, rgba(16,62,78,0.88), rgba(16,62,78,0)); color: #fff; font-size: 0.78rem; line-height: 1.4; }
+
+/* --------------------------------- Pricing --------------------------------- */
+.tbj-rate-table { max-width: 640px; margin: 0 auto; border: 1px solid var(--tbj-line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+.tbj-rate-row { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: var(--tbj-surface); border-bottom: 1px solid var(--tbj-line); font-size: 0.98rem; color: var(--tbj-ink); }
+.tbj-rate-row:last-child { border-bottom: none; }
+.tbj-rate-row:not(.tbj-rate-row-head):nth-child(even) { background: var(--tbj-bg); }
+.tbj-rate-row-head { background: var(--tbj-accent); color: #fff; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.tbj-rate-row span:last-child { font-weight: 600; }
+.tbj-rate-row-head span:last-child { font-weight: 700; }
+.tbj-rate-row small { font-weight: 400; color: var(--tbj-ink-soft); }
+.tbj-rate-row-head small { color: rgba(255,255,255,0.8); }
+.tbj-rate-note { max-width: 640px; margin: 1.25rem auto 0; text-align: center; font-size: 0.88rem; }
+.tbj-rate-cta { display: flex; justify-content: center; margin-top: 1.75rem; }
+
+/* ------------------------------- Exclusions ------------------------------- */
+.tbj-exclusions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.tbj-exclusion-item { display: flex; align-items: center; gap: 0.6rem; background: var(--tbj-surface); border: 1px solid var(--tbj-line); border-radius: var(--radius-sm); padding: 1rem 1.1rem; font-size: 0.92rem; color: var(--tbj-ink-soft); transition: transform 0.2s ease, border-color 0.2s ease; }
+.tbj-exclusion-item:hover { transform: translateY(-3px); border-color: var(--color-warning); }
+.tbj-exclusion-item::before { content: '\00d7'; color: var(--color-pin); font-weight: 900; font-size: 1rem; }
+
+/* -------------------------------- Timeline -------------------------------- */
+.tbj-timeline { display: flex; align-items: flex-start; gap: 0; }
+.tbj-timeline-step { flex: 1; text-align: center; padding-inline: 0.5rem; }
+.tbj-step-num { display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 1px solid var(--tbj-line); font-family: var(--tbj-serif); font-weight: 600; color: var(--tbj-accent); margin-bottom: 1rem; transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease; }
+.tbj-timeline-step:hover .tbj-step-num { background: var(--tbj-accent); color: #fff; transform: scale(1.08); }
+.tbj-timeline-step h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+.tbj-timeline-step p { font-size: 0.88rem; margin: 0; }
+.tbj-timeline-line { flex: 0 0 3rem; height: 1px; background: var(--tbj-line); margin-top: 1.75rem; }
+
+/* ----------------------------------- FAQ ----------------------------------- */
+.tbj-faq-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.tbj-faq-col-heading { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tbj-accent); margin-bottom: 1rem; }
+.tbj-faq-item { border-bottom: 1px solid var(--tbj-line); }
+.tbj-faq-question { width: 100%; text-align: left; background: none; border: none; padding: 1rem 0; font-family: var(--tbj-sans); font-size: 0.95rem; font-weight: 600; color: var(--tbj-ink); display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; cursor: pointer; }
+.tbj-faq-question span { color: var(--tbj-accent); font-size: 1.1rem; transition: transform 0.2s ease; }
+.tbj-faq-item.is-open .tbj-faq-question span { transform: rotate(45deg); }
+.tbj-faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.tbj-faq-answer p { margin: 0 0 1rem; font-size: 0.9rem; }
+.tbj-faq-item.is-open .tbj-faq-answer { max-height: 220px; }
+
+/* -------------------------------- Final CTA -------------------------------- */
+.tbj-final-cta { position: relative; padding-block: 5rem; color: #fff; text-align: center; }
+.tbj-final-cta-media { position: absolute; inset: 0; z-index: 0; }
+.tbj-final-cta-media img { width: 100%; height: 100%; object-fit: cover; }
+.tbj-final-cta-scrim { position: absolute; inset: 0; background: rgba(12,32,40,0.72); }
+.tbj-final-cta-content { position: relative; z-index: 1; max-width: 42rem; margin-inline: auto; }
+.tbj-final-cta-content h2 { color: #fff; }
+.tbj-final-cta-content p { color: rgba(255,255,255,0.88); margin-top: 1rem; }
+.tbj-final-cta .tbj-hero-cta { justify-content: center; margin-top: 1.75rem; }
+
+/* -------------------------------- Responsive -------------------------------- */
+@media (max-width: 960px) {
+  .tbj-trust-inner, .tbj-guide-grid, .tbj-exclusions-grid, .tbj-faq-columns { grid-template-columns: 1fr 1fr; }
+  .tbj-places-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .tbj-trust-inner, .tbj-guide-grid, .tbj-exclusions-grid, .tbj-faq-columns, .tbj-places-row { grid-template-columns: 1fr; }
+  .tbj-timeline { flex-direction: column; align-items: center; gap: 1.5rem; }
+  .tbj-timeline-line { display: none; }
+  .tbj-itin-step { grid-template-columns: 4.25rem 1.25rem 1fr; column-gap: 0.65rem; }
+  .tbj-itin-time { font-size: 0.74rem; }
+  .tbj-rate-row { padding: 0.85rem 1.1rem; font-size: 0.9rem; }
+}

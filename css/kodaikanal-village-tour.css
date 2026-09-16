@@ -1,0 +1,213 @@
+/* ==========================================================================
+   Kodaikanal Village Tour — dedicated stylesheet for
+   kodaikanal-village-tour.html. Reuses the site core design tokens and
+   Poppins font from css/styles.css. Selectors are scoped under
+   .tvg-page main so nothing here can leak into the shared header/footer.
+   ========================================================================== */
+
+:root {
+  --tvg-bg: var(--color-bg-alt);
+  --tvg-surface: var(--color-surface);
+  --tvg-ink: var(--color-text);
+  --tvg-ink-soft: var(--color-text-muted);
+  --tvg-accent: var(--color-primary);
+  --tvg-line: rgba(20, 80, 102, 0.14);
+  --tvg-serif: var(--font-heading);
+  --tvg-sans: var(--font-body);
+}
+
+.tvg-page main {
+  background: var(--tvg-surface);
+  color: var(--tvg-ink);
+  font-family: var(--tvg-sans);
+}
+
+.tvg-page main section {
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+:where(.tvg-page main) h1,
+:where(.tvg-page main) h2,
+:where(.tvg-page main) h3,
+:where(.tvg-page main) h4 {
+  font-family: var(--tvg-serif);
+  color: var(--tvg-ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+:where(.tvg-page main) h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; }
+:where(.tvg-page main) h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.25; }
+:where(.tvg-page main) p { font-size: clamp(1rem, 1.05vw, 1.1rem); line-height: 1.7; color: var(--tvg-ink-soft); }
+
+/* --------------------------------- Reveal --------------------------------- */
+.tvg-page [data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tvg-page [data-reveal].is-visible { opacity: 1; transform: none; }
+html:not(.js) .tvg-page [data-reveal] { opacity: 1; transform: none; }
+
+/* ------------------------------- Shared bits ------------------------------- */
+.tvg-eyebrow {
+  display: block;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tvg-accent);
+  margin: 0 0 0.9rem;
+}
+.tvg-eyebrow-center { text-align: center; }
+
+.tvg-section-head { max-width: 46rem; margin: 0 0 3rem; }
+.tvg-section-head-center { margin-inline: auto; text-align: center; }
+.tvg-section-head-center .tvg-section-sub { margin-inline: auto; }
+.tvg-section-sub { margin-top: 0.9rem; }
+
+.tvg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 2rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.tvg-btn:hover { transform: translateY(-3px); }
+.tvg-btn-primary { background: var(--gradient-cta); color: var(--color-cta-text); }
+.tvg-btn-primary:hover { background: var(--gradient-cta-hover); }
+.tvg-btn-outline { background: transparent; border-color: rgba(255,255,255,0.7); color: #fff; }
+.tvg-btn-outline:hover { background: rgba(255,255,255,0.15); }
+.tvg-btn-outline-dark { background: transparent; border-color: var(--tvg-accent); color: var(--tvg-accent); }
+.tvg-btn-outline-dark:hover { background: var(--tvg-accent); color: #fff; }
+
+/* --------------------------------- Hero --------------------------------- */
+.tvg-hero { position: relative; height: 100vh; min-height: 560px; max-height: 900px; display: flex; align-items: center; color: #fff; }
+.tvg-hero-media { position: absolute; inset: 0; z-index: 0; }
+.tvg-hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.tvg-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,32,40,0.6) 0%, rgba(12,32,40,0.58) 45%, rgba(8,22,28,0.88) 100%); }
+.tvg-hero-content { position: relative; z-index: 1; padding-block: 3rem; }
+.tvg-hero-content h1 { color: #fff; font-size: clamp(2.25rem, 5vw, 3.5rem); }
+.tvg-hero-sub { color: rgba(255,255,255,0.88); max-width: 42rem; margin-top: 1rem; }
+.tvg-hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.75rem; }
+
+/* ------------------------------ Trust strip ------------------------------ */
+.tvg-trust { background: var(--tvg-bg); }
+.tvg-trust-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.tvg-trust-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; background: var(--tvg-surface); border: 1px solid var(--tvg-line); border-radius: var(--radius-lg); padding: 1.5rem; }
+.tvg-trust-icon { width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--tvg-bg); color: var(--tvg-accent); }
+.tvg-trust-icon svg { width: 22px; height: 22px; }
+.tvg-trust-num { font-family: var(--tvg-serif); font-size: 1.15rem; font-weight: 600; color: var(--tvg-ink); }
+.tvg-trust-card p { margin: 0; font-size: 0.92rem; }
+
+/* -------------------------------- Included -------------------------------- */
+.tvg-guide-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.tvg-guide-card { background: var(--tvg-surface); border: 1px solid var(--tvg-line); border-radius: var(--radius-lg); padding: 1.75rem; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.tvg-guide-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.tvg-guide-card h4 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+.tvg-guide-card p { margin: 0; font-size: 0.95rem; }
+
+/* ------------------------------- Itinerary -------------------------------- */
+.tvg-itinerary { background: var(--tvg-accent); }
+.tvg-itinerary .tvg-eyebrow, .tvg-itinerary h2, .tvg-itinerary .tvg-section-sub { color: #fff; }
+.tvg-itinerary .tvg-section-sub { color: rgba(255,255,255,0.82); }
+
+.tvg-itin-days { display: flex; flex-direction: column; gap: 2.5rem; }
+.tvg-itin-day { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: var(--radius-lg); padding: 2rem clamp(1.25rem, 3vw, 2.5rem); }
+.tvg-itin-day-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.16); }
+.tvg-itin-day-title { font-family: var(--tvg-serif); font-size: clamp(1.2rem, 2vw, 1.5rem); color: #fff; margin: 0; }
+.tvg-itin-day-tag { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tvg-accent); background: var(--color-highlight); border-radius: var(--radius-pill); padding: 0.35rem 0.85rem; white-space: nowrap; }
+
+.tvg-itin-steps { display: flex; flex-direction: column; }
+.tvg-itin-step { display: grid; grid-template-columns: 5.75rem 1.5rem 1fr; column-gap: 1rem; }
+.tvg-itin-step:not(:last-child) { padding-bottom: 1.6rem; }
+.tvg-itin-time { padding-top: 0.15rem; text-align: right; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.02em; color: var(--color-highlight); white-space: nowrap; }
+.tvg-itin-marker { position: relative; display: flex; justify-content: center; }
+.tvg-itin-marker::before { content: ''; position: absolute; top: 0.3rem; width: 10px; height: 10px; border-radius: 50%; background: var(--color-highlight); z-index: 1; }
+.tvg-itin-marker::after { content: ''; position: absolute; top: 0.3rem; bottom: -1.6rem; left: 50%; width: 2px; transform: translateX(-50%); background: rgba(255,255,255,0.2); }
+.tvg-itin-step:last-child .tvg-itin-marker::after { display: none; }
+.tvg-itin-content h4 { font-family: var(--tvg-sans); font-size: 1rem; font-weight: 600; color: #fff; margin: 0 0 0.3rem; }
+.tvg-itin-content p { margin: 0; color: rgba(255,255,255,0.78); font-size: 0.92rem; line-height: 1.6; }
+.tvg-itin-note { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.16); font-size: 0.88rem; color: rgba(255,255,255,0.72); }
+
+/* ------------------------------- Attractions ------------------------------- */
+.tvg-places-lead { border-radius: var(--radius-lg); overflow: hidden; position: relative; margin-bottom: 1.5rem; }
+.tvg-places-lead img { width: 100%; height: 280px; object-fit: cover; display: block; }
+.tvg-places-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.25rem 1.5rem; background: linear-gradient(0deg, rgba(16,62,78,0.85), rgba(16,62,78,0)); color: #fff; font-size: 0.95rem; }
+.tvg-places-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.tvg-place-tile { position: relative; border-radius: var(--radius-md); overflow: hidden; }
+.tvg-place-tile img { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.tvg-place-tile:hover img { transform: scale(1.08); }
+.tvg-place-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.9rem 1rem; background: linear-gradient(0deg, rgba(16,62,78,0.88), rgba(16,62,78,0)); color: #fff; font-size: 0.78rem; line-height: 1.4; }
+
+/* --------------------------------- Pricing --------------------------------- */
+.tvg-rate-table { max-width: 640px; margin: 0 auto; border: 1px solid var(--tvg-line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+.tvg-rate-row { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: var(--tvg-surface); border-bottom: 1px solid var(--tvg-line); font-size: 0.98rem; color: var(--tvg-ink); }
+.tvg-rate-row:last-child { border-bottom: none; }
+.tvg-rate-row:not(.tvg-rate-row-head):nth-child(even) { background: var(--tvg-bg); }
+.tvg-rate-row-head { background: var(--tvg-accent); color: #fff; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.tvg-rate-row span:last-child { font-weight: 600; }
+.tvg-rate-row-head span:last-child { font-weight: 700; }
+.tvg-rate-row small { font-weight: 400; color: var(--tvg-ink-soft); }
+.tvg-rate-row-head small { color: rgba(255,255,255,0.8); }
+.tvg-rate-note { max-width: 640px; margin: 1.25rem auto 0; text-align: center; font-size: 0.88rem; }
+.tvg-rate-cta { display: flex; justify-content: center; margin-top: 1.75rem; }
+
+/* ------------------------------- Exclusions ------------------------------- */
+.tvg-exclusions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.tvg-exclusion-item { display: flex; align-items: center; gap: 0.6rem; background: var(--tvg-surface); border: 1px solid var(--tvg-line); border-radius: var(--radius-sm); padding: 1rem 1.1rem; font-size: 0.92rem; color: var(--tvg-ink-soft); transition: transform 0.2s ease, border-color 0.2s ease; }
+.tvg-exclusion-item:hover { transform: translateY(-3px); border-color: var(--color-warning); }
+.tvg-exclusion-item::before { content: '\00d7'; color: var(--color-pin); font-weight: 900; font-size: 1rem; }
+
+/* -------------------------------- Timeline -------------------------------- */
+.tvg-timeline { display: flex; align-items: flex-start; gap: 0; }
+.tvg-timeline-step { flex: 1; text-align: center; padding-inline: 0.5rem; }
+.tvg-step-num { display: inline-flex; align-items: center; justify-content: center; width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 1px solid var(--tvg-line); font-family: var(--tvg-serif); font-weight: 600; color: var(--tvg-accent); margin-bottom: 1rem; transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease; }
+.tvg-timeline-step:hover .tvg-step-num { background: var(--tvg-accent); color: #fff; transform: scale(1.08); }
+.tvg-timeline-step h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+.tvg-timeline-step p { font-size: 0.88rem; margin: 0; }
+.tvg-timeline-line { flex: 0 0 3rem; height: 1px; background: var(--tvg-line); margin-top: 1.75rem; }
+
+/* ----------------------------------- FAQ ----------------------------------- */
+.tvg-faq-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.tvg-faq-col-heading { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tvg-accent); margin-bottom: 1rem; }
+.tvg-faq-item { border-bottom: 1px solid var(--tvg-line); }
+.tvg-faq-question { width: 100%; text-align: left; background: none; border: none; padding: 1rem 0; font-family: var(--tvg-sans); font-size: 0.95rem; font-weight: 600; color: var(--tvg-ink); display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; cursor: pointer; }
+.tvg-faq-question span { color: var(--tvg-accent); font-size: 1.1rem; transition: transform 0.2s ease; }
+.tvg-faq-item.is-open .tvg-faq-question span { transform: rotate(45deg); }
+.tvg-faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.tvg-faq-answer p { margin: 0 0 1rem; font-size: 0.9rem; }
+.tvg-faq-item.is-open .tvg-faq-answer { max-height: 220px; }
+
+/* -------------------------------- Final CTA -------------------------------- */
+.tvg-final-cta { position: relative; padding-block: 5rem; color: #fff; text-align: center; }
+.tvg-final-cta-media { position: absolute; inset: 0; z-index: 0; }
+.tvg-final-cta-media img { width: 100%; height: 100%; object-fit: cover; }
+.tvg-final-cta-scrim { position: absolute; inset: 0; background: rgba(12,32,40,0.72); }
+.tvg-final-cta-content { position: relative; z-index: 1; max-width: 42rem; margin-inline: auto; }
+.tvg-final-cta-content h2 { color: #fff; }
+.tvg-final-cta-content p { color: rgba(255,255,255,0.88); margin-top: 1rem; }
+.tvg-final-cta .tvg-hero-cta { justify-content: center; margin-top: 1.75rem; }
+
+/* -------------------------------- Responsive -------------------------------- */
+@media (max-width: 960px) {
+  .tvg-trust-inner, .tvg-guide-grid, .tvg-exclusions-grid, .tvg-faq-columns { grid-template-columns: 1fr 1fr; }
+  .tvg-places-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .tvg-trust-inner, .tvg-guide-grid, .tvg-exclusions-grid, .tvg-faq-columns, .tvg-places-row { grid-template-columns: 1fr; }
+  .tvg-timeline { flex-direction: column; align-items: center; gap: 1.5rem; }
+  .tvg-timeline-line { display: none; }
+  .tvg-itin-step { grid-template-columns: 4.25rem 1.25rem 1fr; column-gap: 0.65rem; }
+  .tvg-itin-time { font-size: 0.74rem; }
+  .tvg-rate-row { padding: 0.85rem 1.1rem; font-size: 0.9rem; }
+}

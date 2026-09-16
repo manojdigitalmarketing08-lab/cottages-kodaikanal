@@ -3490,3 +3490,68 @@ section {
 .compare-table-link:hover {
   text-decoration: underline;
 }
+
+/* Below tablet, a wide data grid becomes an unreadable horizontal-scroll
+   "slider" — restack each row into a self-labelled card instead. */
+@media (max-width: 640px) {
+  .compare-table-wrap {
+    overflow-x: visible;
+  }
+
+  .compare-table {
+    min-width: 0;
+  }
+
+  .compare-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .compare-table,
+  .compare-table tbody,
+  .compare-table tr,
+  .compare-table th,
+  .compare-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .compare-table tbody tr {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .compare-table tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  .compare-table tbody th {
+    padding: 0 0 var(--space-2);
+    border-bottom: none;
+    white-space: normal;
+  }
+
+  .compare-table td {
+    padding: var(--space-3) 0 0;
+    border-bottom: none;
+    text-align: left;
+  }
+
+  .compare-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+  }
+}

@@ -1,0 +1,712 @@
+/* ==========================================================================
+   Travels in Kodaikanal — page-specific styles
+   Prefix: tk-  ·  Tokens inherited from css/styles.css (:root), no new
+   colors/radii/spacing introduced here.
+   ========================================================================== */
+
+/* Safety net: nothing on this page should cause page-level horizontal
+   scroll (the tour carousel and explorer tab strip scroll internally,
+   not the page itself). */
+body.tk-page {
+  overflow-x: hidden;
+}
+
+/* Anchor targets (used by in-page links elsewhere) sit right under the
+   sticky header — reserve that height so a jump doesn't land with the
+   heading clipped underneath it. */
+#tours,
+#explore,
+#packages,
+#faq,
+#cta {
+  scroll-margin-top: var(--header-height);
+}
+
+/* --------------------------------------------------------------------
+   1 — Hero
+   -------------------------------------------------------------------- */
+/* The site header sits in normal flow above the hero (sticky, not an
+   absolute overlay on top of it), so the hero only needs to fill what's
+   left of the viewport below it — not a flat 640px, which pushed the
+   subhead/CTA below the fold on short mobile screens. min-height uses
+   svh (small viewport height) where supported so mobile browser
+   chrome doesn't cause a layout jump; vh is the fallback. */
+.tk-hero {
+  position: relative;
+  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.tk-hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.tk-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tk-hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 62, 78, 0.15) 0%, rgba(16, 62, 78, 0.55) 65%, rgba(16, 62, 78, 0.92) 100%);
+}
+
+.tk-hero-inner {
+  position: relative;
+  z-index: 1;
+  /* No top-padding reserved for the header here — it isn't overlaying
+     the hero, it's a separate block above it, so reserving its height
+     again just wasted vertical space and pushed the CTA off-screen on
+     mobile. */
+  padding-block: var(--space-6) var(--space-9);
+}
+
+.tk-hero-copy {
+  max-width: 640px;
+  color: #fff;
+}
+
+.tk-hero-copy h1 {
+  color: #fff;
+  font-size: clamp(2.25rem, 4vw + 1rem, 3rem);
+  margin: 0 0 var(--space-3);
+}
+
+.tk-hero-subhead {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 var(--space-5);
+  max-width: 52ch;
+}
+
+/* --------------------------------------------------------------------
+   2 — Intro + Stats — diagonal two-panel (only angled geometry on page)
+   -------------------------------------------------------------------- */
+.tk-intro {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .tk-intro {
+    grid-template-columns: 1.3fr 1fr;
+  }
+
+  .tk-intro-panel-text {
+    clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+    padding-right: var(--space-9);
+  }
+
+  .tk-intro-panel-stats {
+    margin-left: -8%;
+  }
+}
+
+.tk-intro-panel-text {
+  background: var(--color-bg);
+  padding: var(--space-9) var(--space-4);
+}
+
+.tk-intro-panel-stats {
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-9) var(--space-4);
+  display: flex;
+  align-items: center;
+}
+
+.tk-intro-inner {
+  max-width: 480px;
+  margin-inline: auto;
+}
+
+.tk-intro-panel-text h2 {
+  margin-top: 0;
+}
+
+.tk-pullline {
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: var(--space-5) 0 0;
+}
+
+.tk-intro-panel-stats .tk-intro-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.tk-stat-value {
+  display: block;
+  font-size: clamp(2.25rem, 3vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tk-stat-label {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: 0.95rem;
+  color: var(--color-steel);
+}
+
+/* --------------------------------------------------------------------
+   3 — Featured Tours — horizontal scroll-snap rail
+   (.carousel-wrapper/.carousel-track/.carousel-nav scaffolding comes
+   from styles.css — only the card + scrim styling lives here)
+   -------------------------------------------------------------------- */
+.tk-tours-section {
+  padding-block: var(--section-gap-mobile);
+  background: var(--color-bg);
+}
+
+@media (min-width: 1024px) {
+  .tk-tours-section {
+    padding-block: var(--section-gap-desktop);
+  }
+}
+
+.tk-tours-section h2 {
+  margin: 0 0 var(--space-2);
+}
+
+.tk-tours-intro {
+  margin: 0 0 var(--space-6);
+  color: var(--color-text-muted);
+  max-width: 52ch;
+}
+
+/* Matches .container's actual left edge exactly (styles.css: max-width
+   1200px, centered, padding-inline: clamp(--space-6, 7vw, --space-10)) —
+   the earlier flat --space-4 value undershot that clamp at most widths,
+   leaving the first card noticeably left of the heading above it.
+   Uses 100% (of this full-bleed section, which already excludes the
+   scrollbar) rather than 100vw — 100vw counts the scrollbar's own width
+   on most browsers, which overshot the real viewport and was pushing
+   the carousel past the right edge into a page-wide horizontal
+   scrollbar. */
+.tk-tours-wrapper {
+  padding-inline: calc(max(0px, (100% - var(--max-width)) / 2) + clamp(var(--space-6), 7vw, var(--space-10)));
+}
+
+.tk-tours-track {
+  gap: var(--space-4);
+  padding-bottom: var(--space-2);
+}
+
+/* Each card is a single real link to its own tour page (interlinking,
+   not a WhatsApp deep-link) — the whole card is the click target so the
+   internal page gets the click, not just a "Book Now" sliver. */
+.tk-tour-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+}
+
+.tk-tour-card-link {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+}
+
+.tk-tour-card-link:focus-visible {
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+.tk-tour-card-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-premium);
+}
+
+.tk-tour-card-link:hover img,
+.tk-tour-card-link:focus-visible img {
+  transform: scale(1.06);
+}
+
+/* Title/description/CTA are always visible — this is an interlinking
+   card to its own tour page, not a reveal-to-discover interaction, so
+   the destination has to be legible without a hover/tap first. Only the
+   image gets a hover treatment (zoom). */
+.tk-tour-scrim {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: block;
+  padding: var(--space-4);
+  color: #fff;
+  /* Darkens earlier/harder than a simple fade so the title stays legible
+     over bright sky or water in the source photo, not just dark foliage. */
+  background: linear-gradient(180deg, transparent 0%, rgba(16, 62, 78, 0.45) 35%, rgba(16, 62, 78, 0.96) 62%);
+}
+
+.tk-tour-card-title,
+.tk-tour-card-desc {
+  text-shadow: 0 1px 4px rgba(8, 30, 38, 0.5);
+}
+
+.tk-tour-card-title {
+  display: block;
+  margin: 0 0 var(--space-1);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.tk-tour-card-desc {
+  display: block;
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.tk-tour-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-3);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-highlight);
+}
+
+.tk-tour-card-cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s var(--ease-premium);
+}
+
+.tk-tour-card-link:hover .tk-tour-card-cta svg,
+.tk-tour-card-link:focus-visible .tk-tour-card-cta svg {
+  transform: translateX(3px);
+}
+
+/* --------------------------------------------------------------------
+   4 — Experience Explorer — tabbed side-rail + swap panel
+   -------------------------------------------------------------------- */
+.tk-explorer {
+  padding-block: var(--section-gap-mobile);
+  background: var(--color-bg-alt);
+}
+
+@media (min-width: 1024px) {
+  .tk-explorer {
+    padding-block: var(--section-gap-desktop);
+  }
+}
+
+.tk-explorer h2 {
+  margin: 0 0 var(--space-6);
+  max-width: 20ch;
+}
+
+.tk-explorer-layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 900px) {
+  .tk-explorer-layout {
+    grid-template-columns: 260px 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.tk-explorer-tabs {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tk-explorer-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .tk-explorer-tabs {
+    flex-direction: column;
+    overflow-x: visible;
+    position: relative;
+  }
+
+  .tk-explorer-tabs::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-border);
+    border-radius: var(--radius-pill);
+  }
+}
+
+.tk-explorer-tab {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: none;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s var(--ease-premium), background 0.2s var(--ease-premium);
+}
+
+.tk-explorer-tab svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+@media (min-width: 900px) {
+  .tk-explorer-tab {
+    background: transparent;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding-left: var(--space-5);
+    position: relative;
+  }
+}
+
+.tk-explorer-tab[aria-selected="true"] {
+  color: #fff;
+  background: var(--gradient-cta);
+}
+
+@media (min-width: 900px) {
+  .tk-explorer-tab[aria-selected="true"]::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-primary-dark);
+  }
+}
+
+.tk-explorer-tab:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.tk-explorer-panels {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.tk-explorer-panel[hidden] {
+  display: none;
+}
+
+.tk-explorer-panel:not([hidden]) {
+  display: grid;
+  animation: tk-panel-in 0.25s var(--ease-premium);
+}
+
+@media (min-width: 640px) {
+  .tk-explorer-panel {
+    grid-template-columns: 40% 1fr;
+    /* Fixed so every tab renders the same card size regardless of how
+       much copy or how tall the source photo is — only the crop (via
+       object-fit below) and the copy's own vertical centering vary. */
+    min-height: 420px;
+  }
+}
+
+@keyframes tk-panel-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tk-explorer-panel img {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+}
+
+.tk-explorer-panel-copy {
+  padding: var(--space-6);
+  align-self: center;
+}
+
+.tk-explorer-panel-copy h3 {
+  margin-top: 0;
+}
+
+.tk-pill-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.tk-pill-links a {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.2s var(--ease-premium), border-color 0.2s var(--ease-premium);
+}
+
+.tk-pill-links a:hover {
+  background: var(--color-bg-alt);
+  border-color: var(--color-primary-light);
+}
+
+.tk-check-list {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.tk-check-list li {
+  padding-left: var(--space-6);
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.tk-check-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35em;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-steel);
+  border: 1.5px solid var(--color-primary-light);
+}
+
+/* --------------------------------------------------------------------
+   5 — Packages — staggered-offset row + segmented filter
+   -------------------------------------------------------------------- */
+.tk-packages {
+  padding-block: var(--section-gap-mobile);
+  background: var(--color-bg);
+}
+
+@media (min-width: 1024px) {
+  .tk-packages {
+    padding-block: var(--section-gap-desktop);
+  }
+}
+
+.tk-packages h2 {
+  margin: 0 0 var(--space-2);
+}
+
+.tk-packages-intro {
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-6);
+}
+
+.tk-packages-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+  margin-bottom: var(--space-8);
+}
+
+.tk-segmented {
+  display: inline-flex;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  gap: 2px;
+}
+
+.tk-segment {
+  border: none;
+  background: transparent;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background 0.2s var(--ease-premium), color 0.2s var(--ease-premium);
+}
+
+.tk-segment.is-active {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.tk-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tk-tag {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease-premium), color 0.2s var(--ease-premium);
+}
+
+.tk-tag.is-active {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary);
+  background: var(--color-steel);
+}
+
+.tk-packages-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: var(--space-5);
+  align-items: start;
+}
+
+/* The zigzag silhouette — every other card offset lower, desktop only */
+@media (min-width: 900px) {
+  .tk-package-card:nth-child(even) {
+    margin-top: 32px;
+  }
+}
+
+.tk-package-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  transition: opacity 0.2s var(--ease-premium), transform 0.2s var(--ease-premium);
+}
+
+.tk-package-card.is-hidden {
+  display: none;
+}
+
+.tk-package-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.tk-package-body {
+  padding: var(--space-4);
+}
+
+.tk-package-badge {
+  display: inline-block;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-steel);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+
+.tk-package-body h3 {
+  margin: 0 0 var(--space-1);
+  font-size: 1.05rem;
+}
+
+.tk-package-body p {
+  margin: 0 0 var(--space-3);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.tk-package-price {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 1.05rem;
+}
+
+.tk-package-price span {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------
+   6 — FAQ uses the home page's shared .faq / .faq-item / .faq-question
+   classes (css/styles.css) as-is, so it matches site-wide — no
+   page-specific FAQ styling needed here.
+   -------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------
+   7 — CTA / Trust band — angled/clipped, opposing angle from §2
+   -------------------------------------------------------------------- */
+.tk-cta-band {
+  background: var(--color-primary);
+  padding: calc(var(--space-9) + 24px) 0;
+  clip-path: polygon(0 24px, 100% 0, 100% calc(100% - 24px), 0 100%);
+  margin-block: -8px;
+}
+
+.tk-cta-band-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.tk-cta-band-inner h2 {
+  color: #fff;
+  margin: 0 0 var(--space-2);
+}
+
+.tk-cta-band-inner p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 44ch;
+}
+
+.tk-cta-band-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tk-tour-card-link img,
+  .tk-tour-scrim,
+  .tk-explorer-panel {
+    animation: none;
+    transition: none;
+  }
+}

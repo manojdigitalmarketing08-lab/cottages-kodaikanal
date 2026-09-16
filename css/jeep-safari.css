@@ -267,6 +267,7 @@ html:not(.js) [data-reveal] {
 .jsf-hero-copy {
   max-width: 58rem;
   margin-inline: auto;
+  margin-bottom: clamp(2rem, 7vw, 4rem);
 }
 .jsf-hero .jsf-hero-copy .jsf-eyebrow {
   color: var(--color-steel);
@@ -322,6 +323,38 @@ html:not(.js) [data-reveal] {
 @keyframes jsf-bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* Hero quick-booking overlay — duplicates the home page hero search
+   widget (.hero-search-wrap / .hero-booking-card in styles.css),
+   pinned near the bottom of the full-bleed hero photo. */
+.jsf-hero-search-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(4.5rem, 10vw, 6rem);
+  z-index: 2;
+  padding-inline: clamp(var(--space-5), 5vw, var(--space-8));
+}
+
+@media (max-width: 720px) {
+  .jsf-hero-search-overlay {
+    position: relative;
+    bottom: auto;
+    margin-top: var(--space-5);
+    padding-inline: var(--space-5);
+  }
+
+  .jsf-scroll-indicator {
+    display: none;
+  }
+
+  /* Vehicle hire pages (car hire, car rental): mobile keeps just the
+     "Book Now" hero CTA and drops the quick-booking form entirely,
+     rather than trying to squeeze it into the hero. */
+  .jsf-hero-search-overlay--hire {
+    display: none;
+  }
 }
 
 /* ==================================================================

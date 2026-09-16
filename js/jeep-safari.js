@@ -197,6 +197,55 @@
     }
 
     /* ---------------------------------------------------------------- */
+    /* Hero quick-booking widget — vehicle-type tabs + pickup/drop/date, */
+    /* duplicated from the home page hero search and wired to WhatsApp   */
+    /* ---------------------------------------------------------------- */
+    var heroTravelSearch = document.getElementById("hero-travel-search");
+    if (heroTravelSearch) {
+      var heroBookingCard = heroTravelSearch.closest(".hero-booking-card");
+      var heroVehicleTabs = heroBookingCard ? heroBookingCard.querySelector(".hero-category-tabs") : null;
+      var heroVehicleInput = document.getElementById("hero-vehicle-type");
+
+      if (heroVehicleTabs) {
+        heroVehicleTabs.addEventListener("click", function (event) {
+          var btn = event.target.closest(".hero-category-btn");
+          if (!btn) return;
+          Array.prototype.slice.call(heroVehicleTabs.querySelectorAll(".hero-category-btn")).forEach(function (tab) {
+            var active = tab === btn;
+            tab.classList.toggle("is-active", active);
+            tab.setAttribute("aria-pressed", String(active));
+          });
+          if (heroVehicleInput) heroVehicleInput.value = btn.getAttribute("data-category") || "";
+        });
+      }
+
+      heroTravelSearch.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var vehicle = heroVehicleInput ? heroVehicleInput.value : "";
+        var pickupField = document.getElementById("hero-pickup");
+        var dropField = document.getElementById("hero-drop");
+        var daysField = document.getElementById("hero-days");
+        var dateField = document.getElementById("hero-date");
+
+        var pickup = pickupField ? pickupField.value.trim() : "";
+        var drop = dropField ? dropField.value.trim() : "";
+        var days = daysField ? daysField.value.trim() : "";
+        var date = dateField ? dateField.value.trim() : "";
+
+        var parts = [];
+        if (vehicle) parts.push(vehicle);
+        if (pickup) parts.push("pickup from " + pickup);
+        if (drop) parts.push("drop at " + drop);
+        if (days) parts.push(days + (days === "1" ? " day" : " days"));
+        if (date) parts.push("on " + date);
+
+        var message = "Hi, I'd like to book " + (parts.length ? parts.join(", ") : "a vehicle in Kodaikanal");
+        window.open("https://wa.me/917502345777?text=" + encodeURIComponent(message), "_blank", "noopener");
+      });
+    }
+
+    /* ---------------------------------------------------------------- */
     /* FAQ — single-open accordion + contextual image swap               */
     /* ---------------------------------------------------------------- */
     var faqItems = Array.prototype.slice.call(document.querySelectorAll(".jsf-faq-item"));
