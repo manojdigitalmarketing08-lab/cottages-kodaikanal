@@ -829,7 +829,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../images/hero-image-2.webp") center/cover no-repeat;
+  background: url("../images/scenery/hero-image-2.webp") center/cover no-repeat;
   z-index: 0;
 }
 

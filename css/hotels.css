@@ -377,10 +377,12 @@ html.js [data-reveal].is-visible {
   margin: 0;
   font-weight: 600;
   color: var(--color-primary);
+  white-space: nowrap;
+  font-size: clamp(0.78rem, 2.4vw, 1rem);
 }
 
 .ht-hotel-price strong {
-  font-size: 1.2rem;
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
 }
 
 .ht-hotel-price span {
@@ -10073,170 +10075,108 @@ main section[id] {
 }
 
 /* ==========================================================================
-   4. Featured Homestays — static 3-tier grid (1 BHK/2 BHK/Full Buyout) +
-   expandable card (#4) + room-type toggle (#17)
+   4. Featured Homestays — bedroom-size grid, duplicated from the homepage's
+   .featured-cottages / .property-card pattern (css/styles.css) under the
+   hs- namespace so this property type owns its own copy of the rules.
    ========================================================================== */
-.hs-stay-grid {
+.hs-featured-homestays-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
 }
 
-@media (max-width: 900px) {
-  .hs-stay-grid {
-    grid-template-columns: 1fr;
+@media (min-width: 640px) {
+  .hs-featured-homestays-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.hs-stay-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
+@media (min-width: 1000px) {
+  .hs-featured-homestays-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.hs-stay-card.is-popular {
-  border-color: var(--color-primary);
+.hs-featured-homestay-card {
+  flex-basis: auto;
+}
+
+.hs-property-card {
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-resting);
+  transition: transform 250ms var(--ease-premium), box-shadow 250ms var(--ease-premium);
+}
+
+.hs-property-card:hover {
+  transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
 
-.hs-stay-price {
-  margin: 0;
-  font-weight: 600;
-  color: var(--color-primary);
-}
-
-.hs-stay-price strong {
-  font-size: 1.2rem;
-}
-
-.hs-stay-price span {
-  font-weight: 500;
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-}
-
-.hs-stay-media {
-  position: relative;
-  aspect-ratio: 4 / 3;
-}
-
-.hs-stay-media img {
+.hs-property-card img {
   width: 100%;
-  height: 100%;
+  height: 180px;
   object-fit: cover;
 }
 
-.hs-stay-badge {
-  position: absolute;
-  top: var(--space-3);
-  left: var(--space-3);
-  background: var(--color-highlight);
-  color: var(--color-highlight-text);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 4px 10px;
-  border-radius: var(--radius-pill);
-}
-
-.hs-stay-body {
+.hs-property-card-body {
+  flex: 1;
   padding: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  flex: 1;
 }
 
-.hs-stay-body h3 {
-  margin: 0;
-  font-size: 1.15rem;
+.hs-property-card-body h3 {
+  margin-bottom: 0;
 }
 
-.hs-stay-meta {
+.hs-property-meta {
   color: var(--color-text-muted);
   font-size: 0.85rem;
-  margin: 0;
+  margin-bottom: 0;
 }
 
-.hs-stay-teaser {
-  font-size: 0.92rem;
-  color: var(--color-text);
-  margin: 0;
-}
-
-/* Expandable accordion (native <details>) */
-.hs-stay-details {
+.hs-property-card-actions {
   margin-top: auto;
-  border-top: 1px solid var(--color-border);
-  padding-top: var(--space-3);
-}
-
-.hs-stay-details summary {
-  list-style: none;
-  cursor: pointer;
+  padding-top: var(--space-2);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  font-weight: 600;
-  color: var(--color-primary);
+  gap: var(--space-2);
+}
+
+.hs-property-book-btn {
+  flex: 1;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
   font-size: 0.9rem;
 }
 
-.hs-stay-details summary::-webkit-details-marker {
-  display: none;
+.hs-property-call-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  color: var(--color-accent);
+  transition: background-color 200ms var(--ease-premium), border-color 200ms var(--ease-premium);
 }
 
-.hs-stay-details summary .hs-chevron {
+.hs-property-call-btn svg {
   width: 18px;
   height: 18px;
-  transition: transform 250ms var(--ease-premium);
 }
 
-.hs-stay-details[open] summary .hs-chevron {
-  transform: rotate(180deg);
-}
-
-.hs-stay-details-panel {
-  overflow: hidden;
-  height: 0;
-  transition: height 300ms var(--ease-premium);
-}
-
-.hs-stay-details-panel p {
-  font-size: 0.88rem;
-  color: var(--color-text-muted);
-  padding-top: var(--space-3);
-  margin: 0;
-}
-
-.hs-stay-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  margin-top: var(--space-3);
-}
-
-.hs-stay-cta .hs-stay-reserve {
-  width: 100%;
-  min-height: 44px;
-  font-size: 0.9rem;
-}
-
-.hs-stay-call-link {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.hs-stay-call-link:hover {
-  color: var(--color-primary);
+.hs-property-call-btn:hover {
+  background: var(--color-bg-alt);
+  border-color: var(--color-accent);
 }
 
 /* ==========================================================================
