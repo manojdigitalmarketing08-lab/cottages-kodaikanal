@@ -28,15 +28,20 @@ body.tk-page {
 /* The site header sits in normal flow above the hero (sticky, not an
    absolute overlay on top of it), so the hero only needs to fill what's
    left of the viewport below it — not a flat 640px, which pushed the
-   subhead/CTA below the fold on short mobile screens. min-height uses
-   svh (small viewport height) where supported so mobile browser
-   chrome doesn't cause a layout jump; vh is the fallback. */
+   subhead/CTA below the fold on short mobile screens. Height (not
+   min-height) caps the hero to exactly one viewport so it never grows
+   past it once the quick-booking widget is added below the copy; svh
+   is used where supported so mobile browser chrome doesn't cause a
+   layout jump, with vh as the fallback. Content is vertically centered
+   (align-items: center), matching the other service pages' heroes
+   (css/jeep-safari.css: .jsf-hero) instead of hugging the bottom edge,
+   which left a lopsided gap once the CTA button was removed. */
 .tk-hero {
   position: relative;
-  min-height: calc(100vh - var(--header-height));
-  min-height: calc(100svh - var(--header-height));
+  height: calc(100vh - var(--header-height));
+  height: calc(100svh - var(--header-height));
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -61,29 +66,67 @@ body.tk-page {
 .tk-hero-inner {
   position: relative;
   z-index: 1;
+  width: 100%;
   /* No top-padding reserved for the header here — it isn't overlaying
      the hero, it's a separate block above it, so reserving its height
      again just wasted vertical space and pushed the CTA off-screen on
-     mobile. */
-  padding-block: var(--space-6) var(--space-9);
+     mobile. Bottom padding is deliberately tight: the hero is capped to
+     one viewport (see .tk-hero height above), and the quick-booking
+     widget below already adds its own visual breathing room. Text is
+     centered to match the other service pages' heroes (.jsf-hero-inner
+     in css/jeep-safari.css). */
+  padding-block: var(--space-5) var(--space-5);
+  text-align: center;
 }
 
 .tk-hero-copy {
   max-width: 640px;
+  margin-inline: auto;
   color: #fff;
 }
 
 .tk-hero-copy h1 {
   color: #fff;
-  font-size: clamp(2.25rem, 4vw + 1rem, 3rem);
+  /* Matches the h1 scale used on the other service pages (jeep safari,
+     taxi, cab service, car hire/rental — css/jeep-safari.css) so the
+     hero typography reads consistently across all of them. */
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  line-height: 1.2;
   margin: 0 0 var(--space-3);
 }
 
 .tk-hero-subhead {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
   color: rgba(255, 255, 255, 0.88);
-  margin: 0 0 var(--space-5);
+  margin: 0 auto;
   max-width: 52ch;
+}
+
+/* Quick-booking widget — sits in normal flow below the hero copy (the
+   whole .tk-hero-inner block is already bottom-anchored via
+   align-items: flex-end on .tk-hero), so it can never overlap the
+   heading, subhead or CTA above it. Kept compact so the whole hero
+   still fits a single viewport instead of overflowing it. */
+.tk-hero-search-wrap {
+  margin-top: var(--space-4);
+}
+
+.tk-hero-search-wrap .hero-category-tabs {
+  padding-block: var(--space-2) 0;
+}
+
+.tk-hero-search-wrap .hero-category-btn {
+  padding-block: var(--space-1) var(--space-2);
+}
+
+.tk-hero-search-wrap .hero-search {
+  padding-block: var(--space-2);
+}
+
+@media (max-width: 720px) {
+  .tk-hero-search-wrap {
+    display: none;
+  }
 }
 
 /* --------------------------------------------------------------------
@@ -514,9 +557,13 @@ body.tk-page {
   background: var(--color-bg);
 }
 
+/* Desktop viewports get a compacted version of this section (tighter
+   spacing, four cards in a single row, no zigzag stagger, shorter card
+   images) so the whole "Plan Your Trip" block reads in one screen
+   without an extra scroll once it comes into view. */
 @media (min-width: 1024px) {
   .tk-packages {
-    padding-block: var(--section-gap-desktop);
+    padding-block: var(--space-7);
   }
 }
 
@@ -530,12 +577,24 @@ body.tk-page {
   margin: 0 0 var(--space-6);
 }
 
+@media (min-width: 1024px) {
+  .tk-packages-intro {
+    margin-bottom: var(--space-3);
+  }
+}
+
 .tk-packages-filter {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-4);
   align-items: center;
   margin-bottom: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+  .tk-packages-filter {
+    margin-bottom: var(--space-4);
+  }
 }
 
 .tk-segmented {
@@ -596,10 +655,27 @@ body.tk-page {
   align-items: start;
 }
 
+/* Desktop: all four package cards fit on one row (the auto-fit grid
+   above wraps to 3+1 around the container's max-width, which is what
+   made this section taller than the viewport), with a shallower stagger
+   so the row doesn't grow past its shortest card by much. */
+@media (min-width: 1024px) {
+  .tk-packages-row {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+}
+
 /* The zigzag silhouette — every other card offset lower, desktop only */
 @media (min-width: 900px) {
   .tk-package-card:nth-child(even) {
     margin-top: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tk-package-card:nth-child(even) {
+    margin-top: 14px;
   }
 }
 
@@ -622,8 +698,28 @@ body.tk-page {
   object-fit: cover;
 }
 
+/* aspect-ratio ties image height to the card's (fixed) width, which
+   doesn't shrink on a shorter browser window — so on anything less than
+   a very tall desktop viewport the four images alone ran past the fold,
+   pushing every card's title/price/button off-screen. Sizing the image
+   off viewport height instead means it actually shrinks together with
+   the available space, so the row — and the price/button below it —
+   stays on screen. */
+@media (min-width: 1024px) {
+  .tk-package-card img {
+    aspect-ratio: auto;
+    height: clamp(100px, 22vh, 190px);
+  }
+}
+
 .tk-package-body {
   padding: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .tk-package-body {
+    padding: var(--space-3);
+  }
 }
 
 .tk-package-badge {
@@ -646,6 +742,28 @@ body.tk-page {
   margin: 0 0 var(--space-3);
   font-size: 0.9rem;
   color: var(--color-text-muted);
+}
+
+@media (min-width: 1024px) {
+  .tk-package-badge {
+    margin-bottom: var(--space-1);
+  }
+
+  .tk-package-body h3 {
+    font-size: 0.95rem;
+  }
+
+  .tk-package-body p {
+    margin-bottom: var(--space-2);
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .tk-package-body .btn {
+    min-height: 34px;
+    padding: 6px var(--space-4);
+    font-size: 0.85rem;
+  }
 }
 
 .tk-package-price {

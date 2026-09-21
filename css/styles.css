@@ -228,12 +228,16 @@ section {
 
 .section-heading {
   max-width: min(920px, 100%);
+  margin-inline: auto;
   margin-bottom: var(--space-7);
+  text-align: center;
 }
 
 .section-heading p {
   color: var(--color-text-muted);
   font-size: 1.05rem;
+  max-width: 65ch;
+  margin-inline: auto;
 }
 
 /* Alternating section backgrounds — whitespace + a faint tonal shift instead
@@ -850,7 +854,7 @@ section {
 }
 
 .hero-content {
-  max-width: 780px;
+  max-width: 1040px;
   margin-inline: auto;
   text-align: center;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
@@ -880,15 +884,22 @@ section {
   color: #4dd9ff;
 }
 
+.hero-h1-line {
+  display: inline-block;
+}
+
+@media (min-width: 640px) {
+  .hero-h1-line {
+    white-space: nowrap;
+  }
+}
+
 .hero .hero-subhead {
   font-size: clamp(0.8rem, 1.1vw, 0.95rem);
   color: #f2e9df;
   max-width: 60ch;
   margin-inline: auto;
   font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .hero-cta-group {
@@ -925,7 +936,11 @@ section {
 
 .hero-category-tabs {
   display: flex;
-  justify-content: center;
+  /* Spread the category buttons evenly across the card's full width
+     instead of clustering them in the center with uneven edge gaps —
+     falls back to left-aligned + scrollable once the row can't fit
+     (see the 700px breakpoint below). */
+  justify-content: space-between;
   overflow-x: auto;
   scroll-snap-type: x proximity;
   gap: var(--space-2);
@@ -1597,6 +1612,8 @@ section {
 
 .what-is-cottage-body .section-heading {
   margin-bottom: var(--space-3);
+  margin-inline: 0;
+  text-align: left;
 }
 
 .what-is-cottage-body p {
@@ -2030,8 +2047,9 @@ section {
 
 .package-card img {
   width: 100%;
+  aspect-ratio: 350 / 200;
   object-fit: cover;
-  height: 210px;
+  height: auto;
 }
 
 .package-card .package-body {
@@ -2403,12 +2421,20 @@ section {
 }
 
 .offer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
   backdrop-filter: blur(2px);
   transition: transform 250ms var(--ease-premium), background-color 250ms var(--ease-premium);
+}
+
+.offer-card .btn {
+  margin-top: auto;
 }
 
 .offer-card:hover {
@@ -2971,7 +2997,7 @@ section {
    11. Final CTA — dark full-width band
    ========================================================================== */
 .final-cta {
-  background: var(--color-primary);
+  background: #103e4e;
   color: #fff;
   text-align: center;
   border-radius: var(--radius-lg);

@@ -229,6 +229,7 @@ html:not(.js) [data-reveal] {
 .jsf-hero {
   position: relative;
   min-height: calc(100vh - var(--header-height));
+  min-height: calc(100svh - var(--header-height));
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -327,33 +328,149 @@ html:not(.js) [data-reveal] {
 
 /* Hero quick-booking overlay — duplicates the home page hero search
    widget (.hero-search-wrap / .hero-booking-card in styles.css),
-   pinned near the bottom of the full-bleed hero photo. */
+   pinned near the bottom of the full-bleed hero photo. Two independent
+   forms cover the two layouts: the full vehicle-tabs card on desktop
+   (.jsf-search-desktop), and a compact dropdown+fields version on
+   mobile (.jsf-search-mobile). */
 .jsf-hero-search-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: clamp(4.5rem, 10vw, 6rem);
   z-index: 2;
   padding-inline: clamp(var(--space-5), 5vw, var(--space-8));
 }
 
+.jsf-search-desktop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(4.5rem, 10vw, 6rem);
+}
+
+.jsf-search-mobile {
+  display: none;
+}
+
 @media (max-width: 720px) {
-  .jsf-hero-search-overlay {
-    position: relative;
-    bottom: auto;
-    margin-top: var(--space-5);
-    padding-inline: var(--space-5);
+  .jsf-search-desktop {
+    display: none;
   }
 
   .jsf-scroll-indicator {
     display: none;
   }
+}
 
-  /* Vehicle hire pages (car hire, car rental): mobile keeps just the
-     "Book Now" hero CTA and drops the quick-booking form entirely,
-     rather than trying to squeeze it into the hero. */
-  .jsf-hero-search-overlay--hire {
-    display: none;
+/* ==================================================================
+   Featured Tours — horizontal scroll-snap rail
+   Shared with travels-in-kodaikanal.html (same markup, same classes).
+   (.carousel-wrapper/.carousel-track/.carousel-nav scaffolding comes
+   from styles.css — only the card + scrim styling lives here; section
+   padding comes from the generic .jsf-page main section rule.)
+   ================================================================== */
+.tk-tours-section h2 {
+  margin: 0 0 var(--space-2);
+}
+
+.tk-tours-intro {
+  margin: 0 0 var(--space-6);
+  color: var(--jsf-ink-soft);
+  max-width: 52ch;
+}
+
+.tk-tours-wrapper {
+  padding-inline: calc(max(0px, (100% - var(--max-width)) / 2) + clamp(var(--space-6), 7vw, var(--space-10)));
+}
+
+.tk-tours-track {
+  gap: var(--space-4);
+  padding-bottom: var(--space-2);
+}
+
+.tk-tour-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+}
+
+.tk-tour-card-link {
+  position: relative;
+  display: block;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+}
+
+.tk-tour-card-link:focus-visible {
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+.tk-tour-card-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-premium);
+}
+
+.tk-tour-card-link:hover img,
+.tk-tour-card-link:focus-visible img {
+  transform: scale(1.06);
+}
+
+.tk-tour-scrim {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: block;
+  padding: var(--space-4);
+  color: #fff;
+  background: linear-gradient(180deg, transparent 0%, rgba(16, 62, 78, 0.45) 35%, rgba(16, 62, 78, 0.96) 62%);
+}
+
+.tk-tour-card-title,
+.tk-tour-card-desc {
+  text-shadow: 0 1px 4px rgba(8, 30, 38, 0.5);
+}
+
+.tk-tour-card-title {
+  display: block;
+  margin: 0 0 var(--space-1);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.tk-tour-card-desc {
+  display: block;
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.tk-tour-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-3);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-highlight);
+}
+
+.tk-tour-card-cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s var(--ease-premium);
+}
+
+.tk-tour-card-link:hover .tk-tour-card-cta svg,
+.tk-tour-card-link:focus-visible .tk-tour-card-cta svg {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tk-tour-card-link img,
+  .tk-tour-scrim {
+    animation: none;
+    transition: none;
   }
 }
 
@@ -368,7 +485,12 @@ html:not(.js) [data-reveal] {
 }
 .jsf-split-media {
   position: relative;
-  min-height: 32rem;
+  /* height: 0 stops this column's own (tall, portrait-photo) content from
+     inflating the grid row; min-height: 100% then restretches it to match
+     whatever height the copy column's text actually ends up needing, so
+     the image always matches the content instead of the other way round. */
+  height: 0;
+  min-height: 100%;
   overflow: hidden;
 }
 .jsf-split-media img {
@@ -1299,7 +1421,12 @@ html:not(.js) [data-reveal] {
     grid-template-columns: 1fr;
   }
   .jsf-split-media {
-    min-height: 20rem;
+    height: auto;
+    min-height: 0;
+    /* Stacked layout has no text column to stretch to, so size the image
+       by its own natural (portrait) proportions instead of an arbitrary
+       fixed crop height. */
+    aspect-ratio: 4 / 5;
   }
 
   .jsf-family {
@@ -1333,6 +1460,7 @@ html:not(.js) [data-reveal] {
 @media (max-width: 720px) {
   .jsf-hero {
     min-height: calc(100vh - var(--header-height));
+    min-height: calc(100svh - var(--header-height));
   }
 
   .jsf-masonry {

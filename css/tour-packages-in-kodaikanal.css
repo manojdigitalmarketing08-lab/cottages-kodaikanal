@@ -1,0 +1,237 @@
+/* ==========================================================================
+   Tour Packages hub (tour-packages-in-kodaikanal.html) — extends the tp1
+   design tokens/components from css/kodaikanal-1-day-tour-package.css
+   (load that file first) with hub-only "tph-" components: poster-style
+   tier cards, a stats band, an asymmetric bento gallery, a split
+   image+checklist and a frameless tips list. Deliberately varies the
+   visual rhythm section-to-section (full-bleed photo cards, a dark stat
+   band, an editorial bento grid, a split layout, a numbered timeline)
+   instead of repeating one boxed-card grid down the page, while staying
+   on the same color tokens, spacing scale and container width as the
+   rest of the site.
+   ========================================================================== */
+
+/* --------------------------------- Tiers --------------------------------- */
+.tph-tier-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.tph-tier-card {
+  position: relative;
+  display: flex;
+  min-height: 500px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s var(--ease-premium), box-shadow 0.35s var(--ease-premium);
+}
+.tph-tier-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+
+.tph-tier-card.is-featured { box-shadow: 0 0 0 2px var(--color-highlight), var(--shadow-md); }
+
+.tph-tier-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  z-index: 0;
+}
+.tph-tier-card:hover .tph-tier-bg { transform: scale(1.08); }
+
+.tph-tier-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 22, 28, 0.05) 0%, rgba(8, 22, 28, 0.6) 58%, rgba(8, 22, 28, 0.94) 100%);
+  z-index: 1;
+}
+
+.tph-tier-tag {
+  position: absolute;
+  top: 1.1rem;
+  left: 1.1rem;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(2px);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+}
+.tph-tier-card.is-featured .tph-tier-tag { background: var(--color-star); }
+
+.tph-tier-body {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.tph-tier-body h3 { color: #fff; margin-bottom: 0.4rem; }
+.tph-tier-body > p { color: rgba(255, 255, 255, 0.85); font-size: 0.9rem; margin: 0; }
+
+.tph-tier-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.9rem 0 1.1rem; }
+.tph-tier-chip {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-pill);
+}
+
+.tph-tier-foot { padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.22); display: flex; flex-direction: column; gap: 0.75rem; }
+.tph-tier-price { font-family: var(--tp1-serif); font-size: 1.3rem; color: var(--color-highlight); margin: 0; }
+.tph-tier-price span { font-size: 0.85rem; font-weight: 400; color: rgba(255, 255, 255, 0.75); }
+.tph-tier-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.tph-tier-actions .tp1-btn { padding: 0.7rem 1.1rem; font-size: 0.74rem; flex: 1; }
+.tph-tier-actions .tp1-btn-outline { border-color: rgba(255, 255, 255, 0.8); }
+
+/* ---------------------------------- Stats --------------------------------- */
+.tph-stats {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--tp1-accent);
+  background-image: radial-gradient(circle at 30% 50%, rgba(77, 217, 255, 0.22) 0%, rgba(77, 217, 255, 0) 60%);
+  background-size: 160% 160%;
+  background-position: 0% 50%;
+  animation: tph-stats-shift 22s ease-in-out infinite alternate;
+}
+
+@keyframes tph-stats-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.tph-stats-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; text-align: center; }
+.tph-stat-num { font-family: var(--tp1-serif); font-size: clamp(2.1rem, 4vw, 3.1rem); font-weight: 700; color: var(--color-highlight); line-height: 1; margin-bottom: 0.6rem; }
+.tph-stat-label { color: rgba(255, 255, 255, 0.86); font-size: 0.92rem; margin: 0; }
+
+/* ------------------------------- Bento gallery ----------------------------- */
+.tph-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 1.1rem;
+}
+.tph-bento-tile {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.tph-bento-tile.is-large { grid-column: span 2; grid-row: span 2; }
+
+.tph-bento-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+.tph-bento-tile:hover img { transform: scale(1.08); }
+
+.tph-bento-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.2rem 1.25rem;
+  background: linear-gradient(180deg, rgba(12, 32, 40, 0) 30%, rgba(12, 32, 40, 0.75) 68%, rgba(12, 32, 40, 0.95) 100%);
+}
+.tph-bento-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--color-highlight); margin-bottom: 0.35rem; }
+.tph-bento-overlay h3 { color: #fff; margin: 0 0 0.4rem; font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.25; }
+.tph-bento-overlay p { color: rgba(255, 255, 255, 0.9); margin: 0; font-size: 0.82rem; line-height: 1.5; }
+.tph-bento-tile.is-large .tph-bento-overlay h3 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); }
+.tph-bento-tile.is-large .tph-bento-overlay p { font-size: 0.92rem; }
+
+/* ------------------------------- Split (why us) ---------------------------- */
+.tph-split { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: center; }
+.tph-split-media { border-radius: var(--radius-lg); overflow: hidden; height: 100%; min-height: 380px; box-shadow: var(--shadow-sm); }
+.tph-split-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.tph-split-list { display: flex; flex-direction: column; }
+.tph-split-item { display: flex; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--tp1-line); }
+.tph-split-item:first-child { padding-top: 0; }
+.tph-split-item:last-child { border-bottom: none; padding-bottom: 0; }
+.tph-split-icon {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--tp1-bg);
+  color: var(--tp1-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tph-split-icon svg { width: 20px; height: 20px; }
+.tph-split-item h4 { margin: 0 0 0.3rem; font-size: 1rem; }
+.tph-split-item p { margin: 0; font-size: 0.9rem; }
+
+/* ---------------------------------- Tips ---------------------------------- */
+.tph-tip-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 3rem; }
+.tph-tip-row { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px dashed var(--tp1-line); }
+.tph-tip-num {
+  flex: none;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background: var(--tp1-surface);
+  border: 1px solid var(--tp1-line);
+  color: var(--tp1-accent);
+  font-family: var(--tp1-serif);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tph-tip-row h4 { margin: 0 0 0.25rem; font-size: 0.98rem; }
+.tph-tip-row p { margin: 0; font-size: 0.88rem; }
+
+/* ------------------------------ Related links ------------------------------ */
+.tph-related { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+.tph-related a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--tp1-surface);
+  border: 1px solid var(--tp1-line);
+  color: var(--tp1-accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  padding: 0.7rem 1.15rem;
+  border-radius: var(--radius-pill);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.tph-related a:hover { background: var(--tp1-bg); transform: translateY(-2px); }
+
+/* ----------------------------------- FAQ ----------------------------------- */
+.tph-page .tp1-faq-col-heading { text-align: center; }
+
+/* ------------------------------- SEO keywords ------------------------------ */
+.tph-seo-note { font-size: 0.8rem; color: var(--tp1-ink-soft); line-height: 1.7; }
+
+/* --------------------------------- Layout --------------------------------- */
+@media (max-width: 980px) {
+  .tph-tier-grid { grid-template-columns: 1fr 1fr; }
+  .tph-stats-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
+  .tph-bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+  .tph-bento-tile.is-large { grid-column: span 2; grid-row: span 1; }
+  .tph-split { grid-template-columns: 1fr; }
+  .tph-split-media { min-height: 260px; order: -1; }
+}
+
+@media (max-width: 640px) {
+  .tph-tier-grid { grid-template-columns: 1fr; }
+  .tph-stats-grid { grid-template-columns: 1fr 1fr; }
+  .tph-bento { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+  .tph-bento-tile.is-large { grid-column: span 1; }
+  .tph-tip-list { grid-template-columns: 1fr; }
+}

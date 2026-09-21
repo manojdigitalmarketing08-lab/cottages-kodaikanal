@@ -153,7 +153,7 @@
         </div>
       </div>
 
-      <div class="jsf-hero-search-overlay jsf-hero-search-overlay--hire" data-reveal>
+      <div class="jsf-hero-search-overlay jsf-search-desktop" data-reveal>
         <div class="hero-booking-card">
           <div class="hero-category-tabs" role="group" aria-label="Vehicle type">
             <button type="button" class="hero-category-btn is-active" data-category="Etios" aria-pressed="true">
@@ -219,6 +219,50 @@
         </div>
       </div>
 
+      <div class="jsf-hero-search-overlay jsf-search-mobile" data-reveal>
+        <div class="hero-booking-card">
+          <form class="hero-search" id="hero-travel-search-mobile" aria-label="Quick car hire availability check">
+            <input type="hidden" name="hero-vehicle-type" value="Etios" />
+            <select class="hero-category-select" aria-label="Vehicle type">
+              <option value="Etios">Etios (Sedan)</option>
+              <option value="Tavera">Tavera</option>
+              <option value="Qualis">Qualis</option>
+              <option value="Jeep">Jeep</option>
+              <option value="Innova">Innova</option>
+              <option value="Tempo Traveller">Tempo Traveller</option>
+              <option value="20 Seater Coach">20 Seater Coach</option>
+            </select>
+            <div class="hero-search-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+              <div class="hero-search-value">
+                <label for="hero-pickup-mobile">Pickup Location</label>
+                <input type="text" id="hero-pickup-mobile" name="hero-pickup" placeholder="Kodaikanal" autocomplete="off" />
+              </div>
+            </div>
+            <div class="hero-search-divider" aria-hidden="true"></div>
+            <div class="hero-search-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="hero-search-value">
+                <label for="hero-days-mobile">Hire Duration</label>
+                <input type="number" id="hero-days-mobile" name="hero-days" min="1" placeholder="3 Days" inputmode="numeric" />
+              </div>
+            </div>
+            <div class="hero-search-divider" aria-hidden="true"></div>
+            <div class="hero-search-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 6h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="hero-search-value">
+                <label for="hero-date-mobile">Start Date</label>
+                <input type="date" id="hero-date-mobile" name="hero-date" />
+              </div>
+            </div>
+            <button class="hero-search-submit" type="submit">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span>Check Availability</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
       <button type="button" class="jsf-scroll-indicator" aria-label="Scroll to next section" data-scroll-to="what-is">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v15M12 19l-6-6M12 19l6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
@@ -227,7 +271,7 @@
     <!-- 02 — What Is Car Hire -->
     <section class="jsf-split" id="what-is" data-section-label="What Is">
       <div class="jsf-split-media">
-        <img src="images/destinations/destination-pillar-rocks.webp" alt="Mist-wrapped granite cliffs above Kodaikanal, part of a multi-day car hire circuit" width="900" height="1125" loading="lazy" data-reveal-clip />
+        <img src="images/packages/package-half-day-local.webp" alt="Hired car on a forest road near Kodaikanal" width="900" height="1125" loading="lazy" data-reveal-clip />
       </div>
       <div class="jsf-split-copy">
         <div class="jsf-split-inner">
@@ -385,7 +429,7 @@
               </div>
             </article>
 
-            <article class="jsf-route-item" data-route="2" data-image="images/routes/coimbatore-to-kodaikanal.webp">
+            <article class="jsf-route-item" data-route="2" data-image="images/packages/package-outstation-van.webp">
               <span class="jsf-route-dot"></span>
               <div class="jsf-route-content">
                 <span class="jsf-route-tag">Hire 02 &middot; 3 Days</span>
@@ -420,7 +464,7 @@
           <div class="jsf-route-sticky">
             <div class="jsf-route-sticky-frame">
               <img src="images/packages/package-hill-escape.webp" alt="Car hire duration preview" data-route-image="1" class="is-active" />
-              <img src="images/routes/coimbatore-to-kodaikanal.webp" alt="Car hire duration preview" data-route-image="2" />
+              <img src="images/packages/package-outstation-van.webp" alt="Tempo Traveller van for a full-circuit family car hire" data-route-image="2" />
               <img src="images/scenery/hero-image-2.webp" alt="Car hire duration preview" data-route-image="3" />
             </div>
           </div>

@@ -197,14 +197,17 @@
     }
 
     /* ---------------------------------------------------------------- */
-    /* Hero quick-booking widget — vehicle-type tabs + pickup/drop/date, */
-    /* duplicated from the home page hero search and wired to WhatsApp   */
+    /* Hero quick-booking widget(s) — vehicle-type tabs + pickup/drop/  */
+    /* date, wired to WhatsApp. Pages can carry two independent forms:  */
+    /* a desktop overlay (.jsf-search-desktop) and a compact mobile     */
+    /* form (.jsf-search-mobile) — each wired up the same way, scoped   */
+    /* to its own form so duplicate field names don't clash.            */
     /* ---------------------------------------------------------------- */
-    var heroTravelSearch = document.getElementById("hero-travel-search");
-    if (heroTravelSearch) {
+    var heroSearchForms = Array.prototype.slice.call(document.querySelectorAll(".hero-search"));
+    heroSearchForms.forEach(function (heroTravelSearch) {
       var heroBookingCard = heroTravelSearch.closest(".hero-booking-card");
       var heroVehicleTabs = heroBookingCard ? heroBookingCard.querySelector(".hero-category-tabs") : null;
-      var heroVehicleInput = document.getElementById("hero-vehicle-type");
+      var heroVehicleInput = heroTravelSearch.querySelector('[name="hero-vehicle-type"]');
 
       if (heroVehicleTabs) {
         heroVehicleTabs.addEventListener("click", function (event) {
@@ -219,14 +222,21 @@
         });
       }
 
+      var heroVehicleSelect = heroTravelSearch.querySelector(".hero-category-select");
+      if (heroVehicleSelect) {
+        heroVehicleSelect.addEventListener("change", function () {
+          if (heroVehicleInput) heroVehicleInput.value = heroVehicleSelect.value || "";
+        });
+      }
+
       heroTravelSearch.addEventListener("submit", function (event) {
         event.preventDefault();
 
         var vehicle = heroVehicleInput ? heroVehicleInput.value : "";
-        var pickupField = document.getElementById("hero-pickup");
-        var dropField = document.getElementById("hero-drop");
-        var daysField = document.getElementById("hero-days");
-        var dateField = document.getElementById("hero-date");
+        var pickupField = heroTravelSearch.querySelector('[name="hero-pickup"]');
+        var dropField = heroTravelSearch.querySelector('[name="hero-drop"]');
+        var daysField = heroTravelSearch.querySelector('[name="hero-days"]');
+        var dateField = heroTravelSearch.querySelector('[name="hero-date"]');
 
         var pickup = pickupField ? pickupField.value.trim() : "";
         var drop = dropField ? dropField.value.trim() : "";
@@ -243,7 +253,7 @@
         var message = "Hi, I'd like to book " + (parts.length ? parts.join(", ") : "a vehicle in Kodaikanal");
         window.open("https://wa.me/917502345777?text=" + encodeURIComponent(message), "_blank", "noopener");
       });
-    }
+    });
 
     /* ---------------------------------------------------------------- */
     /* FAQ — single-open accordion + contextual image swap               */

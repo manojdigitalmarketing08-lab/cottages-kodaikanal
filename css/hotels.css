@@ -1497,7 +1497,7 @@ html.js [data-reveal].is-visible {
 }
 
 .rs-hero-copy {
-  max-width: 640px;
+  max-width: 780px;
   margin-inline: auto;
   text-align: center;
   color: #fff;
@@ -1520,6 +1520,7 @@ html.js [data-reveal].is-visible {
   line-height: 1.1;
   margin: 0 0 var(--space-3);
   color: #fff;
+  text-wrap: balance;
 }
 
 .rs-hero-copy .rs-hero-subhead {
@@ -2396,26 +2397,59 @@ html.js [data-reveal].is-visible {
   gap: var(--space-4);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .rs-deal-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
   .rs-deal-grid { grid-template-columns: 1fr; }
 }
 
 .rs-deal-card {
-  background: var(--color-bg-alt);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: transform 220ms var(--ease-premium), box-shadow 220ms var(--ease-premium), border-color 220ms var(--ease-premium);
 }
 
-.rs-deal-card h4 {
-  margin: 0 0 6px;
-  font-size: 1rem;
+.rs-deal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.rs-deal-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: var(--space-3);
+  border-radius: 50%;
+  background: var(--color-bg-alt);
   color: var(--color-primary);
+}
+
+.rs-deal-icon svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.rs-deal-card h3,
+.rs-deal-card h4 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
 }
 
 .rs-deal-card p {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: var(--color-text-muted);
 }
 
@@ -9823,7 +9857,7 @@ main section[id] {
 }
 
 .hs-hero-copy {
-  max-width: 640px;
+  max-width: 1040px;
   margin-inline: auto;
   text-align: center;
   color: #fff;
@@ -9844,7 +9878,7 @@ main section[id] {
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  margin: 0 0 var(--space-3);
+  margin: 0 auto var(--space-3);
   color: #fff;
 }
 

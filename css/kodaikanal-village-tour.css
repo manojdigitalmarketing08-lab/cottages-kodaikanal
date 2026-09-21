@@ -91,7 +91,7 @@ html:not(.js) .tvg-page [data-reveal] { opacity: 1; transform: none; }
 .tvg-btn-outline-dark:hover { background: var(--tvg-accent); color: #fff; }
 
 /* --------------------------------- Hero --------------------------------- */
-.tvg-hero { position: relative; height: 100vh; min-height: 560px; max-height: 900px; display: flex; align-items: center; color: #fff; }
+.tvg-hero { position: relative; height: calc(100svh - var(--header-height)); min-height: 560px; max-height: 900px; display: flex; align-items: center; color: #fff; }
 .tvg-hero-media { position: absolute; inset: 0; z-index: 0; }
 .tvg-hero-media img { width: 100%; height: 100%; object-fit: cover; }
 .tvg-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,32,40,0.6) 0%, rgba(12,32,40,0.58) 45%, rgba(8,22,28,0.88) 100%); }

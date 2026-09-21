@@ -117,21 +117,14 @@
           <h1 data-reveal>How to Travel from Palani<br />to Kodaikanal by Cab?</h1>
           <p class="ctk-hero-lede" data-reveal>A private cab is the easiest way to cover the 65&nbsp;km climb into the hills — door-to-door, on your own schedule, with a driver who already knows the ghat road well.</p>
           <div class="ctk-hero-actions" data-reveal>
-            <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cab%20from%20Palani%20to%20Kodaikanal" target="_blank" rel="noopener">Book a Cab</a>
-            <a class="ctk-btn ctk-btn-outline" href="#cost">See Fares</a>
-          </div>
-          <div class="ctk-hero-stats" data-reveal>
-            <div class="ctk-hero-stat"><strong>65 KM</strong><span>Distance</span></div>
-            <div class="ctk-hero-stat"><strong>2–2.5 HRS</strong><span>Drive Time</span></div>
-            <div class="ctk-hero-stat"><strong>Private</strong><span>Cab</span></div>
+            <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cab%20from%20Palani%20to%20Kodaikanal" target="_blank" rel="noopener">Book Your Cab</a>
           </div>
         </div>
         <div class="ctk-hero-media ctk-hero-media--wide" data-reveal>
           <img src="images/routes/coimbatore-to-kodaikanal.webp" alt="Winding forest road climbing through misty hills toward Kodaikanal" width="1988" height="791" />
         </div>
-      </div>
 
-      <div class="ctk-hero-search-overlay" data-reveal>
+        <div class="ctk-hero-search-overlay ctk-search-desktop" data-reveal>
         <div class="hero-booking-card">
           <div class="hero-category-tabs" role="group" aria-label="Vehicle type">
             <button type="button" class="hero-category-btn is-active" data-category="Etios" aria-pressed="true">
@@ -187,6 +180,51 @@
               <div class="hero-search-value">
                 <label for="hero-date">Travel Date</label>
                 <input type="date" id="hero-date" name="hero-date" />
+              </div>
+            </div>
+            <button class="hero-search-submit" type="submit">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span>Check Availability</span>
+            </button>
+          </form>
+        </div>
+        </div>
+      </div>
+
+      <div class="ctk-hero-search-overlay ctk-search-mobile" data-reveal>
+        <div class="hero-booking-card">
+          <form class="hero-search" id="hero-travel-search-mobile" aria-label="Quick cab availability check">
+            <input type="hidden" name="hero-vehicle-type" value="Etios" />
+            <select class="hero-category-select" aria-label="Vehicle type">
+              <option value="Etios">Etios (Sedan)</option>
+              <option value="Tavera">Tavera</option>
+              <option value="Qualis">Qualis</option>
+              <option value="Jeep">Jeep</option>
+              <option value="Innova">Innova</option>
+              <option value="Tempo Traveller">Tempo Traveller</option>
+              <option value="20 Seater Coach">20 Seater Coach</option>
+            </select>
+            <div class="hero-search-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+              <div class="hero-search-value">
+                <label for="hero-pickup-mobile">Pickup Location</label>
+                <input type="text" id="hero-pickup-mobile" name="hero-pickup" value="Palani" autocomplete="off" />
+              </div>
+            </div>
+            <div class="hero-search-divider" aria-hidden="true"></div>
+            <div class="hero-search-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+              <div class="hero-search-value">
+                <label for="hero-drop-mobile">Drop Location</label>
+                <input type="text" id="hero-drop-mobile" name="hero-drop" value="Kodaikanal" autocomplete="off" />
+              </div>
+            </div>
+            <div class="hero-search-divider" aria-hidden="true"></div>
+            <div class="hero-search-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 6h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="hero-search-value">
+                <label for="hero-date-mobile">Travel Date</label>
+                <input type="date" id="hero-date-mobile" name="hero-date" />
               </div>
             </div>
             <button class="hero-search-submit" type="submit">
@@ -342,28 +380,28 @@
               <span>Start &mdash; Palani</span>
             </div>
 
-            <article class="ctk-route-item" data-route="1" data-image="images/destinations/destination-bryant-park.webp" data-route-label="Plain Roads">
+            <article class="ctk-route-item" data-route="1" data-image="images/routes/route-plain-roads.webp" data-route-label="Plain Roads">
               <span class="ctk-route-dot"></span>
               <span class="ctk-route-tag">Plain Roads &middot; ~30 min</span>
               <h3>Palani to Oddanchatram</h3>
               <p>A short, open stretch of road leaving the temple town — quick to cover if you get moving straight after darshan.</p>
             </article>
 
-            <article class="ctk-route-item" data-route="2" data-image="images/destinations/destination-coakers-walk.webp" data-route-label="Foothills">
+            <article class="ctk-route-item" data-route="2" data-image="images/routes/route-foothills.webp" data-route-label="Foothills">
               <span class="ctk-route-dot"></span>
               <span class="ctk-route-tag">Foothills &middot; ~20 min</span>
               <h3>Oddanchatram to the Ghat Base</h3>
               <p>The land starts to fold into hills here — a good stretch for a quick break before the road narrows and starts climbing.</p>
             </article>
 
-            <article class="ctk-route-item" data-route="3" data-image="images/destinations/destination-vattakanal.webp" data-route-label="Mountain Road">
+            <article class="ctk-route-item" data-route="3" data-image="images/routes/route-ghat-mountain-road.webp" data-route-label="Mountain Road">
               <span class="ctk-route-dot"></span>
               <span class="ctk-route-tag">Mountain Road &middot; ~70 min</span>
               <h3>The Kodaikanal Ghat Section</h3>
               <p>Roughly 20&nbsp;km of hairpin bends climbing through dense forest and tea plantations, with viewpoints opening up at several bends — this is where a driver who knows the road matters most, and where most of Kodaikanal's elevation is gained.</p>
             </article>
 
-            <article class="ctk-route-item" data-route="4" data-image="images/destinations/destination-kodai-lake.webp" data-route-label="Kodaikanal">
+            <article class="ctk-route-item" data-route="4" data-image="images/routes/route-arrival-kodaikanal.webp" data-route-label="Kodaikanal">
               <span class="ctk-route-dot"></span>
               <span class="ctk-route-tag">Arrival</span>
               <h3>Kodaikanal Town</h3>
@@ -378,10 +416,10 @@
 
           <div class="ctk-route-sticky">
             <div class="ctk-route-sticky-frame">
-              <img src="images/destinations/destination-bryant-park.webp" alt="Open road leaving Palani" data-route-image="1" class="is-active" />
-              <img src="images/destinations/destination-coakers-walk.webp" alt="Foothill road toward the Kodaikanal ghat section" data-route-image="2" />
-              <img src="images/destinations/destination-vattakanal.webp" alt="Hairpin mountain road climbing to Kodaikanal" data-route-image="3" />
-              <img src="images/destinations/destination-kodai-lake.webp" alt="Kodaikanal Lake at the end of the ghat road" data-route-image="4" />
+              <img src="images/routes/route-plain-roads.webp" alt="Countryside valley and farmland on the open stretch leaving Palani" data-route-image="1" class="is-active" />
+              <img src="images/routes/route-foothills.webp" alt="Terraced hillside village in the Palani foothills before the ghat climb" data-route-image="2" />
+              <img src="images/routes/route-ghat-mountain-road.webp" alt="Misty pine forest lining the hairpin ghat road climbing to Kodaikanal" data-route-image="3" />
+              <img src="images/routes/route-arrival-kodaikanal.webp" alt="Welcome sign marking arrival into Kodaikanal town" data-route-image="4" />
               <span class="ctk-route-sticky-label" id="ctk-route-sticky-label">Plain Roads</span>
             </div>
           </div>
@@ -390,7 +428,7 @@
     </section>
 
     <!-- 06 — Fare (editorial pricing sheet) -->
-    <section class="ctk-fare-section" id="cost" data-section-label="Fare">
+    <section class="ctk-fare-section ctk-fare-section--compact" id="cost" data-section-label="Fare">
       <div class="container">
         <div class="ctk-section-head" data-reveal>
           <p class="ctk-eyebrow">Fare Sheet</p>
@@ -624,6 +662,62 @@
             <img src="images/packages/package-hill-escape.webp" alt="Two-day Kodaikanal getaway package" loading="lazy" />
           </div>
         </div>
+
+        <div class="ctk-fare-cta" data-reveal>
+          <a class="ctk-btn ctk-btn-outline" href="tour-packages-in-kodaikanal.html">View All Tour Packages</a>
+          <p style="margin:0;font-size:0.9rem;color:var(--ctk-ink-soft);">Travelling with 8 or more? Ask about our tempo-traveller Group Tour Package, built for friend groups, families and small corporate outings.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11b — Package Themes -->
+    <section class="ctk-places-section" id="package-themes" data-section-label="Package Themes">
+      <div class="container">
+        <div class="ctk-section-head" data-reveal>
+          <p class="ctk-eyebrow">Shape Your Trip</p>
+          <h2>Packages Built Around What You're Looking For</h2>
+          <p class="ctk-section-sub">Any duration above can be shaped around one of these themes — tell us which one fits your trip from Palani and we'll tailor the route.</p>
+        </div>
+
+        <div class="ctk-gallery" data-reveal>
+          <a class="ctk-gallery-item ctk-gallery-1" href="tour-packages-in-kodaikanal.html">
+            <img src="images/properties/hotel-guide-family-group.webp" alt="Family enjoying a holiday in Kodaikanal" loading="lazy" />
+            <span class="ctk-gallery-caption">
+              <span class="ctk-gallery-tag">Create Lasting Memories</span>
+              <span class="ctk-gallery-name">Family Tour Packages</span>
+              <span class="ctk-gallery-desc">Guided sightseeing and activities for all age groups, across meadows, grasslands and Kodaikanal's popular attractions.</span>
+            </span>
+          </a>
+          <a class="ctk-gallery-item ctk-gallery-2" href="tour-packages-in-kodaikanal.html">
+            <img src="images/scenery/kodaikanal-hilltop-cabin-sunset.webp" alt="Romantic hilltop cabin at sunset in Kodaikanal" loading="lazy" />
+            <span class="ctk-gallery-caption">
+              <span class="ctk-gallery-name">Couple Tour Packages</span>
+              <span class="ctk-gallery-desc">Cozy stays and candlelight dinners with breathtaking views, straight after your Palani temple visit.</span>
+            </span>
+          </a>
+          <a class="ctk-gallery-item ctk-gallery-3" href="tour-packages-in-kodaikanal.html">
+            <img src="images/destinations/destination-kodai-lake.webp" alt="Kodaikanal Lake and nature trails" loading="lazy" />
+            <span class="ctk-gallery-caption">
+              <span class="ctk-gallery-name">Nature &amp; Wildlife</span>
+              <span class="ctk-gallery-desc">Wildlife sanctuary, Mannavanur Lake and bird-watching trails beyond the usual sightseeing loop.</span>
+            </span>
+          </a>
+          <a class="ctk-gallery-item ctk-gallery-4" href="tour-packages-in-kodaikanal.html">
+            <img src="images/destinations/destination-pillar-rocks.webp" alt="Pillar Rocks viewpoint for trekking and adventure" loading="lazy" />
+            <span class="ctk-gallery-caption">
+              <span class="ctk-gallery-name">Adventure Packages</span>
+              <span class="ctk-gallery-desc">Trekking, camping and climbing with experienced local guides.</span>
+            </span>
+          </a>
+          <a class="ctk-gallery-item ctk-gallery-5" href="tour-packages-in-kodaikanal.html">
+            <img src="images/property-types/property-budget-cottage.webp" alt="Budget-friendly cottage stay in Kodaikanal" loading="lazy" />
+            <span class="ctk-gallery-caption">
+              <span class="ctk-gallery-tag">Explore More, Spend Less</span>
+              <span class="ctk-gallery-name">Budget-Friendly</span>
+              <span class="ctk-gallery-desc">Group tours and comfortable budget stays for every traveller coming in from Palani.</span>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -730,6 +824,43 @@
       </div>
     </section>
 
+    <!-- 13b — Travel Tips -->
+    <section class="ctk-trip-section" id="travel-tips" data-section-label="Travel Tips">
+      <div class="container">
+        <div class="ctk-section-head ctk-section-head-center" data-reveal>
+          <p class="ctk-eyebrow">Before You Go</p>
+          <h2>Suggestions to Improve Your Travel Experience</h2>
+        </div>
+
+        <div class="ctk-fare-meta" data-reveal>
+          <div class="ctk-fare-meta-block">
+            <h3>Book Early</h3>
+            <p>Reserve your cab or package in advance, especially around festival dates at the Palani temple and peak Kodaikanal season (April&ndash;May, Dec&ndash;Jan).</p>
+          </div>
+          <div class="ctk-fare-meta-block">
+            <h3>Start After Darshan</h3>
+            <p>An early morning temple visit followed by an immediate departure clears traffic fastest on both the plains and the ghat section.</p>
+          </div>
+          <div class="ctk-fare-meta-block">
+            <h3>Pack Layers</h3>
+            <p>Weather shifts quickly between the warm plains near Palani and the cool hill air in Kodaikanal &mdash; keep a light jacket handy even in summer.</p>
+          </div>
+          <div class="ctk-fare-meta-block">
+            <h3>Carry a Camera</h3>
+            <p>The ghat road opens up several viewpoints on the way &mdash; capture the climb as well as Kodaikanal's own spots like Pillar Rocks and Coaker's Walk.</p>
+          </div>
+          <div class="ctk-fare-meta-block">
+            <h3>Try Local Food</h3>
+            <p>Don't miss Kodaikanal's homemade chocolates and hot soups once you arrive, a nice contrast after Palani's own street food.</p>
+          </div>
+          <div class="ctk-fare-meta-block">
+            <h3>Explore Hidden Spots</h3>
+            <p>Ask your driver about lesser-known places like Poombarai Village or Mannavanur Lake if you have extra time on a multi-day package.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 14 — Why Choose a Cab (minimal typography) -->
     <section class="ctk-why-section" id="why-cab" data-section-label="Why Cab">
       <div class="container">
@@ -772,58 +903,42 @@
               <p class="ctk-faq-group-title">01 &middot; Distance</p>
               <div class="ctk-faq-row"><p class="ctk-faq-q"><span>01</span>How far is Palani from Kodaikanal?</p><p class="ctk-faq-a">The road distance is about 65&nbsp;km via Oddanchatram, which takes roughly 2 to 2.5 hours by cab depending on traffic and the ghat road.</p></div>
               <div class="ctk-faq-row"><p class="ctk-faq-q"><span>02</span>Which towns does the route pass through?</p><p class="ctk-faq-a">The drive runs through Oddanchatram, the main midway stop before the ghat climb into Kodaikanal.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>03</span>Is the distance different for a return trip?</p><p class="ctk-faq-a">No — the return covers the same 65&nbsp;km, though total billed kilometres are usually higher on a round trip since the cab also returns empty or waits for you.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>04</span>Is there a shorter route available?</p><p class="ctk-faq-a">The Oddanchatram route is the standard and shortest driveable option; it's also one of the shorter gateway routes into Kodaikanal overall.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-journey">
               <p class="ctk-faq-group-title">02 &middot; Journey</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>05</span>How long does the journey take?</p><p class="ctk-faq-a">Typically 2 to 2.5 hours non-stop. Add extra time if you're combining the drive with a temple visit at Palani.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>06</span>Is the ghat road safe at night?</p><p class="ctk-faq-a">It's driveable, but we recommend arriving before dusk where possible — the hairpin bends are easier to judge in daylight.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>07</span>Does monsoon season affect the drive?</p><p class="ctk-faq-a">Heavy rain can slow the ghat section and occasionally cause short closures for landslide clearance — we'll flag this if it affects your travel date.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>08</span>Can we stop for photos on the way?</p><p class="ctk-faq-a">Yes — most drivers are used to short viewpoint stops on the ghat road; just mention it when booking.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>03</span>How long does the journey take?</p><p class="ctk-faq-a">Typically 2 to 2.5 hours non-stop. Add extra time if you're combining the drive with a temple visit at Palani.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>04</span>Is the ghat road safe at night?</p><p class="ctk-faq-a">It's driveable, but we recommend arriving before dusk where possible — the hairpin bends are easier to judge in daylight.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-fare">
               <p class="ctk-faq-group-title">03 &middot; Fare</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>09</span>How much does the cab cost?</p><p class="ctk-faq-a">Fares start around ₹2,500 for an Etios, ₹3,500 for a Tavera or Qualis, ₹4,000 for a Jeep or Innova, ₹5,000 for a Tempo Traveller, and ₹6,000 for a 20-seater coach, depending on your date.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>10</span>Is the fare different for a round trip?</p><p class="ctk-faq-a">Yes — round trips are usually a better per-kilometre rate since the same cab and driver stay with you for the return leg too.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>11</span>Are tolls included in the price?</p><p class="ctk-faq-a">Tolls and any hill-station entry charges are added at actuals and confirmed clearly before you book, not added as a surprise later.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>12</span>Do prices change during peak season?</p><p class="ctk-faq-a">Yes, slightly — weekends, festival weeks and holiday periods in both Palani and Kodaikanal see higher demand, so fares can run a bit above the base rates shown.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>13</span>Is there a night charge?</p><p class="ctk-faq-a">A small night allowance may apply for pickups between 10 pm and 6 am — this is included in your quote upfront.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>05</span>How much does the cab cost?</p><p class="ctk-faq-a">Fares start around ₹2,500 for an Etios, ₹3,500 for a Tavera or Qualis, ₹4,000 for a Jeep or Innova, ₹5,000 for a Tempo Traveller, and ₹6,000 for a 20-seater coach, depending on your date.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>06</span>Is the fare different for a round trip?</p><p class="ctk-faq-a">Yes — round trips are usually a better per-kilometre rate since the same cab and driver stay with you for the return leg too.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-booking">
               <p class="ctk-faq-group-title">04 &middot; Booking</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>14</span>How do I book a cab?</p><p class="ctk-faq-a">Share your pickup point, travel date and preferred vehicle over WhatsApp or by phone, and we confirm your driver and fare the same day.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>15</span>How far in advance should I book?</p><p class="ctk-faq-a">A day's notice is usually enough, though weekends and festival periods are safer booked a few days ahead.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>16</span>Can I change my pickup time later?</p><p class="ctk-faq-a">Yes, message us and we'll adjust it with your driver, as long as it's not last-minute on a high-demand date.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>17</span>Do you require advance payment?</p><p class="ctk-faq-a">A small advance may be requested to confirm the booking; the balance is settled with the driver at the end of the trip.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>07</span>How do I book a cab?</p><p class="ctk-faq-a">Share your pickup point, travel date and preferred vehicle over WhatsApp or by phone, and we confirm your driver and fare the same day.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>08</span>How far in advance should I book?</p><p class="ctk-faq-a">A day's notice is usually enough, though weekends and festival periods are safer booked a few days ahead.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-station">
               <p class="ctk-faq-group-title">05 &middot; Temple Pickup</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>18</span>Can I combine a temple visit with the transfer?</p><p class="ctk-faq-a">Yes — many travellers visit the Palani Murugan temple first and have their cab waiting to continue straight on to Kodaikanal afterward.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>19</span>Can the driver wait during darshan?</p><p class="ctk-faq-a">Yes — just let us know an approximate waiting time when you book, and your driver will be ready near the temple or bus stand.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>20</span>Where do I meet the driver?</p><p class="ctk-faq-a">Your driver waits at an agreed point near the temple, bus stand or your hotel, and calls or messages when you're ready.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>21</span>Is railway station pickup also available at Palani?</p><p class="ctk-faq-a">Yes — Palani railway station pickups work the same way as temple or bus stand pickups.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>09</span>Can I combine a temple visit with the transfer?</p><p class="ctk-faq-a">Yes — many travellers visit the Palani Murugan temple first and have their cab waiting to continue straight on to Kodaikanal afterward.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>10</span>Can the driver wait during darshan?</p><p class="ctk-faq-a">Yes — just let us know an approximate waiting time when you book, and your driver will be ready near the temple or bus stand.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-vehicles">
               <p class="ctk-faq-group-title">06 &middot; Vehicles</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>22</span>What vehicles are available?</p><p class="ctk-faq-a">Sedans for up to 4 passengers, SUVs or Innovas for up to 7, and tempo travellers for groups of 9 to 17.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>23</span>Which vehicle is best for hill roads?</p><p class="ctk-faq-a">SUVs handle the ghat bends most comfortably for families or anyone prone to motion sickness, though sedans manage the route fine too.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>24</span>Is luggage space a concern?</p><p class="ctk-faq-a">Sedans fit 2 to 3 medium bags comfortably; for more luggage or bulky items, an SUV is the safer choice.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>25</span>Can I request a specific car model?</p><p class="ctk-faq-a">We'll try to match a specific model within the same vehicle class, subject to availability on your date.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>11</span>What vehicles are available?</p><p class="ctk-faq-a">Sedans for up to 4 passengers, SUVs or Innovas for up to 7, and tempo travellers for groups of 9 to 17.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>12</span>Which vehicle is best for hill roads?</p><p class="ctk-faq-a">SUVs handle the ghat bends most comfortably for families or anyone prone to motion sickness, though sedans manage the route fine too.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-packages">
               <p class="ctk-faq-group-title">07 &middot; Packages</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>26</span>Can I book a multi-day package?</p><p class="ctk-faq-a">Yes — one, two and three day packages combine your Palani transfer with stay and sightseeing in Kodaikanal.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>27</span>What's included in the 2-day package?</p><p class="ctk-faq-a">Your transfer from Palani, one night's stay, and a full day of sightseeing covering the lake, Coaker's Walk and Pillar Rocks.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>28</span>Can the package be customized?</p><p class="ctk-faq-a">Yes — tell us your group size, preferred stay and the sights you want included, and we'll adjust the package before booking.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>29</span>Does the package include stay?</p><p class="ctk-faq-a">Two and three day packages include stay; the one-day package is transfer and sightseeing only.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>30</span>Is sightseeing by the same cab?</p><p class="ctk-faq-a">Yes — the same vehicle and driver typically handle both your transfer and any local sightseeing in the package.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>13</span>Can I book a multi-day package?</p><p class="ctk-faq-a">Yes — one, two and three day packages combine your Palani transfer with stay and sightseeing in Kodaikanal.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>14</span>What's included in the 2-day package?</p><p class="ctk-faq-a">Your transfer from Palani, one night's stay, and a full day of sightseeing covering the lake, Coaker's Walk and Pillar Rocks.</p></div>
             </div>
           </div>
         </div>

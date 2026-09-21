@@ -117,21 +117,14 @@
           <h1 data-reveal>How to Travel from Kodai Road<br />to Kodaikanal by Cab?</h1>
           <p class="ctk-hero-lede" data-reveal>The easiest way to cover the 80&nbsp;km from the station — private cab, door-to-door, on your own schedule.</p>
           <div class="ctk-hero-actions" data-reveal>
-            <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cab%20from%20Kodai%20Road%20to%20Kodaikanal" target="_blank" rel="noopener">Book a Cab</a>
-            <a class="ctk-btn ctk-btn-outline" href="#cost">See Fares</a>
-          </div>
-          <div class="ctk-hero-stats" data-reveal>
-            <div class="ctk-hero-stat"><strong>80 KM</strong><span>Distance</span></div>
-            <div class="ctk-hero-stat"><strong>2.5–3 HRS</strong><span>Drive Time</span></div>
-            <div class="ctk-hero-stat"><strong>Private</strong><span>Cab</span></div>
+            <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cab%20from%20Kodai%20Road%20to%20Kodaikanal" target="_blank" rel="noopener">Book Your Cab</a>
           </div>
         </div>
         <div class="ctk-hero-media ctk-hero-media--wide" data-reveal>
           <img src="images/routes/coimbatore-to-kodaikanal.webp" alt="Winding forest road climbing through misty hills toward Kodaikanal" width="1988" height="791" />
         </div>
-      </div>
 
-      <div class="ctk-hero-search-overlay" data-reveal>
+        <div class="ctk-hero-search-overlay ctk-search-desktop" data-reveal>
         <div class="hero-booking-card">
           <div class="hero-category-tabs" role="group" aria-label="Vehicle type">
             <button type="button" class="hero-category-btn is-active" data-category="Etios" aria-pressed="true">
@@ -187,6 +180,51 @@
               <div class="hero-search-value">
                 <label for="hero-date">Travel Date</label>
                 <input type="date" id="hero-date" name="hero-date" />
+              </div>
+            </div>
+            <button class="hero-search-submit" type="submit">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span>Check Availability</span>
+            </button>
+          </form>
+        </div>
+        </div>
+      </div>
+
+      <div class="ctk-hero-search-overlay ctk-search-mobile" data-reveal>
+        <div class="hero-booking-card">
+          <form class="hero-search" id="hero-travel-search-mobile" aria-label="Quick cab availability check">
+            <input type="hidden" name="hero-vehicle-type" value="Etios" />
+            <select class="hero-category-select" aria-label="Vehicle type">
+              <option value="Etios">Etios (Sedan)</option>
+              <option value="Tavera">Tavera</option>
+              <option value="Qualis">Qualis</option>
+              <option value="Jeep">Jeep</option>
+              <option value="Innova">Innova</option>
+              <option value="Tempo Traveller">Tempo Traveller</option>
+              <option value="20 Seater Coach">20 Seater Coach</option>
+            </select>
+            <div class="hero-search-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+              <div class="hero-search-value">
+                <label for="hero-pickup-mobile">Pickup Location</label>
+                <input type="text" id="hero-pickup-mobile" name="hero-pickup" value="Kodai Road" autocomplete="off" />
+              </div>
+            </div>
+            <div class="hero-search-divider" aria-hidden="true"></div>
+            <div class="hero-search-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+              <div class="hero-search-value">
+                <label for="hero-drop-mobile">Drop Location</label>
+                <input type="text" id="hero-drop-mobile" name="hero-drop" value="Kodaikanal" autocomplete="off" />
+              </div>
+            </div>
+            <div class="hero-search-divider" aria-hidden="true"></div>
+            <div class="hero-search-field">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 6h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="hero-search-value">
+                <label for="hero-date-mobile">Travel Date</label>
+                <input type="date" id="hero-date-mobile" name="hero-date" />
               </div>
             </div>
             <button class="hero-search-submit" type="submit">
@@ -340,28 +378,28 @@
               <span>Start &mdash; Kodai Road Station</span>
             </div>
 
-            <article class="ctk-route-item" data-route="1" data-image="images/destinations/destination-bryant-park.webp" data-route-label="Flat Roads">
+            <article class="ctk-route-item" data-route="1" data-image="images/routes/route-plain-roads.webp" data-route-label="Flat Roads">
               <span class="ctk-route-dot"></span>
               <span class="ctk-route-tag">Flat Roads &middot; ~25 min</span>
               <h3>Kodai Road Station to Batlagundu</h3>
               <p>A short, flat run away from the station — the quickest stretch of the drive, and an easy place to make up a few minutes if your train arrives late.</p>
             </article>
 
-            <article class="ctk-route-item" data-route="2" data-image="images/destinations/destination-coakers-walk.webp" data-route-label="Foothills">
+            <article class="ctk-route-item" data-route="2" data-image="images/routes/route-foothills.webp" data-route-label="Foothills">
               <span class="ctk-route-dot"></span>
               <span class="ctk-route-tag">Foothills &middot; ~30 min</span>
               <h3>Batlagundu to the Ghat Base</h3>
               <p>The land starts to fold into hills here — a good stretch for a quick breakfast stop before the road narrows and starts climbing.</p>
             </article>
 
-            <article class="ctk-route-item" data-route="3" data-image="images/destinations/destination-vattakanal.webp" data-route-label="Mountain Road">
+            <article class="ctk-route-item" data-route="3" data-image="images/routes/route-ghat-mountain-road.webp" data-route-label="Mountain Road">
               <span class="ctk-route-dot"></span>
               <span class="ctk-route-tag">Mountain Road &middot; ~75 min</span>
               <h3>The Kodaikanal Ghat Section</h3>
               <p>Roughly 20&nbsp;km of hairpin bends climbing through forest, gaining most of Kodaikanal's elevation — this is where a driver who knows the road matters most.</p>
             </article>
 
-            <article class="ctk-route-item" data-route="4" data-image="images/destinations/destination-kodai-lake.webp" data-route-label="Kodaikanal">
+            <article class="ctk-route-item" data-route="4" data-image="images/routes/route-arrival-kodaikanal.webp" data-route-label="Kodaikanal">
               <span class="ctk-route-dot"></span>
               <span class="ctk-route-tag">Arrival</span>
               <h3>Kodaikanal Town</h3>
@@ -376,10 +414,10 @@
 
           <div class="ctk-route-sticky">
             <div class="ctk-route-sticky-frame">
-              <img src="images/destinations/destination-bryant-park.webp" alt="Flat road leaving Kodai Road railway station" data-route-image="1" class="is-active" />
-              <img src="images/destinations/destination-coakers-walk.webp" alt="Foothill road toward the Kodaikanal ghat section" data-route-image="2" />
-              <img src="images/destinations/destination-vattakanal.webp" alt="Hairpin mountain road climbing to Kodaikanal" data-route-image="3" />
-              <img src="images/destinations/destination-kodai-lake.webp" alt="Kodaikanal Lake at the end of the ghat road" data-route-image="4" />
+              <img src="images/routes/route-plain-roads.webp" alt="Countryside valley and farmland on the flat stretch leaving Kodai Road station" data-route-image="1" class="is-active" />
+              <img src="images/routes/route-foothills.webp" alt="Terraced hillside village in the Palani foothills before the ghat climb" data-route-image="2" />
+              <img src="images/routes/route-ghat-mountain-road.webp" alt="Misty pine forest lining the hairpin ghat road climbing to Kodaikanal" data-route-image="3" />
+              <img src="images/routes/route-arrival-kodaikanal.webp" alt="Welcome sign marking arrival into Kodaikanal town" data-route-image="4" />
               <span class="ctk-route-sticky-label" id="ctk-route-sticky-label">Flat Roads</span>
             </div>
           </div>
@@ -387,69 +425,201 @@
       </div>
     </section>
 
-    <!-- 06 — Fare (editorial pricing sheet) -->
-    <section class="ctk-fare-section" id="cost" data-section-label="Fare">
+    <!-- 06 — Fare (rotating fare card carousel) -->
+    <section class="ctk-fare-section ctk-fare-section--compact" id="cost" data-section-label="Fare">
       <div class="container">
         <div class="ctk-section-head" data-reveal>
           <p class="ctk-eyebrow">Fare Sheet</p>
           <h2>How Much Does a Kodai Road to Kodaikanal Cab Cost?</h2>
-          <p class="ctk-section-sub">Kodai Road &rarr; Kodaikanal, one-way starting fares by vehicle model. Round trip and multi-day rates are quoted separately once we know your dates.</p>
+          <p class="ctk-section-sub">Kodai Road &rarr; Kodaikanal fares by vehicle &mdash; one-way pickup/drop, or a 2-day / 3-day round trip package. Flip between them below.</p>
         </div>
 
-        <div class="ctk-fare-sheet" data-reveal>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head">
-              <span class="ctk-fare-name">Etios</span>
-              <span class="ctk-fare-pax">Sedan category &middot; 3–4 passengers</span>
-            </div>
-            <span class="ctk-fare-price">&#8377;2,500</span>
+        <div class="ctk-fare-carousel" data-reveal data-autoplay="6000">
+          <div class="ctk-fare-carousel-tabs" role="tablist" aria-label="Fare type">
+            <button type="button" class="ctk-fare-tab is-active" data-slide="0" role="tab" aria-selected="true">Pickup / Drop</button>
+            <button type="button" class="ctk-fare-tab" data-slide="1" role="tab" aria-selected="false">2 Days Round Trip</button>
+            <button type="button" class="ctk-fare-tab" data-slide="2" role="tab" aria-selected="false">3 Days Round Trip</button>
           </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head">
-              <span class="ctk-fare-name">Tavera</span>
-              <span class="ctk-fare-pax">SUV category &middot; 5–7 passengers</span>
-            </div>
-            <span class="ctk-fare-price">&#8377;3,800</span>
-          </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head">
-              <span class="ctk-fare-name">Innova</span>
-              <span class="ctk-fare-pax">SUV category &middot; 5–7 passengers</span>
-            </div>
-            <span class="ctk-fare-price">&#8377;4,000</span>
-          </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head">
-              <span class="ctk-fare-name">Tempo</span>
-              <span class="ctk-fare-pax">Tempo Traveller category &middot; 9–17 passengers</span>
-            </div>
-            <span class="ctk-fare-price">&#8377;5,000</span>
-          </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head">
-              <span class="ctk-fare-name">Coach</span>
-              <span class="ctk-fare-pax">Large group category &middot; 25+ passengers</span>
-            </div>
-            <span class="ctk-fare-price">&#8377;5,500</span>
-          </div>
-        </div>
 
-        <div class="ctk-fare-meta" data-reveal>
-          <div class="ctk-fare-meta-block">
-            <h3>What's Included</h3>
-            <p>Driver charges &middot; Waiting &middot; Tolls &middot; Fuel — no extra food or driver charges added later.</p>
+          <div class="ctk-fare-carousel-viewport">
+            <div class="ctk-fare-carousel-track">
+
+              <div class="ctk-fare-slide is-active" data-slide="0">
+                <div class="ctk-fare-sheet">
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Etios</span>
+                      <span class="ctk-fare-pax">Sedan category &middot; 3–4 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;2,500</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Tavera</span>
+                      <span class="ctk-fare-pax">SUV category &middot; 5–7 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;3,800</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Innova</span>
+                      <span class="ctk-fare-pax">SUV category &middot; 5–7 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;4,000</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Tempo</span>
+                      <span class="ctk-fare-pax">Tempo Traveller category &middot; 9–17 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;5,000</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Coach</span>
+                      <span class="ctk-fare-pax">Large group category &middot; 25+ passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;5,500</span>
+                  </div>
+                </div>
+                <p class="ctk-fare-note">Driver charges, waiting, tolls and fuel are all included — no extra food or driver charges added later.</p>
+                <div class="ctk-fare-meta">
+                  <div class="ctk-fare-meta-block">
+                    <h3>What's Included</h3>
+                    <p>Kodai Road Railway Station pickup/drop &middot; Driver &middot; Fuel &middot; Tolls &middot; Waiting time</p>
+                  </div>
+                  <div class="ctk-fare-meta-block">
+                    <h3>Terms &amp; Conditions</h3>
+                    <ul class="ctk-fare-terms">
+                      <li>No food or extra driver charges required.</li>
+                      <li>Extra fees apply for locations distant from Kodaikanal centre.</li>
+                      <li>No self-driving allowed — experienced hill drivers only.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ctk-fare-slide" data-slide="1">
+                <div class="ctk-fare-sheet">
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Etios</span>
+                      <span class="ctk-fare-pax">Sedan category &middot; 3–4 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;10,500</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Tavera</span>
+                      <span class="ctk-fare-pax">SUV category &middot; 5–7 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;14,000</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Innova</span>
+                      <span class="ctk-fare-pax">SUV category &middot; 5–7 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;14,000</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Tempo</span>
+                      <span class="ctk-fare-pax">Tempo Traveller category &middot; 9–17 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;15,000</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Coach</span>
+                      <span class="ctk-fare-pax">Large group category &middot; 25+ passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;18,000</span>
+                  </div>
+                </div>
+                <p class="ctk-fare-note">Kodai Road Railway Station pickup &middot; 2 days Kodaikanal sightseeing &middot; Kodai Road Railway Station drop.</p>
+                <div class="ctk-fare-meta">
+                  <div class="ctk-fare-meta-block">
+                    <h3>What's Included</h3>
+                    <p>Driver stay &middot; Tolls &middot; Fuel &middot; Customisable itinerary</p>
+                  </div>
+                  <div class="ctk-fare-meta-block">
+                    <h3>Terms &amp; Conditions</h3>
+                    <ul class="ctk-fare-terms">
+                      <li>Parking charges are extra where applicable.</li>
+                      <li>No self-driving allowed.</li>
+                      <li>Confirm vehicle capacity and model before booking.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ctk-fare-slide" data-slide="2">
+                <div class="ctk-fare-sheet">
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Etios</span>
+                      <span class="ctk-fare-pax">Sedan category &middot; 3–4 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;12,000</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Tavera</span>
+                      <span class="ctk-fare-pax">SUV category &middot; 5–7 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;15,000</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Innova</span>
+                      <span class="ctk-fare-pax">SUV category &middot; 5–7 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;15,500</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Tempo</span>
+                      <span class="ctk-fare-pax">Tempo Traveller category &middot; 9–17 passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;17,500</span>
+                  </div>
+                  <div class="ctk-fare-row">
+                    <div class="ctk-fare-row-head">
+                      <span class="ctk-fare-name">Coach</span>
+                      <span class="ctk-fare-pax">Large group category &middot; 25+ passengers</span>
+                    </div>
+                    <span class="ctk-fare-price">&#8377;20,000</span>
+                  </div>
+                </div>
+                <p class="ctk-fare-note">Kodai Road Railway Station pickup &middot; 3 days Kodaikanal sightseeing &middot; Kodai Road Railway Station drop.</p>
+                <div class="ctk-fare-meta">
+                  <div class="ctk-fare-meta-block">
+                    <h3>What's Included</h3>
+                    <p>Driver, tolls, fuel and driver stay &middot; Plan your own itinerary, or use ours</p>
+                  </div>
+                  <div class="ctk-fare-meta-block">
+                    <h3>Terms &amp; Conditions</h3>
+                    <ul class="ctk-fare-terms">
+                      <li>Parking charges extra, where applicable.</li>
+                      <li>Self-driving is not available.</li>
+                      <li>Confirm vehicle capacity before booking.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <div class="ctk-fare-meta-block">
-            <h3>What Affects the Price?</h3>
-            <p>Vehicle type &middot; Travel date &middot; One-way or round trip &middot; Added sightseeing stops</p>
-          </div>
-          <div class="ctk-fare-meta-block">
-            <h3>Payment Methods</h3>
-            <p>Cash, debit/credit card and online transfer are all accepted.</p>
-          </div>
-          <div class="ctk-fare-meta-block">
-            <h3>Outside Town Limits</h3>
-            <p>An extra charge applies for pickup or drop locations outside Kodaikanal town centre.</p>
+
+          <div class="ctk-fare-carousel-nav">
+            <button type="button" class="ctk-fare-carousel-arrow" data-dir="-1" aria-label="Previous fare card">&larr;</button>
+            <div class="ctk-fare-carousel-dots">
+              <span class="ctk-fare-dot is-active" data-slide="0"></span>
+              <span class="ctk-fare-dot" data-slide="1"></span>
+              <span class="ctk-fare-dot" data-slide="2"></span>
+            </div>
+            <button type="button" class="ctk-fare-carousel-arrow" data-dir="1" aria-label="Next fare card">&rarr;</button>
           </div>
         </div>
 
@@ -787,32 +957,30 @@
               <p class="ctk-faq-group-title">03 &middot; Fare</p>
               <div class="ctk-faq-row"><p class="ctk-faq-q"><span>05</span>How much does the cab cost?</p><p class="ctk-faq-a">Fares start around ₹2,500 for an Etios, ₹3,800–₹4,000 for a Tavera or Innova, ₹5,000 for a Tempo, and ₹5,500 for a Coach, depending on your travel date.</p></div>
               <div class="ctk-faq-row"><p class="ctk-faq-q"><span>06</span>Is the fare different for a round trip?</p><p class="ctk-faq-a">Yes — round trips are usually a better per-kilometre rate since the same cab and driver stay with you for the return leg too.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>07</span>Are tolls included in the price?</p><p class="ctk-faq-a">Tolls and any hill-station entry charges are added at actuals and confirmed clearly before you book, not added as a surprise later.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-booking">
               <p class="ctk-faq-group-title">04 &middot; Booking</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>08</span>How do I book a cab?</p><p class="ctk-faq-a">Share your train number, expected arrival time and preferred vehicle over WhatsApp or by phone, and we confirm your driver and fare the same day.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>09</span>How far in advance should I book?</p><p class="ctk-faq-a">A day's notice is usually enough, though weekends and festival periods are safer booked a few days ahead.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>07</span>How do I book a cab?</p><p class="ctk-faq-a">Share your train number, expected arrival time and preferred vehicle over WhatsApp or by phone, and we confirm your driver and fare the same day.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>08</span>How far in advance should I book?</p><p class="ctk-faq-a">A day's notice is usually enough, though weekends and festival periods are safer booked a few days ahead.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-station">
               <p class="ctk-faq-group-title">05 &middot; Station</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>10</span>Is railway station pickup available?</p><p class="ctk-faq-a">Yes — Kodai Road (Kodaikanal Road) railway station is our most common pickup point, with drivers tracking your train.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>11</span>What if my train is delayed?</p><p class="ctk-faq-a">Your driver tracks the train status and adjusts pickup time accordingly, at no extra charge for reasonable delays.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>09</span>Is railway station pickup available?</p><p class="ctk-faq-a">Yes — Kodai Road (Kodaikanal Road) railway station is our most common pickup point, with drivers tracking your train.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>10</span>What if my train is delayed?</p><p class="ctk-faq-a">Your driver tracks the train status and adjusts pickup time accordingly, at no extra charge for reasonable delays.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-vehicles">
               <p class="ctk-faq-group-title">06 &middot; Vehicles</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>12</span>What vehicles are available?</p><p class="ctk-faq-a">Sedans for up to 4 passengers, SUVs or Innovas for up to 7, and tempo travellers for groups of 9 to 17.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>13</span>Which vehicle is best for hill roads?</p><p class="ctk-faq-a">SUVs handle the ghat bends most comfortably for families or anyone prone to motion sickness, though sedans manage the route fine too.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>11</span>What vehicles are available?</p><p class="ctk-faq-a">Sedans for up to 4 passengers, SUVs or Innovas for up to 7, and tempo travellers for groups of 9 to 17.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>12</span>Which vehicle is best for hill roads?</p><p class="ctk-faq-a">SUVs handle the ghat bends most comfortably for families or anyone prone to motion sickness, though sedans manage the route fine too.</p></div>
             </div>
 
             <div class="ctk-faq-group" id="faq-packages">
               <p class="ctk-faq-group-title">07 &middot; Packages</p>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>14</span>Can I book a multi-day package?</p><p class="ctk-faq-a">Yes — one, two and three day packages combine your Kodai Road transfer with stay and sightseeing in Kodaikanal.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>15</span>What's included in the 2-day package?</p><p class="ctk-faq-a">Your transfer from Kodai Road station, one night's stay, and a full day of sightseeing covering the lake, Coaker's Walk and Pillar Rocks.</p></div>
-              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>16</span>Can the package be customized?</p><p class="ctk-faq-a">Yes — tell us your group size, preferred stay and the sights you want included, and we'll adjust the package before booking.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>13</span>Can I book a multi-day package?</p><p class="ctk-faq-a">Yes — one, two and three day packages combine your Kodai Road transfer with stay and sightseeing in Kodaikanal.</p></div>
+              <div class="ctk-faq-row"><p class="ctk-faq-q"><span>14</span>What's included in the 2-day package?</p><p class="ctk-faq-a">Your transfer from Kodai Road station, one night's stay, and a full day of sightseeing covering the lake, Coaker's Walk and Pillar Rocks.</p></div>
             </div>
           </div>
         </div>

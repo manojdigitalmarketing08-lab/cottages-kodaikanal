@@ -9,6 +9,55 @@
   function init() {
     initStatCounters();
     initPackageFilter();
+    initHeroSearch();
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Hero quick-booking widget — vehicle-type tabs + pickup/drop/date,   */
+  /* duplicated from the home page hero search and wired to WhatsApp     */
+  /* ------------------------------------------------------------------ */
+  function initHeroSearch() {
+    const heroTravelSearch = document.getElementById("hero-travel-search");
+    if (!heroTravelSearch) return;
+
+    const heroBookingCard = heroTravelSearch.closest(".hero-booking-card");
+    const heroVehicleTabs = heroBookingCard ? heroBookingCard.querySelector(".hero-category-tabs") : null;
+    const heroVehicleInput = document.getElementById("hero-vehicle-type");
+
+    if (heroVehicleTabs) {
+      heroVehicleTabs.addEventListener("click", (event) => {
+        const btn = event.target.closest(".hero-category-btn");
+        if (!btn) return;
+        Array.from(heroVehicleTabs.querySelectorAll(".hero-category-btn")).forEach((tab) => {
+          const active = tab === btn;
+          tab.classList.toggle("is-active", active);
+          tab.setAttribute("aria-pressed", String(active));
+        });
+        if (heroVehicleInput) heroVehicleInput.value = btn.getAttribute("data-category") || "";
+      });
+    }
+
+    heroTravelSearch.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const vehicle = heroVehicleInput ? heroVehicleInput.value : "";
+      const pickupField = document.getElementById("hero-pickup");
+      const dropField = document.getElementById("hero-drop");
+      const dateField = document.getElementById("hero-date");
+
+      const pickup = pickupField ? pickupField.value.trim() : "";
+      const drop = dropField ? dropField.value.trim() : "";
+      const date = dateField ? dateField.value.trim() : "";
+
+      const parts = [];
+      if (vehicle) parts.push(vehicle);
+      if (pickup) parts.push("pickup from " + pickup);
+      if (drop) parts.push("drop at " + drop);
+      if (date) parts.push("on " + date);
+
+      const message = "Hi, I'd like to plan " + (parts.length ? parts.join(", ") : "my Kodaikanal trip");
+      window.open("https://wa.me/917502345777?text=" + encodeURIComponent(message), "_blank", "noopener");
+    });
   }
 
   /* ------------------------------------------------------------------ */

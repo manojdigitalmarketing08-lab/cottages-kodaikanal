@@ -167,15 +167,21 @@ html:not(.js) .ctk-page [data-reveal] {
   position: relative;
   overflow: hidden;
   padding-block: 0;
-  min-height: calc(100svh - var(--header-height));
+  /* height (not min-height) caps the hero to exactly one viewport so the
+     copy + quick-booking card below it can never push the section taller
+     than the screen — the content is sized to fit inside this. */
+  height: calc(100vh - var(--header-height));
+  height: calc(100svh - var(--header-height));
 }
 
 .ctk-hero-inner {
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: center;
-  min-height: calc(100svh - var(--header-height));
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .ctk-hero-copy {
@@ -183,11 +189,15 @@ html:not(.js) .ctk-page [data-reveal] {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   max-width: 56rem;
-  padding-block: clamp(1.5rem, 5vw, 2.5rem);
-  padding-left: clamp(var(--space-6), 7vw, var(--space-10));
+  margin-inline: auto;
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  padding-bottom: clamp(1rem, 3vw, 1.5rem);
+  padding-inline: clamp(var(--space-6), 7vw, var(--space-10));
   color: #fff;
+  text-align: center;
 }
 
 .ctk-hero-copy .ctk-route-strip { margin-bottom: 1.1rem; color: rgba(255, 255, 255, 0.82); }
@@ -214,6 +224,7 @@ html:not(.js) .ctk-page [data-reveal] {
 .ctk-hero-actions {
   margin-top: 1.4rem;
   display: flex;
+  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -316,34 +327,43 @@ html:not(.js) .ctk-page [data-reveal] {
 }
 
 /* Hero quick-booking overlay — duplicates the home page hero search
-   widget (.hero-search-wrap / .hero-booking-card in styles.css),
-   pinned near the bottom of the full-bleed hero photo. */
+   widget (.hero-search-wrap / .hero-booking-card in styles.css).
+   Two independent forms cover the two layouts: a card that sits in
+   normal document flow below the hero copy on desktop (so the hero
+   section simply grows to fit both instead of overlapping them), and
+   a compact form below the hero on mobile. */
 .ctk-hero-search-overlay {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: clamp(4.5rem, 10vw, 6rem);
+  position: relative;
   z-index: 3;
   padding-inline: clamp(var(--space-5), 5vw, var(--space-8));
 }
 
+.ctk-search-desktop {
+  width: 100%;
+}
+
+.ctk-search-mobile {
+  display: none;
+}
+
 @media (max-width: 900px) {
+  /* The mobile quick-booking form is hidden entirely (see .ctk-search-mobile
+     above), so the hero no longer needs extra room below the fold for it —
+     it stays capped to one viewport via the base .ctk-hero height rule.
+     With nothing anchored below it any more, center the copy block (incl.
+     its CTA) in the remaining space instead of leaving it pinned to the top. */
   .ctk-hero-inner {
-    min-height: 100svh;
+    justify-content: center;
   }
   .ctk-hero-copy {
     max-width: none;
-    padding-right: clamp(var(--space-6), 7vw, var(--space-10));
   }
   .ctk-hero-media::after {
     background: linear-gradient(180deg, rgba(10, 26, 32, 0.35) 0%, rgba(10, 26, 32, 0.55) 55%, rgba(10, 26, 32, 0.82) 100%);
   }
 
-  .ctk-hero-search-overlay {
-    position: relative;
-    bottom: auto;
-    margin-top: var(--space-5);
-    padding-inline: var(--space-5);
+  .ctk-search-desktop {
+    display: none;
   }
 
   .ctk-scroll-indicator {
@@ -714,6 +734,143 @@ html:not(.js) .ctk-page [data-reveal] {
   flex-wrap: wrap;
 }
 
+.ctk-fare-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  color: var(--ctk-ink-soft);
+}
+
+.ctk-fare-terms {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  color: var(--ctk-ink-soft);
+}
+
+/* -- Rotating fare card carousel (Pickup/Drop, 2-Day, 3-Day) -- */
+.ctk-fare-carousel-tabs {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+.ctk-fare-tab {
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--ctk-line);
+  background: transparent;
+  font-family: var(--ctk-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ctk-ink-soft);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.ctk-fare-tab:hover { border-color: var(--ctk-forest-soft); color: var(--ctk-forest); }
+.ctk-fare-tab.is-active {
+  background: var(--ctk-forest);
+  border-color: var(--ctk-forest);
+  color: #fff;
+}
+
+.ctk-fare-carousel-viewport {
+  overflow: hidden;
+}
+
+.ctk-fare-carousel-track {
+  display: flex;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ctk-fare-slide {
+  flex: 0 0 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.ctk-fare-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.ctk-fare-carousel-arrow {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--ctk-line);
+  background: var(--ctk-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--ctk-forest);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.ctk-fare-carousel-arrow:hover {
+  background: var(--ctk-forest);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.ctk-fare-carousel-dots {
+  display: flex;
+  gap: 0.55rem;
+}
+.ctk-fare-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--ctk-line);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  padding: 0;
+  border: none;
+}
+.ctk-fare-dot.is-active {
+  background: var(--ctk-forest);
+  transform: scale(1.3);
+}
+
+@media (max-width: 640px) {
+  .ctk-fare-carousel-tabs { justify-content: center; }
+}
+
+/* -- Compact fare section: sized to fit within one viewport -- */
+.ctk-page main section.ctk-fare-section--compact {
+  min-height: calc(100svh - var(--header-height));
+  display: flex;
+  align-items: center;
+  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+}
+.ctk-fare-section--compact .container { width: 100%; }
+.ctk-fare-section--compact .ctk-section-head { margin-bottom: 1.25rem; }
+.ctk-fare-section--compact .ctk-fare-carousel-tabs { margin-bottom: 1rem; }
+.ctk-fare-section--compact .ctk-fare-row { padding: 0.8rem 0; }
+.ctk-fare-section--compact .ctk-fare-name { font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
+.ctk-fare-section--compact .ctk-fare-pax { font-size: 0.78rem; }
+.ctk-fare-section--compact .ctk-fare-price { font-size: clamp(1.1rem, 1.8vw, 1.5rem); }
+.ctk-fare-section--compact .ctk-fare-note { font-size: 0.82rem; margin-top: 0.5rem; }
+.ctk-fare-section--compact .ctk-fare-meta {
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  gap: 1.5rem;
+}
+.ctk-fare-section--compact .ctk-fare-meta-block h3 { font-size: 0.92rem; margin-bottom: 0.4rem; }
+.ctk-fare-section--compact .ctk-fare-meta-block p { font-size: 0.82rem; }
+.ctk-fare-section--compact .ctk-fare-terms { font-size: 0.82rem; }
+.ctk-fare-section--compact .ctk-fare-terms li { margin-bottom: 0.15rem; }
+.ctk-fare-section--compact .ctk-fare-carousel-nav { margin-top: 1.1rem; }
+.ctk-fare-section--compact .ctk-fare-cta { margin-top: 1.25rem; }
+
+@media (max-width: 780px) {
+  .ctk-fare-section--compact .ctk-fare-meta { grid-template-columns: 1fr; gap: 1rem; }
+}
+
 /* ============================================================
    07 — BOOKING (ticket aesthetic)
    ============================================================ */
@@ -989,8 +1146,17 @@ html:not(.js) .ctk-page [data-reveal] {
 }
 
 .ctk-duration-card {
+  display: block;
   text-align: center;
   padding-block: 1rem;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.ctk-duration-card:hover,
+.ctk-duration-card:focus-visible {
+  background-color: var(--ctk-mist, rgba(0, 0, 0, 0.03));
+  transform: translateY(-2px);
 }
 .ctk-duration-num {
   font-family: var(--ctk-sans);

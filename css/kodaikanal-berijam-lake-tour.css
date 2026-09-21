@@ -91,7 +91,7 @@ html:not(.js) .tbj-page [data-reveal] { opacity: 1; transform: none; }
 .tbj-btn-outline-dark:hover { background: var(--tbj-accent); color: #fff; }
 
 /* --------------------------------- Hero --------------------------------- */
-.tbj-hero { position: relative; height: 100vh; min-height: 560px; max-height: 900px; display: flex; align-items: center; color: #fff; }
+.tbj-hero { position: relative; height: calc(100svh - var(--header-height)); min-height: 560px; max-height: 900px; display: flex; align-items: center; color: #fff; }
 .tbj-hero-media { position: absolute; inset: 0; z-index: 0; }
 .tbj-hero-media img { width: 100%; height: 100%; object-fit: cover; }
 .tbj-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,32,40,0.6) 0%, rgba(12,32,40,0.58) 45%, rgba(8,22,28,0.88) 100%); }

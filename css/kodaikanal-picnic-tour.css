@@ -91,7 +91,7 @@ html:not(.js) .tpc-page [data-reveal] { opacity: 1; transform: none; }
 .tpc-btn-outline-dark:hover { background: var(--tpc-accent); color: #fff; }
 
 /* --------------------------------- Hero --------------------------------- */
-.tpc-hero { position: relative; height: 100vh; min-height: 560px; max-height: 900px; display: flex; align-items: center; color: #fff; }
+.tpc-hero { position: relative; height: calc(100svh - var(--header-height)); min-height: 560px; max-height: 900px; display: flex; align-items: center; color: #fff; }
 .tpc-hero-media { position: absolute; inset: 0; z-index: 0; }
 .tpc-hero-media img { width: 100%; height: 100%; object-fit: cover; }
 .tpc-hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,32,40,0.6) 0%, rgba(12,32,40,0.58) 45%, rgba(8,22,28,0.88) 100%); }
