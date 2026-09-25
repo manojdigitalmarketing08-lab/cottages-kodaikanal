@@ -12,6 +12,7 @@
     initHeroSearch();
   }
 
+
   /* ------------------------------------------------------------------ */
   /* Hero quick-booking widget — vehicle-type tabs + pickup/drop/date,   */
   /* duplicated from the home page hero search and wired to WhatsApp     */

@@ -1,0 +1,207 @@
+/* ==========================================================================
+   Shared trip enquiry card (partials/enquiry-form.html)
+   Used by the Travels in Kodaikanal and Kodaikanal Honeymoon pages. Tokens
+   are declared here so it renders identically on both. Kept compact so the
+   card fits a laptop screen while pinned in a sidebar.
+   ========================================================================== */
+.qf-card {
+  --qf-primary: #145066;
+  --qf-primary-dark: #0d3a49;
+  --qf-primary-soft: #e7f1f3;
+  --qf-text: #211d1a;
+  --qf-muted: #6c635b;
+  --qf-border: #e8e1d6;
+  --qf-serif: "Playfair Display", "Georgia", serif;
+  --qf-sans: "Poppins", "Segoe UI", system-ui, sans-serif;
+  background: #fff;
+  border: 1px solid var(--qf-border);
+  border-radius: 4px;
+  box-shadow: 0 12px 32px rgba(20, 26, 30, 0.1);
+  padding: 16px 16px 12px;
+  color: var(--qf-text);
+  font-family: var(--qf-sans);
+}
+
+.qf-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--qf-border);
+}
+
+.qf-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.qf-price strong {
+  font-family: var(--qf-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  color: var(--qf-primary-dark);
+}
+
+.qf-price span {
+  font-size: 0.7rem;
+  color: var(--qf-muted);
+}
+
+.qf-card h3 {
+  font-family: var(--qf-serif);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  color: var(--qf-text);
+  margin: 0;
+}
+
+.qf-field {
+  margin-bottom: 8px;
+  min-width: 0;
+}
+
+.qf-field label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 3px;
+  color: var(--qf-text);
+}
+
+.qf-field input,
+.qf-field select,
+.qf-field textarea {
+  width: 100%;
+  border: 1px solid var(--qf-border);
+  border-radius: 3px;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  color: var(--qf-text);
+  background: #fff;
+}
+
+.qf-field input:focus,
+.qf-field select:focus,
+.qf-field textarea:focus {
+  outline: 2px solid var(--qf-primary);
+  outline-offset: 1px;
+  border-color: var(--qf-primary);
+}
+
+.qf-field textarea {
+  resize: none;
+  min-height: 0;
+}
+
+.qf-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 380px) {
+  .qf-field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.qf-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.qf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  font-family: var(--qf-sans);
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 9px 10px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.qf-btn-primary {
+  background: var(--qf-primary);
+  color: #fff;
+}
+
+.qf-btn-primary:hover {
+  background: var(--qf-primary-dark);
+}
+
+.qf-btn-secondary {
+  background: #fff;
+  color: var(--qf-primary);
+  border-color: var(--qf-primary);
+}
+
+.qf-btn-secondary:hover {
+  background: var(--qf-primary-soft);
+}
+
+.qf-note {
+  font-size: 0.66rem;
+  color: var(--qf-muted);
+  text-align: center;
+  margin: 8px 0 0;
+  line-height: 1.4;
+}
+
+/* Short desktop windows (laptops, browser zoom): tighten the card so it
+   fits fully in view while pinned in the sidebar. */
+@media (min-width: 1024px) and (max-height: 700px) {
+  .qf-card {
+    padding: 12px 14px 10px;
+  }
+
+  .qf-head {
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+  }
+
+  .qf-field {
+    margin-bottom: 6px;
+  }
+
+  .qf-field label {
+    margin-bottom: 2px;
+  }
+
+  .qf-field input,
+  .qf-field select,
+  .qf-field textarea {
+    padding: 5px 8px;
+  }
+
+  .qf-actions {
+    margin-top: 2px;
+  }
+
+  .qf-btn {
+    padding: 7px 10px;
+  }
+
+  .qf-note {
+    display: none;
+  }
+}

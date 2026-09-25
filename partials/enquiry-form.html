@@ -1,0 +1,97 @@
+<!-- Shared trip enquiry card — used by travels-in-kodaikanal.html and
+     tour-packages-in-kodaikanal.html. Styles: css/enquiry-form.css,
+     behaviour: js/enquiry-form.js. A page can customise it through data-
+     attributes on <body>: data-enquiry-price, data-enquiry-price-note,
+     data-enquiry-trip, data-enquiry-stay, data-enquiry-label. -->
+<div class="qf-card" id="enquiry-form">
+  <div class="qf-head">
+    <div class="qf-price"><strong data-qf-price>Free Quote</strong><span data-qf-price-note>Same-day reply on WhatsApp</span></div>
+    <h3>Plan Your Trip</h3>
+  </div>
+  <form id="qf-form" novalidate>
+    <div class="qf-field-row">
+      <div class="qf-field">
+        <label for="qf-name">Full Name</label>
+        <input type="text" id="qf-name" name="name" required autocomplete="name" />
+      </div>
+      <div class="qf-field">
+        <label for="qf-phone">Phone Number</label>
+        <input type="tel" id="qf-phone" name="phone" required autocomplete="tel" />
+      </div>
+    </div>
+    <div class="qf-field-row">
+      <div class="qf-field">
+        <label for="qf-trip">Trip Type</label>
+        <select id="qf-trip" name="trip">
+          <option>1 Day Tour</option>
+          <option>2 Day Tour</option>
+          <option>3 Day Tour</option>
+          <option>Honeymoon (3N/4D)</option>
+          <option>Group Tour</option>
+          <option>Custom plan</option>
+        </select>
+      </div>
+      <div class="qf-field">
+        <label for="qf-date">Travel Date</label>
+        <input type="date" id="qf-date" name="date" />
+      </div>
+    </div>
+    <div class="qf-field-row">
+      <div class="qf-field">
+        <label for="qf-pickup">Pickup From</label>
+        <select id="qf-pickup" name="pickup">
+          <option>Coimbatore</option>
+          <option>Madurai</option>
+          <option>Dindigul</option>
+          <option>Palani</option>
+          <option>Kodai Road</option>
+          <option>Already in Kodaikanal</option>
+        </select>
+      </div>
+      <div class="qf-field">
+        <label for="qf-vehicle">Vehicle</label>
+        <select id="qf-vehicle" name="vehicle">
+          <option>Etios</option>
+          <option>Tavera</option>
+          <option>Qualis</option>
+          <option>Jeep</option>
+          <option>Innova</option>
+          <option>Tempo Traveller</option>
+          <option>20 Seater Coach</option>
+        </select>
+      </div>
+    </div>
+    <div class="qf-field-row">
+      <div class="qf-field">
+        <label for="qf-travellers">Travellers</label>
+        <select id="qf-travellers" name="travellers">
+          <option>2 (Couple)</option>
+          <option>3&ndash;4 (Family)</option>
+          <option>5&ndash;10</option>
+          <option>11&ndash;20</option>
+          <option>20+ (Group)</option>
+        </select>
+      </div>
+      <div class="qf-field">
+        <label for="qf-stay">Stay</label>
+        <select id="qf-stay" name="stay">
+          <option>Hotel</option>
+          <option>Resort</option>
+          <option>Villa</option>
+          <option>Dormitory</option>
+          <option>Group Stay</option>
+          <option>Transport only (no stay)</option>
+        </select>
+      </div>
+    </div>
+    <div class="qf-field">
+      <label for="qf-message">Message</label>
+      <textarea id="qf-message" name="message" rows="2" placeholder="Any preferences &mdash; dates, budget, sightseeing or activities"></textarea>
+    </div>
+    <div class="qf-actions">
+      <button type="submit" class="qf-btn qf-btn-primary">Get My Quote</button>
+      <a class="qf-btn qf-btn-secondary" data-qf-whatsapp href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20plan%20my%20Kodaikanal%20trip" target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </form>
+  <p class="qf-note">Your details are safe with us. Our travel team will contact you shortly.</p>
+</div>

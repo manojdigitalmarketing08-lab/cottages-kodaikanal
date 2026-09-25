@@ -24,9 +24,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/enquiry-form.css" />
   <link rel="stylesheet" href="css/travels-in-kodaikanal.css" />
 
   <script type="application/ld+json">
@@ -147,6 +148,7 @@
       </div>
       <div class="container tk-hero-inner">
         <div class="tk-hero-copy">
+          <p class="tk-kicker tk-kicker-light" data-reveal>Tours &middot; Stays &middot; Transport</p>
           <h1 data-reveal>Travels in Kodaikanal</h1>
           <p class="tk-hero-subhead" data-reveal>Tours, stays, local transport and ready-made packages — planned by a family that's hosted travellers here for 12 years.</p>
         </div>
@@ -219,10 +221,16 @@
       </div>
     </section>
 
+    <!-- Two-column layout (like the honeymoon page): page content on the left, the shared
+         enquiry form pinned on the right while scrolling -->
+    <div class="container tk-layout">
+      <div class="tk-content">
+
     <!-- 2 — Intro + Stats (diagonal two-panel) -->
     <section class="tk-intro" id="glance" data-section-label="Intro">
       <div class="tk-intro-panel tk-intro-panel-text">
         <div class="tk-intro-inner">
+          <p class="tk-kicker" data-reveal>Overview</p>
           <h2 data-reveal>Kodaikanal at a Glance</h2>
           <p data-reveal>Kodaikanal is a hill station in the Palani Hills of Tamil Nadu, known for its cool climate, pine and shola forests, and a spring-fed lake at its centre. Visitors come for the misty viewpoints and waterfalls, but a trip here also means figuring out where to stay, how to get around, and which sights are worth the drive — Cottages Kodaikanal handles all three, from a single family-run desk.</p>
           <p class="tk-pullline" data-reveal>Your Kodaikanal Adventure Awaits.</p>
@@ -249,6 +257,7 @@
     <!-- 3 — Featured Tours (horizontal scroll-snap rail) -->
     <section class="tk-tours-section" id="tours" data-section-label="Featured Tours">
       <div class="container">
+        <p class="tk-kicker" data-reveal>Signature Routes</p>
         <h2 data-reveal>Featured Tours</h2>
         <p class="tk-tours-intro" data-reveal>Each tour below has its own full itinerary, route map and pricing on its own page.</p>
       </div>
@@ -332,108 +341,149 @@
       </div>
     </section>
 
-    <!-- 4 — Experience Explorer (tabbed module) -->
+    <!-- 4 — Trip Essentials — intro + one full section per sub-heading -->
     <section class="tk-explorer" id="explore" data-section-label="Experience Explorer">
       <div class="container">
+        <p class="tk-kicker" data-reveal>Trip Essentials</p>
         <h2 data-reveal>Everything You Need, In One Place</h2>
+        <nav class="tk-ess-jump" aria-label="Jump to a trip essential" data-reveal>
+          <a href="#essentials-stay">Stay</a>
+          <a href="#essentials-transport">Getting Here</a>
+          <a href="#essentials-tours">Guided Tours</a>
+          <a href="#essentials-activities">Activities</a>
+          <a href="#essentials-finds">Local Finds</a>
+        </nav>
+      </div>
+    </section>
 
-        <div class="tk-explorer-layout" data-reveal>
-          <div role="tablist" class="tk-explorer-tabs" aria-label="Kodaikanal trip essentials">
-            <button role="tab" id="tab-stay" aria-controls="panel-stay" aria-selected="true" tabindex="0" class="tk-explorer-tab">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11 12 4l8 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v10h12V10" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-              <span>Stay</span>
-            </button>
-            <button role="tab" id="tab-transport" aria-controls="panel-transport" aria-selected="false" tabindex="-1" class="tk-explorer-tab">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16l1.5-5.5A2 2 0 0 1 7.4 9h9.2a2 2 0 0 1 1.9 1.5L20 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="16" width="18" height="3.5" rx="1.2" stroke="currentColor" stroke-width="1.6"/></svg>
-              <span>Getting Here</span>
-            </button>
-            <button role="tab" id="tab-tours" aria-controls="panel-tours" aria-selected="false" tabindex="-1" class="tk-explorer-tab">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="m15 9-2 5-4 1.5 2-5 4-1.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
-              <span>Guided Tours</span>
-            </button>
-            <button role="tab" id="tab-activities" aria-controls="panel-activities" aria-selected="false" tabindex="-1" class="tk-explorer-tab">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="11" r="2.2" stroke="currentColor" stroke-width="1.6"/></svg>
-              <span>Activities</span>
-            </button>
-            <button role="tab" id="tab-shopping" aria-controls="panel-shopping" aria-selected="false" tabindex="-1" class="tk-explorer-tab">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-              <span>Local Finds</span>
-            </button>
-          </div>
-
-          <div class="tk-explorer-panels">
-            <div role="tabpanel" id="panel-stay" aria-labelledby="tab-stay" class="tk-explorer-panel">
-              <img src="images/properties/resort-front-4.webp" alt="Cottage stay exterior with garden near Kodaikanal" width="900" height="675" loading="lazy" />
-              <div class="tk-explorer-panel-copy">
-                <h3>Where to Stay</h3>
-                <p>From private villas and family cottages to budget dormitories, we host every kind of stay in Kodaikanal ourselves — not a listings site, an actual family-run desk that answers on WhatsApp.</p>
-                <div class="tk-pill-links">
-                  <a href="/hotels-in-kodaikanal">Hotels</a>
-                  <a href="/resorts-in-kodaikanal">Resorts</a>
-                  <a href="/villas-in-kodaikanal">Villas</a>
-                  <a href="/dormitory-stay-kodaikanal">Dormitory</a>
-                  <a href="/group-stay-kodaikanal">Group Stay</a>
-                </div>
-              </div>
+    <!-- 4.1 Stay — image left, copy right -->
+    <section class="tk-ess-section" id="essentials-stay" data-section-label="Stay">
+      <div class="container">
+        <header class="tk-ess-head" data-reveal>
+          <span class="tk-ess-tag"><b>01</b> Stay</span>
+          <h2>Where to Stay</h2>
+        </header>
+      <article class="tk-ess-card tk-ess-stay" data-reveal>
+          <img src="images/properties/resort-front-4.webp" alt="Cottage stay exterior with garden near Kodaikanal" width="900" height="675" loading="lazy" />
+          <div class="tk-ess-copy">
+            <p>From private villas and family cottages to budget dormitories, we host every kind of stay in Kodaikanal ourselves — not a listings site, an actual family-run desk that answers on WhatsApp.</p>
+            <div class="tk-pill-links">
+              <a href="/hotels-in-kodaikanal">Hotels</a>
+              <a href="/resorts-in-kodaikanal">Resorts</a>
+              <a href="/villas-in-kodaikanal">Villas</a>
+              <a href="/dormitory-stay-kodaikanal">Dormitory</a>
+              <a href="/group-stay-kodaikanal">Group Stay</a>
             </div>
-
-            <div role="tabpanel" id="panel-transport" aria-labelledby="tab-transport" class="tk-explorer-panel" hidden>
-              <img src="images/drivers/driver-greeting-guests-viewpoint.webp" alt="Local driver greeting guests at a Kodaikanal viewpoint" width="1672" height="941" loading="lazy" />
-              <div class="tk-explorer-panel-copy">
-                <h3>Getting Here &amp; Around</h3>
-                <p>Local taxis, self-drive car rental and jeep safaris within Kodaikanal, plus outstation pickup and drop from Coimbatore, Madurai, Dindigul, Palani and Kodai Road.</p>
-                <div class="tk-pill-links">
-                  <a href="/taxi-service-kodaikanal">Taxi</a>
-                  <a href="/cab-service-kodaikanal">Cab Service</a>
-                  <a href="/car-rental-kodaikanal">Car Rental</a>
-                  <a href="/jeep-safari-kodaikanal">Jeep Safari</a>
-                  <a href="/coimbatore-to-kodaikanal">Coimbatore Pickup</a>
-                </div>
-              </div>
-            </div>
-
-            <div role="tabpanel" id="panel-tours" aria-labelledby="tab-tours" class="tk-explorer-panel" hidden>
-              <img src="images/destinations/destination-coakers-walk.webp" alt="Coaker's Walk viewpoint path above Kodaikanal" width="1122" height="1402" loading="lazy" />
-              <div class="tk-explorer-panel-copy">
-                <h3>Guided Sightseeing</h3>
-                <p>A local driver-guide takes you through the major landmarks in one loop, timed to beat the midday crowds.</p>
-                <ul class="tk-check-list">
-                  <li>Kodaikanal Lake</li>
-                  <li>Coaker's Walk</li>
-                  <li>Pillar Rocks</li>
-                  <li>Silver Cascade Falls</li>
-                </ul>
-              </div>
-            </div>
-
-            <div role="tabpanel" id="panel-activities" aria-labelledby="tab-activities" class="tk-explorer-panel" hidden>
-              <img src="images/destinations/destination-pillar-rocks.webp" alt="Misty cliffs and forest at Pillar Rocks, Kodaikanal" width="1122" height="1402" loading="lazy" />
-              <div class="tk-explorer-panel-copy">
-                <h3>Activities</h3>
-                <p>Beyond sightseeing, Kodaikanal is built for slower outdoor time.</p>
-                <ul class="tk-check-list">
-                  <li>Trekking on marked forest trails</li>
-                  <li>Cycling around the lake road</li>
-                  <li>Boating — pedal, rowing &amp; nature boats on Kodaikanal Lake</li>
-                </ul>
-              </div>
-            </div>
-
-            <div role="tabpanel" id="panel-shopping" aria-labelledby="tab-shopping" class="tk-explorer-panel" hidden>
-              <img src="images/scenery/kodaikanal-hilltop-cabin-sunset.webp" alt="Hillside market street near Kodaikanal Lake at dusk" width="1570" height="1002" loading="lazy" />
-              <div class="tk-explorer-panel-copy">
-                <h3>Local Finds</h3>
-                <p>The lake-road market strip is where the local flavour is — handwoven woolens, eucalyptus oil, and homemade chocolate from small shopfronts near Kodaikanal Lake, plus artisan stalls selling handicrafts.</p>
-              </div>
+            <div class="tk-ess-actions">
+              <a class="tk-cta-btn tk-cta-btn--primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20check%20stay%20availability%20in%20Kodaikanal" target="_blank" rel="noopener">Check Availability <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a class="tk-cta-btn tk-cta-btn--outline" href="/hotels-in-kodaikanal">Browse Stays</a>
             </div>
           </div>
-        </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4.2 Getting Here — dark teal panel, copy left, image right -->
+    <section class="tk-ess-section" id="essentials-transport" data-section-label="Getting Here">
+      <div class="container">
+        <header class="tk-ess-head" data-reveal>
+          <span class="tk-ess-tag"><b>02</b> Getting Here</span>
+          <h2>Getting Here &amp; Around</h2>
+        </header>
+      <article class="tk-ess-card tk-ess-transport" data-reveal>
+          <div class="tk-ess-copy">
+            <p>Local taxis, self-drive car rental and jeep safaris within Kodaikanal, plus outstation pickup and drop from Coimbatore, Madurai, Dindigul, Palani and Kodai Road.</p>
+            <div class="tk-pill-links">
+              <a href="/taxi-service-kodaikanal">Taxi</a>
+              <a href="/cab-service-kodaikanal">Cab Service</a>
+              <a href="/car-rental-kodaikanal">Car Rental</a>
+              <a href="/jeep-safari-kodaikanal">Jeep Safari</a>
+              <a href="/coimbatore-to-kodaikanal">Coimbatore Pickup</a>
+            </div>
+            <div class="tk-ess-actions">
+              <a class="tk-cta-btn tk-cta-btn--gold" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20a%20cab%20and%20pickup%20quote%20for%20Kodaikanal" target="_blank" rel="noopener">Get a Pickup Quote <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a class="tk-cta-btn tk-cta-btn--ghost" href="/taxi-service-kodaikanal">See Taxi Options</a>
+            </div>
+          </div>
+          <img src="images/drivers/driver-greeting-guests-viewpoint.webp" alt="Local driver greeting guests at a Kodaikanal viewpoint" width="1672" height="941" loading="lazy" />
+        </article>
+      </div>
+    </section>
+
+    <!-- 4.3 Guided Tours — photo with an overlaid numbered stop list -->
+    <section class="tk-ess-section" id="essentials-tours" data-section-label="Guided Tours">
+      <div class="container">
+        <header class="tk-ess-head" data-reveal>
+          <span class="tk-ess-tag"><b>03</b> Guided Tours</span>
+          <h2>Guided Sightseeing</h2>
+        </header>
+      <article class="tk-ess-card tk-ess-tours" data-reveal>
+          <img src="images/destinations/destination-coakers-walk.webp" alt="Coaker's Walk viewpoint path above Kodaikanal" width="1122" height="1402" loading="lazy" />
+          <div class="tk-ess-tours-panel">
+            <p>A local driver-guide takes you through the major landmarks in one loop, timed to beat the midday crowds.</p>
+            <ul class="tk-check-list">
+              <li>Kodaikanal Lake</li>
+              <li>Coaker's Walk</li>
+              <li>Pillar Rocks</li>
+              <li>Silver Cascade Falls</li>
+            </ul>
+            <div class="tk-ess-actions">
+              <a class="tk-cta-btn tk-cta-btn--primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20plan%20a%20guided%20sightseeing%20tour%20in%20Kodaikanal" target="_blank" rel="noopener">Plan a Sightseeing Loop <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a class="tk-cta-btn tk-cta-btn--outline" href="#packages">See Tour Packages</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4.4 Activities — wide photo banner, three activity tiles -->
+    <section class="tk-ess-section" id="essentials-activities" data-section-label="Activities">
+      <div class="container">
+        <header class="tk-ess-head" data-reveal>
+          <span class="tk-ess-tag"><b>04</b> Activities</span>
+          <h2>Activities</h2>
+        </header>
+      <article class="tk-ess-card tk-ess-activities" data-reveal>
+          <img src="images/destinations/destination-pillar-rocks.webp" alt="Misty cliffs and forest at Pillar Rocks, Kodaikanal" width="1122" height="1402" loading="lazy" />
+          <div class="tk-ess-copy">
+            <p>Beyond sightseeing, Kodaikanal is built for slower outdoor time.</p>
+            <ul class="tk-check-list">
+              <li>Trekking on marked forest trails</li>
+              <li>Cycling around the lake road</li>
+              <li>Boating — pedal, rowing &amp; nature boats on Kodaikanal Lake</li>
+            </ul>
+            <div class="tk-ess-actions">
+              <a class="tk-cta-btn tk-cta-btn--primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20know%20about%20trekking%2C%20cycling%20and%20boating%20in%20Kodaikanal" target="_blank" rel="noopener">Ask About Activities <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4.5 Local Finds — sand card, image left -->
+    <section class="tk-ess-section" id="essentials-finds" data-section-label="Local Finds">
+      <div class="container">
+        <header class="tk-ess-head" data-reveal>
+          <span class="tk-ess-tag"><b>05</b> Local Finds</span>
+          <h2>Local Finds</h2>
+        </header>
+      <article class="tk-ess-card tk-ess-finds" data-reveal>
+          <img src="images/scenery/kodaikanal-hilltop-cabin-sunset.webp" alt="Hillside market street near Kodaikanal Lake at dusk" width="1570" height="1002" loading="lazy" />
+          <div class="tk-ess-copy">
+            <p>The lake-road market strip is where the local flavour is — handwoven woolens, eucalyptus oil, and homemade chocolate from small shopfronts near Kodaikanal Lake, plus artisan stalls selling handicrafts.</p>
+            <div class="tk-ess-actions">
+              <a class="tk-cta-btn tk-cta-btn--primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20plan%20a%20market%20and%20shopping%20stop%20near%20Kodaikanal%20Lake" target="_blank" rel="noopener">Plan a Market Stop <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a class="tk-cta-btn tk-cta-btn--outline" href="#tours">Explore Featured Tours</a>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- 5 — Packages (staggered-offset row + segmented filter) -->
     <section class="tk-packages" id="packages" data-section-label="Packages">
       <div class="container">
+        <p class="tk-kicker" data-reveal>Packages</p>
         <h2 data-reveal>Plan Your Trip</h2>
         <p class="tk-packages-intro" data-reveal>Every package below bundles stay, private cab and sightseeing into one WhatsApp quote — personalised, eco-friendly routing and no hidden add-ons.</p>
 
@@ -500,6 +550,32 @@
           </article>
 
         </div>
+      </div>
+    </section>
+
+    <!-- 5b — Trip enquiry steps (the form itself is the sticky right-hand column, see .tk-aside) -->
+    <section class="tk-enquiry" id="enquiry" data-section-label="Plan Your Trip">
+      <div class="container">
+        <div class="tk-enquiry-copy">
+          <p class="tk-kicker" data-reveal>Get a Quote</p>
+          <h2 data-reveal>Three Steps to Your Kodaikanal Trip</h2>
+          <p class="tk-enquiry-lede" data-reveal>Tell us what you need and we'll route and price it for your dates and group size &mdash; stay only, transport only, or both bundled into one package.</p>
+          <ol class="tk-steps" data-reveal>
+            <li>
+              <span class="tk-step-num">01</span>
+              <div><h3>Pick your trip</h3><p>Choose a 1, 2 or 3 day tour, a group package, or a custom plan &mdash; every quote is personalised, not sold off a fixed shelf.</p></div>
+            </li>
+            <li>
+              <span class="tk-step-num">02</span>
+              <div><h3>Choose pickup, ride &amp; stay</h3><p>Outstation pickup from Coimbatore, Madurai, Dindigul, Palani or Kodai Road, in an Etios, Tavera, Qualis, Jeep, Innova, Tempo Traveller or 20 Seater Coach, plus a hotel, resort, villa or dormitory.</p></div>
+            </li>
+            <li>
+              <span class="tk-step-num">03</span>
+              <div><h3>Get your quote on WhatsApp</h3><p>Your details open as a ready-made WhatsApp message to our family-run desk, which replies the same day.</p></div>
+            </li>
+          </ol>
+        </div>
+
       </div>
     </section>
 
@@ -575,19 +651,28 @@
       </div>
     </section>
 
-    <!-- 7 — CTA / Trust band (angled, clipped) -->
-    <section class="tk-cta-band" id="cta" data-section-label="Contact">
-      <div class="container tk-cta-band-inner">
-        <div data-reveal>
-          <h2>Ready When You Are</h2>
-          <p>Same-day WhatsApp replies, a local team that actually knows the routes, no third-party markup.</p>
-        </div>
-        <div class="tk-cta-band-actions" data-reveal>
-          <a class="btn btn-white" href="tel:+917502345777">Call +91 75023 45777</a>
-          <a class="btn btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20plan%20my%20Kodaikanal%20trip" target="_blank" rel="noopener">Chat on WhatsApp</a>
-        </div>
+        <!-- 7 — CTA / Trust band (angled, clipped) -->
+        <section class="tk-cta-band" id="cta" data-section-label="Contact">
+          <div class="container">
+            <div class="tk-cta-band-inner">
+              <div data-reveal>
+                <h2>Ready When You Are</h2>
+                <p>Same-day WhatsApp replies, a local team that actually knows the routes, no third-party markup.</p>
+              </div>
+              <div class="tk-cta-band-actions" data-reveal>
+                <a class="btn btn-white" href="tel:+917502345777">Call +91 75023 45777</a>
+                <a class="btn btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20plan%20my%20Kodaikanal%20trip" target="_blank" rel="noopener">Chat on WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
-    </section>
+
+      <aside class="tk-aside" aria-label="Plan your trip">
+        <div data-include="partials/enquiry-form.html"></div>
+      </aside>
+    </div>
 
   </main>
 
@@ -602,6 +687,7 @@
 
   <script src="js/include.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/enquiry-form.js" defer></script>
   <script src="js/travels-in-kodaikanal.js" defer></script>
 </body>
 </html>

@@ -24,7 +24,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/coimbatore-to-kodaikanal.css" />
@@ -105,10 +105,91 @@
 
   <div id="site-header" data-include="partials/header.html"></div>
 
+  <!-- Fixed right-side quote card. Purpose-built for this page — not the
+       shared .hero-search/.hero-booking-card components other pages use.
+       Always rendered from first paint (no scroll-triggered show/hide),
+       docked below the sticky header, and shifted up by JS (see
+       coimbatore-to-kodaikanal.js) once the footer approaches so it
+       never overlaps the footer either. Pickup/drop are fixed for this
+       page (the route is the page itself), so the form only asks for
+       what actually varies: vehicle and date — fewer fields, faster to
+       complete. -->
+  <aside class="ctk-quote" id="ctk-side-form" aria-label="Get a fare quote">
+    <div class="ctk-quote-card">
+      <div class="ctk-quote-head">
+        <p class="ctk-quote-kicker">Instant Quote</p>
+        <h3 class="ctk-quote-title">Book Your Cab</h3>
+        <div class="ctk-quote-route">
+          <span>Coimbatore</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Kodaikanal</span>
+        </div>
+        <!-- PLACEHOLDER: swap 4.8 for the real Google rating before publishing (matches the hero badge above) -->
+        <div class="ctk-quote-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8-5.2-4.7 6.9-.7L12 2Z"/></svg>
+          <span>4.8 &middot; 500+ trips arranged</span>
+        </div>
+      </div>
+
+      <div class="ctk-quote-body">
+        <div class="ctk-quote-field">
+          <label for="ctk-quote-name">Your Name</label>
+          <input type="text" id="ctk-quote-name" autocomplete="name" placeholder="e.g. Ramesh Kumar" />
+        </div>
+
+        <div class="ctk-quote-field">
+          <label for="ctk-quote-phone">Phone Number</label>
+          <input type="tel" id="ctk-quote-phone" autocomplete="tel" inputmode="tel" placeholder="e.g. 98765 43210" />
+        </div>
+
+        <div class="ctk-quote-field">
+          <label for="ctk-quote-vehicle">Vehicle</label>
+          <select id="ctk-quote-vehicle">
+            <option value="Etios" data-price="5000">Etios &middot; Sedan &middot; 4</option>
+            <option value="Tavera" data-price="7000">Tavera &middot; SUV &middot; 7</option>
+            <option value="Qualis" data-price="7000">Qualis &middot; SUV &middot; 7</option>
+            <option value="Jeep" data-price="7500">Jeep &middot; Open-top &middot; 6</option>
+            <option value="Innova" data-price="7500" selected>Innova &middot; SUV &middot; 7</option>
+            <option value="Tempo Traveller" data-price="9000">Tempo Traveller &middot; 9&ndash;17</option>
+            <option value="20 Seater Coach" data-price="10000">20-Seater Coach &middot; 20</option>
+          </select>
+        </div>
+
+        <div class="ctk-quote-field">
+          <label for="ctk-quote-date">Travel Date <span>(optional)</span></label>
+          <input type="date" id="ctk-quote-date" />
+        </div>
+
+        <div class="ctk-quote-price">
+          <span>Estimated Fare</span>
+          <strong id="ctk-quote-price-value">&#8377;7,500</strong>
+          <small>one-way</small>
+        </div>
+
+        <a class="ctk-quote-submit" id="ctk-quote-submit" href="https://wa.me/917502345777" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.3-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.4 3.8 3.4.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20Z"/></svg>
+          <span>Book on WhatsApp</span>
+        </a>
+        <p class="ctk-quote-trust">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 12.5l2 2 4-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
+          No advance payment &middot; Same-day confirmation
+        </p>
+      </div>
+    </div>
+  </aside>
+
   <main id="main-content">
 
     <!-- 01 — Hero (split editorial) -->
     <section class="ctk-hero" id="hero" data-section-label="Hero">
+      <div class="ctk-hero-media ctk-hero-media--wide" data-reveal>
+        <img src="images/routes/coimbatore-to-kodaikanal.webp" alt="Winding forest road climbing through misty hills toward Kodaikanal" width="1988" height="791" />
+        <!-- PLACEHOLDER: swap 4.8 / 120+ for the real Google rating and review count before publishing -->
+        <div class="ctk-hero-rating" data-reveal>
+          <span class="ctk-hero-rating-stars" aria-hidden="true">★★★★★</span>
+          <span class="ctk-hero-rating-text"><strong>4.8</strong> &middot; 120+ traveller reviews</span>
+        </div>
+      </div>
       <div class="ctk-hero-inner">
         <div class="ctk-hero-copy">
           <p class="ctk-route-strip" data-reveal>
@@ -116,122 +197,11 @@
           </p>
           <h1 data-reveal>How to Travel from Coimbatore<br />to Kodaikanal by Cab?</h1>
           <p class="ctk-hero-lede" data-reveal>The easiest way to cover the 180&nbsp;km climb — private cab, door-to-door, on your own schedule.</p>
+          <p class="ctk-hero-price" data-reveal>Starting from <strong>&#8377;5,000</strong> one-way <span>&middot; sedan to tempo traveller</span></p>
           <div class="ctk-hero-actions" data-reveal>
             <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cab%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Your Cab</a>
+            <a class="ctk-btn ctk-btn-outline" href="#cost" data-scroll-to="cost">See All Fares</a>
           </div>
-        </div>
-        <div class="ctk-hero-media ctk-hero-media--wide" data-reveal>
-          <img src="images/routes/coimbatore-to-kodaikanal.webp" alt="Winding forest road climbing through misty hills toward Kodaikanal" width="1988" height="791" />
-        </div>
-
-        <div class="ctk-hero-search-overlay ctk-search-desktop" data-reveal>
-        <div class="hero-booking-card">
-          <div class="hero-category-tabs" role="group" aria-label="Vehicle type">
-            <button type="button" class="hero-category-btn is-active" data-category="Etios" aria-pressed="true">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16v-2.5L6 9h12l2 4.5V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 16h16M4 16v2M20 16v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="16.5" cy="16" r="1.4" fill="currentColor"/><path d="M7 9l1.5-3h7L17 9" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
-              <span>Etios</span>
-            </button>
-            <button type="button" class="hero-category-btn" data-category="Tavera" aria-pressed="false">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16v-4.5l1.3-3A1.8 1.8 0 0 1 7 7.3h9l4 4.2V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 16h17M4 16v2M21 16v2M10 7.3v8.7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="17.5" cy="16" r="1.4" fill="currentColor"/></svg>
-              <span>Tavera</span>
-            </button>
-            <button type="button" class="hero-category-btn" data-category="Qualis" aria-pressed="false">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.5 16V9a1 1 0 0 1 1-1h11l3.5 3.5V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 16h17M3.5 16v2M20.5 16v2M9.5 8v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="16.5" cy="16" r="1.4" fill="currentColor"/></svg>
-              <span>Qualis</span>
-            </button>
-            <button type="button" class="hero-category-btn" data-category="Jeep" aria-pressed="false">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16v-3.5l1.2-3A1.8 1.8 0 0 1 6.9 8.4h10.2a1.8 1.8 0 0 1 1.7 1.1l1.2 3V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 8.4V6M18 8.4V6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 16h16M4 16v2M20 16v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="16.5" cy="16" r="1.4" fill="currentColor"/></svg>
-              <span>Jeep</span>
-            </button>
-            <button type="button" class="hero-category-btn" data-category="Innova" aria-pressed="false">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.5 16v-3.2l1.6-3.8A2 2 0 0 1 7 7.8h10a2 2 0 0 1 1.9 1.2l1.6 3.8V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 16h17M3.5 16v2M20.5 16v2M9 7.8v4.4M15 7.8v4.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="16.5" cy="16" r="1.4" fill="currentColor"/></svg>
-              <span>Innova</span>
-            </button>
-            <button type="button" class="hero-category-btn" data-category="Tempo Traveller" aria-pressed="false">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 16V8a1 1 0 0 1 1-1h13l3 4v5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 16h17M3 16v2M20 16v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9 7v9M14 11h6" stroke="currentColor" stroke-width="1.4"/><circle cx="7" cy="16" r="1.4" fill="currentColor"/><circle cx="17" cy="16" r="1.4" fill="currentColor"/></svg>
-              <span>Tempo Traveller</span>
-            </button>
-            <button type="button" class="hero-category-btn" data-category="20 Seater Coach" aria-pressed="false">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="18" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 11h18M7 6v5M13 6v5M17 6v5" stroke="currentColor" stroke-width="1.4"/><path d="M4 16v2M20 16v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7" cy="18" r="1.3" fill="currentColor"/><circle cx="17" cy="18" r="1.3" fill="currentColor"/></svg>
-              <span>20 Seater Coach</span>
-            </button>
-          </div>
-
-          <form class="hero-search" id="hero-travel-search" aria-label="Quick cab availability check">
-            <input type="hidden" id="hero-vehicle-type" name="hero-vehicle-type" value="Etios" />
-            <div class="hero-search-field">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
-              <div class="hero-search-value">
-                <label for="hero-pickup">Pickup Location</label>
-                <input type="text" id="hero-pickup" name="hero-pickup" value="Coimbatore" autocomplete="off" />
-              </div>
-            </div>
-            <div class="hero-search-divider" aria-hidden="true"></div>
-            <div class="hero-search-field">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
-              <div class="hero-search-value">
-                <label for="hero-drop">Drop Location</label>
-                <input type="text" id="hero-drop" name="hero-drop" value="Kodaikanal" autocomplete="off" />
-              </div>
-            </div>
-            <div class="hero-search-divider" aria-hidden="true"></div>
-            <div class="hero-search-field">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 6h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div class="hero-search-value">
-                <label for="hero-date">Travel Date</label>
-                <input type="date" id="hero-date" name="hero-date" />
-              </div>
-            </div>
-            <button class="hero-search-submit" type="submit">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-              <span>Check Availability</span>
-            </button>
-          </form>
-        </div>
-        </div>
-      </div>
-
-      <div class="ctk-hero-search-overlay ctk-search-mobile" data-reveal>
-        <div class="hero-booking-card">
-          <form class="hero-search" id="hero-travel-search-mobile" aria-label="Quick cab availability check">
-            <input type="hidden" name="hero-vehicle-type" value="Etios" />
-            <select class="hero-category-select" aria-label="Vehicle type">
-              <option value="Etios">Etios (Sedan)</option>
-              <option value="Tavera">Tavera</option>
-              <option value="Qualis">Qualis</option>
-              <option value="Jeep">Jeep</option>
-              <option value="Innova">Innova</option>
-              <option value="Tempo Traveller">Tempo Traveller</option>
-              <option value="20 Seater Coach">20 Seater Coach</option>
-            </select>
-            <div class="hero-search-field">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
-              <div class="hero-search-value">
-                <label for="hero-pickup-mobile">Pickup Location</label>
-                <input type="text" id="hero-pickup-mobile" name="hero-pickup" value="Coimbatore" autocomplete="off" />
-              </div>
-            </div>
-            <div class="hero-search-divider" aria-hidden="true"></div>
-            <div class="hero-search-field">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
-              <div class="hero-search-value">
-                <label for="hero-drop-mobile">Drop Location</label>
-                <input type="text" id="hero-drop-mobile" name="hero-drop" value="Kodaikanal" autocomplete="off" />
-              </div>
-            </div>
-            <div class="hero-search-divider" aria-hidden="true"></div>
-            <div class="hero-search-field">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3v3M17 3v3M4 9h16M5 6h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div class="hero-search-value">
-                <label for="hero-date-mobile">Travel Date</label>
-                <input type="date" id="hero-date-mobile" name="hero-date" />
-              </div>
-            </div>
-            <button class="hero-search-submit" type="submit">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-              <span>Check Availability</span>
-            </button>
-          </form>
         </div>
       </div>
 
@@ -240,50 +210,246 @@
       </button>
     </section>
 
-    <!-- 02b — Why Most Travellers Choose a Cab -->
-    <section class="ctk-why-most-section" id="why-most-cab" data-section-label="Why a Cab Wins" style="background: var(--ctk-surface);">
-      <div class="container ctk-airport-layout">
-        <div class="ctk-airport-media" data-reveal style="aspect-ratio: 3 / 2; border-radius: 1rem; overflow: hidden;">
-          <img src="images/drivers/driver-greeting-guests-viewpoint.webp" alt="Driver greeting guests for a Coimbatore to Kodaikanal cab transfer" loading="lazy" />
-        </div>
-        <div data-reveal>
-          <div class="ctk-section-head" data-reveal>
-            <p class="ctk-eyebrow">Most Popular Choice</p>
-            <h2>Why Most Travellers Choose a Cab</h2>
-            <p class="ctk-section-sub">The Coimbatore–Kodaikanal road runs through Palani before climbing a series of ghat bends into the hills, and a private cab handles all of it without a change of vehicle. You can leave straight from the airport or railway station, stop for breakfast or a viewpoint photo whenever you like, and arrive at your cottage door rather than a bus stand you then need a second ride from.</p>
+    <!-- 01b — Trust Strip (social proof, right after hero) -->
+    <section class="ctk-trust-strip" id="trust" data-section-label="Trust" style="background: var(--ctk-surface); border-block: 1px solid var(--ctk-line-soft); padding-block: clamp(1.75rem, 3vw, 2.5rem);">
+      <div class="container">
+        <div class="ctk-duration-grid" data-reveal style="margin-bottom: 0;">
+          <div class="ctk-duration-card">
+            <span class="ctk-duration-num" style="font-size: clamp(1.6rem, 3vw, 2.1rem);">500+</span>
+            <p class="ctk-duration-label">Trips Arranged</p>
+            <p class="ctk-duration-includes">Coimbatore–Kodaikanal transfers booked and driven so far</p>
+          </div>
+          <div class="ctk-duration-card">
+            <span class="ctk-duration-num" style="font-size: clamp(1.6rem, 3vw, 2.1rem);">Same-Day</span>
+            <p class="ctk-duration-label">Confirmation</p>
+            <p class="ctk-duration-includes">Driver and fare confirmed the same day you enquire</p>
+          </div>
+          <div class="ctk-duration-card">
+            <span class="ctk-duration-num" style="font-size: clamp(1.6rem, 3vw, 2.1rem);">Flight-Tracked</span>
+            <p class="ctk-duration-label">Airport Pickup</p>
+            <p class="ctk-duration-includes">Delays adjusted for at no extra charge</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 02c — Best Time to Travel -->
-    <section class="ctk-best-time-section" id="best-time" data-section-label="Best Time to Travel">
+    <!-- 06 — Fare (moved up: pricing now shows right after the trust
+         strip instead of six sections in, matching how the Goa package
+         references lead with price/options before any educational
+         content) -->
+    <section class="ctk-fare-section" id="cost" data-section-label="Fare">
       <div class="container">
         <div class="ctk-section-head" data-reveal>
-          <p class="ctk-eyebrow">Plan Around the Weather</p>
-          <h2>Best Time to Travel to Kodaikanal</h2>
-          <p class="ctk-section-sub">Each season on this route has a different character — here's what to expect before you book your dates.</p>
+          <p class="ctk-eyebrow">Fare Sheet</p>
+          <h2>How Much Does a Coimbatore to Kodaikanal Cab Cost?</h2>
+          <p class="ctk-section-sub">Coimbatore &rarr; Kodaikanal, one-way starting fares by vehicle. Round trip and multi-day rates are quoted separately once we know your dates.</p>
         </div>
 
-        <div class="ctk-duration-grid" data-reveal>
-          <div class="ctk-duration-card">
-            <span class="ctk-duration-num">Apr&ndash;Jun</span>
-            <p class="ctk-duration-label">Summer</p>
-            <p class="ctk-duration-includes">Mild hill weather and the busiest travel season.</p>
+        <div class="ctk-fare-cards" data-reveal>
+          <div class="ctk-fare-card">
+            <span class="ctk-fare-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16v-2.5L6 9h12l2 4.5V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 16h16M4 16v2M20 16v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="16.5" cy="16" r="1.4" fill="currentColor"/><path d="M7 9l1.5-3h7L17 9" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            <h3 class="ctk-fare-card-name">Etios</h3>
+            <p class="ctk-fare-card-pax">Sedan &middot; up to 4</p>
+            <p class="ctk-fare-card-price">&#8377;5,000 <span>one-way</span></p>
+            <a class="ctk-fare-card-cta" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20an%20Etios%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Etios</a>
           </div>
-          <div class="ctk-duration-card">
-            <span class="ctk-duration-num">Jul&ndash;Sep</span>
-            <p class="ctk-duration-label">Monsoon</p>
-            <p class="ctk-duration-includes">Heavy rain on the ghat road — drive with caution, as landslides are occasionally reported on this stretch.</p>
+          <div class="ctk-fare-card">
+            <span class="ctk-fare-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16v-4.5l1.3-3A1.8 1.8 0 0 1 7 7.3h9l4 4.2V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 16h17M4 16v2M21 16v2M10 7.3v8.7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="17.5" cy="16" r="1.4" fill="currentColor"/></svg></span>
+            <h3 class="ctk-fare-card-name">Tavera</h3>
+            <p class="ctk-fare-card-pax">SUV &middot; up to 7</p>
+            <p class="ctk-fare-card-price">&#8377;7,000 <span>one-way</span></p>
+            <a class="ctk-fare-card-cta" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20Tavera%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Tavera</a>
           </div>
-          <div class="ctk-duration-card">
-            <span class="ctk-duration-num">Oct&ndash;Feb</span>
-            <p class="ctk-duration-label">Winter</p>
-            <p class="ctk-duration-includes">Cool, clear and popular for long-distance mountain views.</p>
+          <div class="ctk-fare-card">
+            <span class="ctk-fare-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3.5 16V9a1 1 0 0 1 1-1h11l3.5 3.5V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 16h17M3.5 16v2M20.5 16v2M9.5 8v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="16.5" cy="16" r="1.4" fill="currentColor"/></svg></span>
+            <h3 class="ctk-fare-card-name">Qualis</h3>
+            <p class="ctk-fare-card-pax">SUV &middot; up to 7</p>
+            <p class="ctk-fare-card-price">&#8377;7,000 <span>one-way</span></p>
+            <a class="ctk-fare-card-cta" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20Qualis%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Qualis</a>
+          </div>
+          <div class="ctk-fare-card">
+            <span class="ctk-fare-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 16v-3.5l1.2-3A1.8 1.8 0 0 1 6.9 8.4h10.2a1.8 1.8 0 0 1 1.7 1.1l1.2 3V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 8.4V6M18 8.4V6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 16h16M4 16v2M20 16v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="16.5" cy="16" r="1.4" fill="currentColor"/></svg></span>
+            <h3 class="ctk-fare-card-name">Jeep</h3>
+            <p class="ctk-fare-card-pax">Open-top &middot; up to 6</p>
+            <p class="ctk-fare-card-price">&#8377;7,500 <span>one-way</span></p>
+            <a class="ctk-fare-card-cta" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20Jeep%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Jeep</a>
+          </div>
+          <div class="ctk-fare-card is-popular">
+            <span class="ctk-fare-card-tag">Most Booked</span>
+            <span class="ctk-fare-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3.5 16v-3.2l1.6-3.8A2 2 0 0 1 7 7.8h10a2 2 0 0 1 1.9 1.2l1.6 3.8V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 16h17M3.5 16v2M20.5 16v2M9 7.8v4.4M15 7.8v4.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="16.5" cy="16" r="1.4" fill="currentColor"/></svg></span>
+            <h3 class="ctk-fare-card-name">Innova</h3>
+            <p class="ctk-fare-card-pax">SUV &middot; up to 7</p>
+            <p class="ctk-fare-card-price">&#8377;7,500 <span>one-way</span></p>
+            <p class="ctk-fare-card-note">Best for the ghat bends and family travel</p>
+            <a class="ctk-fare-card-cta ctk-fare-card-cta--accent" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20an%20Innova%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Innova</a>
+          </div>
+          <div class="ctk-fare-card">
+            <span class="ctk-fare-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 16V8a1 1 0 0 1 1-1h13l3 4v5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 16h17M3 16v2M20 16v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M9 7v9M14 11h6" stroke="currentColor" stroke-width="1.4"/><circle cx="7" cy="16" r="1.4" fill="currentColor"/><circle cx="17" cy="16" r="1.4" fill="currentColor"/></svg></span>
+            <h3 class="ctk-fare-card-name">Tempo Traveller</h3>
+            <p class="ctk-fare-card-pax">Van &middot; 9&ndash;17</p>
+            <p class="ctk-fare-card-price">&#8377;9,000 <span>one-way</span></p>
+            <a class="ctk-fare-card-cta" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20Tempo%20Traveller%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Tempo Traveller</a>
+          </div>
+          <div class="ctk-fare-card">
+            <span class="ctk-fare-card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="10" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 11h18M7 6v5M13 6v5M17 6v5" stroke="currentColor" stroke-width="1.4"/><path d="M4 16v2M20 16v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7" cy="18" r="1.3" fill="currentColor"/><circle cx="17" cy="18" r="1.3" fill="currentColor"/></svg></span>
+            <h3 class="ctk-fare-card-name">20-Seater Coach</h3>
+            <p class="ctk-fare-card-pax">Coach &middot; up to 20</p>
+            <p class="ctk-fare-card-price">&#8377;10,000 <span>one-way</span></p>
+            <a class="ctk-fare-card-cta" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%2020-Seater%20Coach%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Coach</a>
+          </div>
+        </div>
+
+        <div class="ctk-fare-meta" data-reveal>
+          <div class="ctk-fare-meta-block">
+            <h3>What's Included</h3>
+            <div class="ctk-includes-grid">
+              <div class="ctk-includes-item">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16v-2.5L6 9h12l2 4.5V16" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 16h16M4 16v2M20 16v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="7.5" cy="16" r="1.4" fill="currentColor"/><circle cx="16.5" cy="16" r="1.4" fill="currentColor"/></svg>
+                <span>Driver</span>
+              </div>
+              <div class="ctk-includes-item">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 21V9l3-3h4l3 3v12" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><rect x="9" y="12" width="6" height="5" rx="0.5" stroke="currentColor" stroke-width="1.4"/><path d="M17 13h1a1 1 0 0 1 1 1v3a1.5 1.5 0 0 1-3 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                <span>Fuel</span>
+              </div>
+              <div class="ctk-includes-item">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+                <span>Pickup &amp; Drop</span>
+              </div>
+              <div class="ctk-includes-item">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 7l1.5 12a1 1 0 0 0 1 .9h11a1 1 0 0 0 1-.9L20 7M9 11v5M15 11v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" stroke="currentColor" stroke-width="1.6"/></svg>
+                <span>Toll (at actuals)</span>
+              </div>
+            </div>
+          </div>
+          <div class="ctk-fare-meta-block">
+            <h3>What Affects the Price?</h3>
+            <p>Vehicle type &middot; Travel date &middot; One-way or round trip &middot; Added sightseeing stops</p>
+            <p style="margin-top:0.6rem;">Fares can vary by roughly &#8377;3,000&ndash;&#8377;6,000 depending on season and demand, with peak dates at the higher end.</p>
+          </div>
+          <div class="ctk-fare-meta-block">
+            <h3>What's Not Included</h3>
+            <ul class="ctk-excludes-list">
+              <li>Food &amp; personal expenses</li>
+              <li>Sightseeing entry tickets</li>
+              <li>Parking at hill-station stops</li>
+              <li>Extra km/hours beyond the quoted plan</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ctk-fare-cta" data-reveal>
+          <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20a%20fare%20quote%20for%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Get Your Fare</a>
+          <p style="margin:0;font-size:0.9rem;color:var(--ctk-ink-soft);">Toll and hill-station entry charges, if any, are added at actuals.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06b — Testimonials (social proof right after pricing) -->
+    <section class="testimonials" aria-labelledby="ctk-testimonials-heading">
+      <div class="container">
+        <div class="section-heading">
+          <h2 id="ctk-testimonials-heading">What Travellers Say About This Route</h2>
+        </div>
+      </div>
+
+      <div class="testimonial-wrapper container">
+        <button class="carousel-nav prev testimonial-nav" type="button" aria-label="Previous testimonial" disabled>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div class="testimonial-track" role="list">
+          <article class="testimonial-slide" role="listitem">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote>Landed at Coimbatore airport and the driver was already waiting with a name board. No haggling, no surprise charges — the fare matched exactly what was quoted on WhatsApp.</blockquote>
+            <div class="testimonial-meta">
+              <span class="avatar" aria-hidden="true">RS</span>
+              <div>
+                <p class="testimonial-name">Ramesh S. <span class="testimonial-place">Bengaluru</span></p>
+                <span class="stars" aria-hidden="true">★★★★★</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-slide" role="listitem">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote>We had two kids with us and the driver was happy to stop for breakfast near Palani and again for photos on the ghat road. Made the 4-hour climb feel easy.</blockquote>
+            <div class="testimonial-meta">
+              <span class="avatar" aria-hidden="true">DK</span>
+              <div>
+                <p class="testimonial-name">Divya &amp; Karthik <span class="testimonial-place">Coimbatore</span></p>
+                <span class="stars" aria-hidden="true">★★★★★</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-slide" role="listitem">
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote>Booked a Tempo Traveller for our group of 10 the same evening we messaged. Driver knew the ghat bends well, which mattered more than I expected.</blockquote>
+            <div class="testimonial-meta">
+              <span class="avatar" aria-hidden="true">AM</span>
+              <div>
+                <p class="testimonial-name">Anitha M. <span class="testimonial-place">Chennai</span></p>
+                <span class="stars" aria-hidden="true">★★★★★</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <button class="carousel-nav next testimonial-nav" type="button" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="testimonial-dots container" role="tablist" aria-label="Choose testimonial">
+        <button class="dot" type="button" role="tab" aria-selected="true" aria-label="Testimonial 1 of 3"></button>
+        <button class="dot" type="button" role="tab" aria-selected="false" aria-label="Testimonial 2 of 3"></button>
+        <button class="dot" type="button" role="tab" aria-selected="false" aria-label="Testimonial 3 of 3"></button>
+      </div>
+    </section>
+
+    <!-- 07 — How to Book (ticket aesthetic) -->
+    <section class="ctk-book-section" id="booking" data-section-label="Booking">
+      <div class="container">
+        <div class="ctk-section-head ctk-section-head-center" data-reveal>
+          <p class="ctk-eyebrow">Book in Minutes</p>
+          <h2>How Can You Book a Coimbatore to Kodaikanal Cab?</h2>
+        </div>
+
+        <div class="ctk-ticket" data-reveal>
+          <div class="ctk-ticket-head">
+            <span>COIMBATORE &rarr; KODAIKANAL</span>
+            <span aria-hidden="true">&#9992;</span>
+          </div>
+          <div class="ctk-ticket-steps">
+            <div class="ctk-ticket-step">
+              <span class="ctk-ticket-step-num">01</span>
+              <div><span class="ctk-ticket-step-label">Pickup Location</span> — <span class="ctk-ticket-step-desc">airport, railway station or address in Coimbatore</span></div>
+            </div>
+            <div class="ctk-ticket-step">
+              <span class="ctk-ticket-step-num">02</span>
+              <div><span class="ctk-ticket-step-label">Travel Date</span> — <span class="ctk-ticket-step-desc">and preferred pickup time</span></div>
+            </div>
+            <div class="ctk-ticket-step">
+              <span class="ctk-ticket-step-num">03</span>
+              <div><span class="ctk-ticket-step-label">Vehicle</span> — <span class="ctk-ticket-step-desc">sedan, SUV or tempo traveller</span></div>
+            </div>
+            <div class="ctk-ticket-step">
+              <span class="ctk-ticket-step-num">04</span>
+              <div><span class="ctk-ticket-step-label">Confirm</span> — <span class="ctk-ticket-step-desc">driver and fare confirmed the same day</span></div>
+            </div>
+          </div>
+          <div class="ctk-ticket-cta">
+            <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cab%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Now</a>
           </div>
         </div>
       </div>
     </section>
+
+    <!--
+      02b — "Why Most Travellers Choose a Cab" removed from the flow.
+      It repeated the same "cab beats bus/train/self-drive" argument the
+      Travel Options comparison strip (below) and the "Why a Cab" closing
+      statement (near the FAQ) already make, and sitting here — before
+      pricing — it delayed the page's first real conversion moment.
+    -->
 
     <!-- 02 — How Can You Travel (comparison strip) -->
     <section class="ctk-options-section" id="options" data-section-label="Travel Options">
@@ -426,103 +592,6 @@
       </div>
     </section>
 
-    <!-- 06 — Fare (editorial pricing sheet) -->
-    <section class="ctk-fare-section ctk-fare-section--compact" id="cost" data-section-label="Fare">
-      <div class="container">
-        <div class="ctk-section-head" data-reveal>
-          <p class="ctk-eyebrow">Fare Sheet</p>
-          <h2>How Much Does a Coimbatore to Kodaikanal Cab Cost?</h2>
-          <p class="ctk-section-sub">Coimbatore &rarr; Kodaikanal, one-way starting fares by vehicle. Round trip and multi-day rates are quoted separately once we know your dates.</p>
-        </div>
-
-        <div class="ctk-fare-sheet" data-reveal>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head"><span class="ctk-fare-name">Etios</span></div>
-            <span class="ctk-fare-price">&#8377;5,000</span>
-          </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head"><span class="ctk-fare-name">Tavera</span></div>
-            <span class="ctk-fare-price">&#8377;7,000</span>
-          </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head"><span class="ctk-fare-name">Qualis</span></div>
-            <span class="ctk-fare-price">&#8377;7,000</span>
-          </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head"><span class="ctk-fare-name">Jeep</span></div>
-            <span class="ctk-fare-price">&#8377;7,500</span>
-          </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head"><span class="ctk-fare-name">Innova</span></div>
-            <span class="ctk-fare-price">&#8377;7,500</span>
-          </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head"><span class="ctk-fare-name">Tempo Traveller</span></div>
-            <span class="ctk-fare-price">&#8377;9,000</span>
-          </div>
-          <div class="ctk-fare-row">
-            <div class="ctk-fare-row-head"><span class="ctk-fare-name">20-Seater Coach</span></div>
-            <span class="ctk-fare-price">&#8377;10,000</span>
-          </div>
-        </div>
-
-        <div class="ctk-fare-meta" data-reveal>
-          <div class="ctk-fare-meta-block">
-            <h3>What's Included</h3>
-            <p>Driver &middot; Fuel &middot; Pickup &amp; Drop</p>
-          </div>
-          <div class="ctk-fare-meta-block">
-            <h3>What Affects the Price?</h3>
-            <p>Vehicle type &middot; Travel date &middot; One-way or round trip &middot; Added sightseeing stops</p>
-            <p style="margin-top:0.6rem;">Fares can vary by roughly &#8377;3,000&ndash;&#8377;6,000 depending on season and demand, with peak dates at the higher end.</p>
-          </div>
-        </div>
-
-        <div class="ctk-fare-cta" data-reveal>
-          <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20a%20fare%20quote%20for%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Get Your Fare</a>
-          <p style="margin:0;font-size:0.9rem;color:var(--ctk-ink-soft);">Toll and hill-station entry charges, if any, are added at actuals.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 07 — How to Book (ticket aesthetic) -->
-    <section class="ctk-book-section" id="booking" data-section-label="Booking">
-      <div class="container">
-        <div class="ctk-section-head ctk-section-head-center" data-reveal>
-          <p class="ctk-eyebrow">Book in Minutes</p>
-          <h2>How Can You Book a Coimbatore to Kodaikanal Cab?</h2>
-        </div>
-
-        <div class="ctk-ticket" data-reveal>
-          <div class="ctk-ticket-head">
-            <span>COIMBATORE &rarr; KODAIKANAL</span>
-            <span aria-hidden="true">&#9992;</span>
-          </div>
-          <div class="ctk-ticket-steps">
-            <div class="ctk-ticket-step">
-              <span class="ctk-ticket-step-num">01</span>
-              <div><span class="ctk-ticket-step-label">Pickup Location</span> — <span class="ctk-ticket-step-desc">airport, railway station or address in Coimbatore</span></div>
-            </div>
-            <div class="ctk-ticket-step">
-              <span class="ctk-ticket-step-num">02</span>
-              <div><span class="ctk-ticket-step-label">Travel Date</span> — <span class="ctk-ticket-step-desc">and preferred pickup time</span></div>
-            </div>
-            <div class="ctk-ticket-step">
-              <span class="ctk-ticket-step-num">03</span>
-              <div><span class="ctk-ticket-step-label">Vehicle</span> — <span class="ctk-ticket-step-desc">sedan, SUV or tempo traveller</span></div>
-            </div>
-            <div class="ctk-ticket-step">
-              <span class="ctk-ticket-step-num">04</span>
-              <div><span class="ctk-ticket-step-label">Confirm</span> — <span class="ctk-ticket-step-desc">driver and fare confirmed the same day</span></div>
-            </div>
-          </div>
-          <div class="ctk-ticket-cta">
-            <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cab%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Now</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 08 — One-Way / Round Trip -->
     <section class="ctk-trip-section" id="trip-type" data-section-label="Trip Type">
       <div class="container">
@@ -638,6 +707,39 @@
           </div>
           <div class="ctk-package-media">
             <img src="images/packages/package-hill-escape.webp" alt="Two-day Kodaikanal getaway package" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02c — Best Time to Travel (moved here from just after the hero:
+         it's trip-planning info for once someone is already considering
+         a package/sightseeing day, not a reason to book, so it now sits
+         with the other planning content instead of blocking the early
+         pricing/booking flow). -->
+    <section class="ctk-best-time-section" id="best-time" data-section-label="Best Time to Travel">
+      <div class="container">
+        <div class="ctk-section-head" data-reveal>
+          <p class="ctk-eyebrow">Plan Around the Weather</p>
+          <h2>Best Time to Travel to Kodaikanal</h2>
+          <p class="ctk-section-sub">Each season on this route has a different character — here's what to expect before you book your dates.</p>
+        </div>
+
+        <div class="ctk-duration-grid" data-reveal>
+          <div class="ctk-duration-card">
+            <span class="ctk-duration-num">Apr&ndash;Jun</span>
+            <p class="ctk-duration-label">Summer</p>
+            <p class="ctk-duration-includes">Mild hill weather and the busiest travel season.</p>
+          </div>
+          <div class="ctk-duration-card">
+            <span class="ctk-duration-num">Jul&ndash;Sep</span>
+            <p class="ctk-duration-label">Monsoon</p>
+            <p class="ctk-duration-includes">Heavy rain on the ghat road — drive with caution, as landslides are occasionally reported on this stretch.</p>
+          </div>
+          <div class="ctk-duration-card">
+            <span class="ctk-duration-num">Oct&ndash;Feb</span>
+            <p class="ctk-duration-label">Winter</p>
+            <p class="ctk-duration-includes">Cool, clear and popular for long-distance mountain views.</p>
           </div>
         </div>
       </div>
@@ -838,7 +940,10 @@
           <h2>Ready for Kodaikanal?</h2>
           <p class="ctk-final-route">Coimbatore &rarr; Kodaikanal</p>
           <p class="ctk-final-modes">One-way &bull; Round-trip &bull; Airport</p>
-          <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cab%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Your Cab</a>
+          <div class="ctk-final-actions">
+            <a class="ctk-btn ctk-btn-primary" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cab%20from%20Coimbatore%20to%20Kodaikanal" target="_blank" rel="noopener">Book Your Cab</a>
+            <a class="ctk-btn ctk-btn-outline" href="tel:+917502345777">Call +91 75023 45777</a>
+          </div>
         </div>
       </div>
     </section>

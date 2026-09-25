@@ -117,63 +117,84 @@
     }
 
     /* ---------------------------------------------------------------- */
-    /* Hero quick-booking widget(s) — vehicle-type tabs + pickup/drop/   */
-    /* date, wired to WhatsApp. There are two independent forms on the  */
-    /* page: a desktop overlay (.ctk-search-desktop) and a compact      */
-    /* mobile form (.ctk-search-mobile) — each is wired up the same way,*/
-    /* scoped to its own form so duplicate field names don't clash.     */
+    /* Right-side quote card — name/phone/vehicle/date drive a live     */
+    /* price and the WhatsApp link. Its own self-contained widget (not  */
+    /* the shared .hero-search component other route pages use).       */
     /* ---------------------------------------------------------------- */
-    var heroSearchForms = Array.prototype.slice.call(document.querySelectorAll(".hero-search"));
-    heroSearchForms.forEach(function (heroTravelSearch) {
-      var heroBookingCard = heroTravelSearch.closest(".hero-booking-card");
-      var heroVehicleTabs = heroBookingCard ? heroBookingCard.querySelector(".hero-category-tabs") : null;
-      var heroVehicleInput = heroTravelSearch.querySelector('[name="hero-vehicle-type"]');
+    var quoteName = document.getElementById("ctk-quote-name");
+    var quotePhone = document.getElementById("ctk-quote-phone");
+    var quoteVehicle = document.getElementById("ctk-quote-vehicle");
+    var quoteDate = document.getElementById("ctk-quote-date");
+    var quotePriceValue = document.getElementById("ctk-quote-price-value");
+    var quoteSubmit = document.getElementById("ctk-quote-submit");
+    if (quoteVehicle && quotePriceValue && quoteSubmit) {
+      var updateQuote = function () {
+        var option = quoteVehicle.options[quoteVehicle.selectedIndex];
+        var price = option.getAttribute("data-price");
+        quotePriceValue.textContent = "₹" + Number(price).toLocaleString("en-IN");
 
-      if (heroVehicleTabs) {
-        heroVehicleTabs.addEventListener("click", function (event) {
-          var btn = event.target.closest(".hero-category-btn");
-          if (!btn) return;
-          Array.prototype.slice.call(heroVehicleTabs.querySelectorAll(".hero-category-btn")).forEach(function (tab) {
-            var active = tab === btn;
-            tab.classList.toggle("is-active", active);
-            tab.setAttribute("aria-pressed", String(active));
-          });
-          if (heroVehicleInput) heroVehicleInput.value = btn.getAttribute("data-category") || "";
-        });
-      }
+        var name = quoteName ? quoteName.value.trim() : "";
+        var phone = quotePhone ? quotePhone.value.trim() : "";
 
-      var heroVehicleSelect = heroTravelSearch.querySelector(".hero-category-select");
-      if (heroVehicleSelect) {
-        heroVehicleSelect.addEventListener("change", function () {
-          if (heroVehicleInput) heroVehicleInput.value = heroVehicleSelect.value || "";
-        });
-      }
+        var message = "Hi, I'd like to book a " + option.value + " from Coimbatore to Kodaikanal";
+        if (quoteDate && quoteDate.value) message += " on " + quoteDate.value;
+        if (name) message += ". My name is " + name;
+        if (phone) message += " and my number is " + phone;
+        quoteSubmit.href = "https://wa.me/917502345777?text=" + encodeURIComponent(message);
+      };
+      quoteVehicle.addEventListener("change", updateQuote);
+      if (quoteDate) quoteDate.addEventListener("change", updateQuote);
+      if (quoteName) quoteName.addEventListener("input", updateQuote);
+      if (quotePhone) quotePhone.addEventListener("input", updateQuote);
+      updateQuote();
+    }
 
-      heroTravelSearch.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        var vehicle = heroVehicleInput ? heroVehicleInput.value : "";
-        var pickupField = heroTravelSearch.querySelector('[name="hero-pickup"]');
-        var dropField = heroTravelSearch.querySelector('[name="hero-drop"]');
-        var daysField = heroTravelSearch.querySelector('[name="hero-days"]');
-        var dateField = heroTravelSearch.querySelector('[name="hero-date"]');
-
-        var pickup = pickupField ? pickupField.value.trim() : "";
-        var drop = dropField ? dropField.value.trim() : "";
-        var days = daysField ? daysField.value.trim() : "";
-        var date = dateField ? dateField.value.trim() : "";
-
-        var parts = [];
-        if (vehicle) parts.push(vehicle);
-        if (pickup) parts.push("pickup from " + pickup);
-        if (drop) parts.push("drop at " + drop);
-        if (days) parts.push(days + (days === "1" ? " day" : " days"));
-        if (date) parts.push("on " + date);
-
-        var message = "Hi, I'd like to book " + (parts.length ? parts.join(", ") : "a cab in Kodaikanal");
-        window.open("https://wa.me/917502345777?text=" + encodeURIComponent(message), "_blank", "noopener");
-      });
-    });
+    /* ---------------------------------------------------------------- */
+    /* Quote card vertical clamp — the card is position:fixed so it     */
+    /* already respects the header (docked just below it). This nudges */
+    /* it upward with a transform once the footer scrolls close, so it */
+    /* respects the footer boundary the same way, without ever          */
+    /* switching position modes (which would cause a layout jump).     */
+    /* ---------------------------------------------------------------- */
+    var quoteCard = document.getElementById("ctk-side-form");
+    var siteFooterEl = document.getElementById("site-footer");
+    if (quoteCard && siteFooterEl) {
+      var QUOTE_GAP = 16;
+      var updateQuoteClamp = function () {
+        if (window.innerWidth < 1100) {
+          quoteCard.style.transform = "";
+          return;
+        }
+        // Read the card's own CSS-defined position (top: header-height +
+        // gap) directly off the layout instead of reimplementing that
+        // calc() in JS — clearing the transform first gives the true
+        // fixed position for this measurement, since getBoundingClientRect
+        // on a position:fixed element reflects any transform already
+        // applied to it.
+        quoteCard.style.transform = "";
+        var naturalTop = quoteCard.getBoundingClientRect().top;
+        var cardBottom = naturalTop + quoteCard.offsetHeight;
+        var footerTop = siteFooterEl.getBoundingClientRect().top;
+        var overlap = cardBottom + QUOTE_GAP - footerTop;
+        quoteCard.style.transform = overlap > 0 ? "translateY(-" + overlap + "px)" : "";
+      };
+      var clampTicking = false;
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (!clampTicking) {
+            window.requestAnimationFrame(function () {
+              updateQuoteClamp();
+              clampTicking = false;
+            });
+            clampTicking = true;
+          }
+        },
+        { passive: true }
+      );
+      window.addEventListener("resize", updateQuoteClamp);
+      updateQuoteClamp();
+    }
 
     /* ---------------------------------------------------------------- */
     /* Rotating fare card carousel (Pickup/Drop, 2-Day, 3-Day fares)     */
@@ -263,15 +284,22 @@
     }
 
     /* ---------------------------------------------------------------- */
-    /* Sticky bottom mobile CTA bar — appears once the hero scrolls out */
+    /* Sticky bottom mobile CTA bar + the right-side quote card — both   */
+    /* appear once the hero scrolls out, driven by the same observer.   */
+    /* The quote card starts hidden (opacity: 0 in CSS) so it never     */
+    /* covers any part of the hero photo, then fades in from section 2  */
+    /* onward — just an opacity change, no position/slide, so nothing   */
+    /* jumps.                                                            */
     /* ---------------------------------------------------------------- */
     var hero = document.querySelector(".ctk-hero");
     var mobileCtaBar = document.querySelector(".mobile-cta-bar");
-    if (hero && mobileCtaBar && "IntersectionObserver" in window) {
+    var quoteCardVisibility = document.getElementById("ctk-side-form");
+    if (hero && "IntersectionObserver" in window && (mobileCtaBar || quoteCardVisibility)) {
       var ctaObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
-            mobileCtaBar.classList.toggle("is-visible", !entry.isIntersecting);
+            if (mobileCtaBar) mobileCtaBar.classList.toggle("is-visible", !entry.isIntersecting);
+            if (quoteCardVisibility) quoteCardVisibility.classList.toggle("is-visible", !entry.isIntersecting);
           });
         },
         { rootMargin: "-64px 0px 0px 0px" }

@@ -28,6 +28,281 @@
   font-family: var(--ctk-sans);
 }
 
+/* ============================================================
+   00 — FIXED RIGHT-SIDE QUOTE CARD
+   Purpose-built component (.ctk-quote*) — does not reuse the shared
+   .hero-search/.hero-booking-card widget other route pages use.
+   Rendered from first paint (no JS-driven show/hide, so nothing can
+   glitch in or out) and docked below the header. Its vertical position
+   is nudged up by JS once the footer approaches (see
+   coimbatore-to-kodaikanal.js), the same way it already respects the
+   header, so it never overlaps either. The page's own content actively
+   reserves a right-hand column for it (rather than gambling on
+   leftover margin outside the 1200px content column, which most real
+   browser windows never reach), so it's reliably visible on ordinary
+   laptop widths (~1100px+) instead of only on very large monitors.
+   ============================================================ */
+.ctk-quote {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .ctk-quote {
+    display: block;
+    position: fixed;
+    top: calc(var(--header-height, 84px) + 1.5rem);
+    right: clamp(0.75rem, 2vw, 1.75rem);
+    z-index: 80;
+    width: 24rem;
+    will-change: transform, opacity;
+    /* Hidden during the hero (section 1) so the hero photo stays fully
+       unobstructed — faded in once the hero scrolls out of view, using
+       the same hero IntersectionObserver that already drives the mobile
+       CTA bar. A plain opacity fade (position never changes) avoids the
+       jumpiness a slide-in/out or position-mode switch would cause. */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+  .ctk-quote.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .ctk-page main#main-content,
+  .ctk-page #site-footer {
+    padding-right: 26rem;
+  }
+
+  /* The hero's photo is a full-bleed absolutely-positioned backdrop (see
+     .ctk-hero-media below) — without this, main's reserved padding cuts
+     it short of the true right edge and leaves a flat gap of main's own
+     background color showing through next to the sidebar. Extending the
+     hero back out to the real viewport width lets the photo run full
+     bleed behind the (opaque) quote card instead. */
+  .ctk-page section.ctk-hero {
+    width: calc(100% + 26rem);
+    margin-right: -26rem;
+  }
+  /* .ctk-hero-inner holds the centered copy (not a full-bleed layer like
+     .ctk-hero-media) — without this it would inherit the widened
+     section's box and re-center itself around the extra 26rem hidden
+     under the card, pushing the headline visibly off toward/under it.
+     Shrinking it back to the section's original (pre-bleed) width keeps
+     the copy centered on the real visible area while the photo behind
+     it still bleeds full width under the card. */
+  .ctk-page section.ctk-hero .ctk-hero-inner {
+    width: calc(100% - 26rem);
+  }
+  /* No badge pushback needed here: the quote card stays opacity:0 (see
+     .ctk-quote.is-visible) for the entire time the hero is in view, so
+     the badge can sit at its normal bottom-right corner of the photo
+     without ever needing to dodge it. */
+}
+
+.ctk-quote-card {
+  background: var(--ctk-surface);
+  border-radius: 1.1rem;
+  overflow: hidden;
+  box-shadow: 0 28px 56px -30px rgba(16, 62, 78, 0.45);
+}
+
+/* Header band — dark gradient, mirrors the hero's own palette so the
+   card reads as part of this page rather than a generic bolted-on
+   widget, and gives the eye a clear "start here" anchor instead of the
+   whole card being one flat white block. */
+.ctk-quote-head {
+  position: relative;
+  padding: 1.1rem 1.15rem 1.25rem;
+  background: linear-gradient(155deg, var(--ctk-forest) 0%, var(--ctk-forest-dark) 100%);
+  overflow: hidden;
+}
+.ctk-quote-head::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.14), transparent 55%);
+  pointer-events: none;
+}
+
+.ctk-quote-kicker {
+  position: relative;
+  margin: 0 0 0.2rem;
+  font-family: var(--ctk-sans);
+  font-weight: 700;
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ctk-accent-soft);
+}
+
+.ctk-quote-title {
+  position: relative;
+  margin: 0 0 0.6rem;
+  font-family: var(--ctk-serif);
+  font-weight: 600;
+  font-size: 1.12rem;
+  color: #fff;
+}
+
+.ctk-quote-route {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--ctk-sans);
+  font-weight: 600;
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+.ctk-quote-route svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex-shrink: 0;
+  color: var(--ctk-accent-soft);
+}
+
+.ctk-quote-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  font-family: var(--ctk-sans);
+  font-weight: 600;
+  font-size: 0.68rem;
+  color: #fff;
+}
+.ctk-quote-badge svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  color: var(--ctk-accent-soft);
+}
+
+.ctk-quote-body {
+  padding: 1.1rem 1.15rem 1.2rem;
+}
+
+.ctk-quote-field {
+  margin-bottom: 0.75rem;
+}
+.ctk-quote-field label {
+  display: block;
+  margin-bottom: 0.28rem;
+  font-family: var(--ctk-sans);
+  font-weight: 600;
+  font-size: 0.74rem;
+  color: var(--ctk-ink-soft);
+}
+.ctk-quote-field label span {
+  font-weight: 400;
+  color: var(--ctk-ink-soft);
+  opacity: 0.75;
+}
+.ctk-quote-field select,
+.ctk-quote-field input {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.55rem;
+  border: 1.5px solid var(--ctk-line);
+  background: var(--ctk-bg);
+  font-family: var(--ctk-sans);
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--ctk-ink);
+  transition: border-color 0.15s ease;
+}
+.ctk-quote-field select:hover,
+.ctk-quote-field input:hover {
+  border-color: var(--ctk-forest-soft);
+}
+.ctk-quote-field select:focus,
+.ctk-quote-field input:focus {
+  outline: none;
+  border-color: var(--ctk-forest);
+}
+
+/* Price — an outlined, high-contrast callout instead of a flat tinted
+   box, so it reads as the single most important number on the card.
+   Label stacked above the figure rather than crammed onto one row —
+   the card isn't wide enough to fit "Estimated Fare" and "one-way"
+   either side of the number without wrapping. */
+.ctk-quote-price {
+  margin-bottom: 0.85rem;
+  padding: 0.65rem 0.85rem 0.7rem;
+  border-radius: 0.6rem;
+  border: 1.5px dashed var(--ctk-forest-soft);
+  background: rgba(20, 80, 102, 0.05);
+}
+.ctk-quote-price span {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-family: var(--ctk-sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--ctk-ink-soft);
+}
+.ctk-quote-price strong {
+  font-family: var(--ctk-sans);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ctk-forest);
+}
+.ctk-quote-price small {
+  margin-left: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--ctk-ink-soft);
+}
+
+.ctk-quote-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.6rem;
+  background: #25d366;
+  color: #fff;
+  font-family: var(--ctk-sans);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  box-shadow: 0 14px 26px -14px rgba(37, 211, 102, 0.65);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ctk-quote-submit svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+}
+.ctk-quote-submit:hover {
+  background: #1fb855;
+  transform: translateY(-1px);
+  box-shadow: 0 18px 30px -14px rgba(37, 211, 102, 0.75);
+}
+
+.ctk-quote-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin: 0.7rem 0 0;
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--ctk-ink-soft);
+}
+.ctk-quote-trust svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex-shrink: 0;
+  color: var(--ctk-forest-soft);
+}
+
 .ctk-page main section {
   padding-block: clamp(3.25rem, 6.5vw, 6rem);
 }
@@ -179,7 +454,10 @@ html:not(.js) .ctk-page [data-reveal] {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* Only .ctk-hero-copy lives here now (the quick-booking form moved to
+     the fixed right-side panel), so center it in the hero instead of
+     pinning it to the top with empty space below. */
+  justify-content: center;
   height: 100%;
   padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
 }
@@ -219,6 +497,23 @@ html:not(.js) .ctk-page [data-reveal] {
   font-size: clamp(0.95rem, 1.1vw, 1.1rem);
   line-height: 1.55;
   color: rgba(255, 255, 255, 0.88);
+}
+
+/* Price anchor shown within the first screen — competitor package pages
+   put a starting price beside the hero, not buried lower on the page. */
+.ctk-hero-price {
+  margin-top: 0.85rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+.ctk-hero-price strong {
+  font-size: 1.3rem;
+  color: var(--ctk-accent-soft);
+  font-family: var(--ctk-sans);
+}
+.ctk-hero-price span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
 }
 
 .ctk-hero-actions {
@@ -308,6 +603,49 @@ html:not(.js) .ctk-page [data-reveal] {
   pointer-events: none;
 }
 
+/* Floating rating badge, styled after the location/rating chips on
+   competitor tour-package pages — sits over the hero photo's bottom-right
+   corner so it reads within the first few seconds without blocking the
+   headline or CTA. */
+.ctk-hero-rating {
+  position: absolute;
+  /* Site-wide floating WhatsApp/Call buttons (.floating-cta, 52px wide,
+     right: 24px) dock in this same bottom-right corner on every page —
+     clear their footprint instead of the plain 1–2rem gap other hero
+     badges use. */
+  right: clamp(4.5rem, 9vw, 6rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1rem;
+  border-radius: 0.75rem;
+  background: rgba(10, 26, 32, 0.55);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.ctk-hero-rating-stars {
+  color: var(--ctk-accent-soft);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+.ctk-hero-rating-text {
+  font-size: 0.82rem;
+  color: #fff;
+}
+.ctk-hero-rating-text strong {
+  font-weight: 700;
+}
+@media (max-width: 900px) {
+  .ctk-hero-rating {
+    /* Mobile floating-cta buttons are 46px wide, right: var(--space-3) (16px) */
+    right: clamp(3.75rem, 14vw, 4.5rem);
+    bottom: clamp(0.75rem, 4vw, 1.25rem);
+    padding: 0.5rem 0.75rem;
+  }
+}
+
 .ctk-scroll-indicator {
   position: absolute;
   left: 50%;
@@ -326,44 +664,19 @@ html:not(.js) .ctk-page [data-reveal] {
   50% { transform: translateX(-50%) translateY(6px); }
 }
 
-/* Hero quick-booking overlay — duplicates the home page hero search
-   widget (.hero-search-wrap / .hero-booking-card in styles.css).
-   Two independent forms cover the two layouts: a card that sits in
-   normal document flow below the hero copy on desktop (so the hero
-   section simply grows to fit both instead of overlapping them), and
-   a compact form below the hero on mobile. */
-.ctk-hero-search-overlay {
-  position: relative;
-  z-index: 3;
-  padding-inline: clamp(var(--space-5), 5vw, var(--space-8));
-}
-
-.ctk-search-desktop {
-  width: 100%;
-}
-
-.ctk-search-mobile {
-  display: none;
+.ctk-form-trust {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--ctk-ink-soft);
 }
 
 @media (max-width: 900px) {
-  /* The mobile quick-booking form is hidden entirely (see .ctk-search-mobile
-     above), so the hero no longer needs extra room below the fold for it —
-     it stays capped to one viewport via the base .ctk-hero height rule.
-     With nothing anchored below it any more, center the copy block (incl.
-     its CTA) in the remaining space instead of leaving it pinned to the top. */
-  .ctk-hero-inner {
-    justify-content: center;
-  }
   .ctk-hero-copy {
     max-width: none;
   }
   .ctk-hero-media::after {
     background: linear-gradient(180deg, rgba(10, 26, 32, 0.35) 0%, rgba(10, 26, 32, 0.55) 55%, rgba(10, 26, 32, 0.82) 100%);
-  }
-
-  .ctk-search-desktop {
-    display: none;
   }
 
   .ctk-scroll-indicator {
@@ -680,6 +993,121 @@ html:not(.js) .ctk-page [data-reveal] {
   border-top: 1px solid var(--ctk-line);
 }
 
+/* Per-vehicle pricing cards — replaces a plain fare list with the
+   individually-bookable package-card pattern used across the competitor
+   tour sites (icon, capacity, price, its own CTA, one card flagged as the
+   popular pick) so each vehicle reads as its own mini offer. */
+.ctk-fare-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.1rem;
+}
+.ctk-fare-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.4rem 1.25rem 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--ctk-line);
+  background: var(--ctk-bg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.ctk-fare-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 34px -22px rgba(16, 62, 78, 0.35);
+  border-color: var(--ctk-forest-soft);
+}
+.ctk-fare-card.is-popular {
+  background: var(--ctk-surface);
+  border-color: var(--ctk-accent);
+  box-shadow: 0 20px 40px -24px rgba(245, 166, 35, 0.4);
+}
+.ctk-fare-card-tag {
+  position: absolute;
+  top: -0.7rem;
+  left: 1.25rem;
+  background: var(--ctk-accent);
+  color: #1c1f24;
+  font-family: var(--ctk-sans);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+}
+.ctk-fare-card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.6rem;
+  background: rgba(20, 80, 102, 0.08);
+  color: var(--ctk-forest);
+}
+.ctk-fare-card-icon svg { width: 1.4rem; height: 1.4rem; }
+.ctk-fare-card-name {
+  font-size: 1.1rem;
+  margin-top: 0.2rem;
+}
+.ctk-fare-card-pax {
+  font-size: 0.82rem;
+  color: var(--ctk-ink-soft);
+  margin: 0;
+}
+.ctk-fare-card-price {
+  font-family: var(--ctk-sans);
+  font-weight: 700;
+  font-size: 1.45rem;
+  color: var(--ctk-forest);
+  margin: 0.3rem 0 0;
+}
+.ctk-fare-card-price span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ctk-ink-soft);
+}
+.ctk-fare-card-note {
+  font-size: 0.8rem;
+  color: var(--ctk-ink-soft);
+  margin: 0;
+}
+.ctk-fare-card-cta {
+  margin-top: 0.75rem;
+  text-align: center;
+  padding: 0.65rem 1rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--ctk-forest);
+  color: var(--ctk-forest);
+  font-family: var(--ctk-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ctk-fare-card-cta:hover {
+  background: var(--ctk-forest);
+  color: #fff;
+}
+.ctk-fare-card-cta--accent {
+  background: var(--ctk-accent);
+  border-color: var(--ctk-accent);
+  color: #1c1f24;
+}
+.ctk-fare-card-cta--accent:hover {
+  background: var(--ctk-accent-soft);
+  border-color: var(--ctk-accent-soft);
+  color: #1c1f24;
+}
+@media (max-width: 980px) {
+  .ctk-fare-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .ctk-fare-cards { grid-template-columns: 1fr; }
+}
+
 .ctk-fare-row {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -713,7 +1141,7 @@ html:not(.js) .ctk-page [data-reveal] {
 .ctk-fare-meta {
   margin-top: 2.5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 2.5rem;
   padding-top: 2.25rem;
   border-top: 1px solid var(--ctk-line);
@@ -724,6 +1152,69 @@ html:not(.js) .ctk-page [data-reveal] {
 }
 .ctk-fare-meta-block p {
   font-size: 0.95rem;
+}
+.ctk-excludes-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ctk-excludes-list li {
+  font-size: 0.95rem;
+  color: var(--ctk-ink-soft);
+  padding-left: 1.2rem;
+  position: relative;
+}
+.ctk-excludes-list li::before {
+  content: "\2715";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  font-size: 0.72rem;
+  color: #b3413a;
+}
+@media (max-width: 900px) {
+  .ctk-fare-meta { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .ctk-fare-meta { grid-template-columns: 1fr; gap: 1.75rem; }
+}
+
+/* Icon-driven inclusions grid — mirrors the Transport/Stay/Meals icon rows
+   competitor package pages use to make what's included scannable at a
+   glance, instead of a single line of middot-separated text. */
+.ctk-includes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+.ctk-includes-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.6rem;
+  background: var(--ctk-bg);
+  border: 1px solid var(--ctk-line-soft);
+}
+.ctk-includes-item svg {
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  color: var(--ctk-forest);
+}
+.ctk-includes-item span {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ctk-ink);
+}
+.ctk-fare-section--compact .ctk-includes-item { padding: 0.55rem 0.7rem; }
+.ctk-fare-section--compact .ctk-includes-item svg { width: 1.15rem; height: 1.15rem; }
+.ctk-fare-section--compact .ctk-includes-item span { font-size: 0.8rem; }
+@media (max-width: 480px) {
+  .ctk-includes-grid { grid-template-columns: 1fr; }
 }
 
 .ctk-fare-cta {
@@ -1454,6 +1945,12 @@ html:not(.js) .ctk-page [data-reveal] {
   font-size: 0.85rem;
   color: var(--ctk-ink-soft);
   margin-bottom: 1.75rem;
+}
+.ctk-final-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 /* ============================================================
