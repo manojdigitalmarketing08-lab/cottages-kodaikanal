@@ -1,7 +1,8 @@
 // Shared trip enquiry form (partials/enquiry-form.html) — builds a WhatsApp
 // message from the form fields. Pages customise it with data- attributes on
 // <body>: data-enquiry-price, data-enquiry-price-note, data-enquiry-trip,
-// data-enquiry-stay and data-enquiry-label (what the quote is "for").
+// data-enquiry-stay, data-enquiry-pickup, data-enquiry-vehicle,
+// data-enquiry-travellers and data-enquiry-label (what the quote is "for").
 (function () {
   "use strict";
 
@@ -25,6 +26,9 @@
     }
     preselect("qf-trip", cfg.enquiryTrip);
     preselect("qf-stay", cfg.enquiryStay);
+    preselect("qf-pickup", cfg.enquiryPickup);
+    preselect("qf-vehicle", cfg.enquiryVehicle);
+    preselect("qf-travellers", cfg.enquiryTravellers);
 
     var wa = document.querySelector("[data-qf-whatsapp]");
     if (wa && cfg.enquiryLabel) {
