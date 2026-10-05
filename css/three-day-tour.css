@@ -1,0 +1,310 @@
+/* ==========================================================================
+   Kodaikanal 3 Day Tour Package — dedicated page stylesheet.
+   Concept: "three days, a slow loop" — midnight indigo with a coral CTA and
+   a geometric display face. The form sits on the left of the hero, days are
+   tabs, places are a bento grid and prices are comparison rows. Scoped under
+   .d3-page so nothing leaks into the shared header/footer or other pages.
+   ========================================================================== */
+
+.d3-page {
+  --d3-ink: #1b1f45;
+  --d3-ink-2: #2b3170;
+  --d3-text: #262a4a;
+  --d3-muted: #5c6085;
+  --d3-paper: #f8f7fc;
+  --d3-lav: #ecebf7;
+  --d3-line: #d8d6ec;
+  --d3-white: #fff;
+  --d3-coral: #ff7b5c;
+  --d3-coral-dark: #ec6240;
+  --d3-coral-ink: #2c0e05;
+  --d3-wa: #1fa855;
+  --d3-yes: #2fbf84;
+  --d3-no: #ff9a86;
+  --d3-head: "Sora", "Poppins", "Segoe UI", system-ui, sans-serif;
+  --d3-sans: "Poppins", "Segoe UI", system-ui, sans-serif;
+  --d3-radius: 20px;
+  --d3-shadow: 0 18px 40px rgba(27, 31, 69, 0.14);
+}
+
+.d3-page main { font-family: var(--d3-sans); color: var(--d3-text); background: var(--d3-paper); }
+.d3-page main *, .d3-page main *::before, .d3-page main *::after { box-sizing: border-box; }
+.d3-page main img { max-width: 100%; display: block; }
+
+.d3-wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.d3-section { padding-block: clamp(3rem, 6vw, 5.5rem); }
+.d3-section-lav { background: var(--d3-lav); }
+.d3-section-night { background: var(--d3-ink); color: #fff; }
+
+.d3-page main h1, .d3-page main h2, .d3-page main h3, .d3-page main h4 {
+  font-family: var(--d3-head); color: var(--d3-ink); margin: 0; font-weight: 700; letter-spacing: -0.025em;
+}
+.d3-page main h2 { font-size: clamp(1.7rem, 3.5vw, 2.5rem); line-height: 1.12; }
+.d3-page main h3 { font-size: clamp(1.05rem, 1.9vw, 1.25rem); line-height: 1.28; }
+.d3-page main p { margin: 0; font-size: 1rem; line-height: 1.65; color: var(--d3-muted); }
+
+.d3-eyebrow {
+  display: inline-block; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--d3-coral-dark); margin-bottom: 0.7rem;
+}
+.d3-head { max-width: 660px; margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem); }
+.d3-head p { margin-top: 0.8rem; }
+
+/* ------------------------------- Buttons --------------------------------- */
+.d3-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 48px; padding: 0.8rem 1.5rem; border-radius: 999px; border: 2px solid transparent;
+  font: 600 0.96rem/1.1 var(--d3-sans); text-decoration: none; cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+.d3-btn:focus-visible { outline: 3px solid var(--d3-coral); outline-offset: 3px; }
+.d3-btn-primary { background: var(--d3-coral); color: var(--d3-coral-ink); }
+.d3-btn-primary:hover { background: var(--d3-coral-dark); transform: translateY(-1px); }
+.d3-btn-wa { background: var(--d3-wa); color: #fff; }
+.d3-btn-ghost { border-color: rgba(255, 255, 255, 0.65); color: #fff; background: transparent; }
+.d3-btn-ghost:hover { background: rgba(255, 255, 255, 0.14); }
+.d3-btn-line { border-color: var(--d3-ink); color: var(--d3-ink); background: transparent; }
+.d3-btn-line:hover { background: var(--d3-ink); color: #fff; }
+.d3-ico { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* --------------------------------- Hero ---------------------------------- */
+.d3-hero { position: relative; isolation: isolate; color: #fff; background: var(--d3-ink); }
+.d3-hero-media { position: absolute; inset: 0; z-index: -1; }
+.d3-hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.d3-hero-media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(260deg, rgba(20, 22, 58, 0.94) 0%, rgba(20, 22, 58, 0.78) 50%, rgba(20, 22, 58, 0.45) 100%);
+}
+.d3-hero-grid { display: grid; gap: 2rem; align-items: center; padding-block: clamp(1.5rem, 4vw, 3.5rem); }
+.d3-crumb { font-size: 0.82rem; color: rgba(255, 255, 255, 0.75); margin-bottom: 1.1rem; }
+.d3-crumb a { color: inherit; }
+.d3-hero .d3-eyebrow { color: var(--d3-coral); }
+.d3-page main .d3-hero h1 { color: #fff; font-size: clamp(2rem, 4.8vw, 3.5rem); line-height: 1.06; text-wrap: balance; }
+.d3-hero h1 span { color: var(--d3-coral); }
+.d3-page main .d3-hero-sub { margin-top: 1rem; max-width: 540px; color: rgba(255, 255, 255, 0.9); font-size: clamp(1rem, 1.3vw, 1.1rem); }
+
+.d3-journey { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem 0.4rem; margin: 1.4rem 0 0; padding: 0; }
+.d3-journey li { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.86rem; color: #fff; }
+.d3-journey li + li::before { content: ""; width: 1.4rem; height: 2px; background: rgba(255, 255, 255, 0.4); margin-right: 0.1rem; }
+.d3-journey b { display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--d3-coral); color: var(--d3-coral-ink); font: 700 0.74rem var(--d3-head); }
+
+.d3-hero-price { margin-top: 1.3rem; font-size: 0.92rem; color: rgba(255, 255, 255, 0.9); }
+.d3-hero-price strong { font-family: var(--d3-head); font-size: 1.7rem; color: var(--d3-coral); margin-inline: 0.2rem; }
+.d3-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.1rem; }
+.d3-hero-form { position: relative; z-index: 1; }
+
+/* ------------------------------ Big numbers ------------------------------ */
+.d3-stats { background: var(--d3-white); border-bottom: 1px solid var(--d3-line); }
+.d3-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+.d3-stats-grid > div { padding: 1.3rem 0.5rem; text-align: center; border-bottom: 1px solid var(--d3-line); }
+.d3-stats-grid > div:nth-child(odd) { border-right: 1px solid var(--d3-line); }
+.d3-stats-grid > div:nth-last-child(-n + 2) { border-bottom: 0; }
+.d3-stats strong { display: block; font-family: var(--d3-head); font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1; color: var(--d3-ink-2); }
+.d3-stats span { font-size: 0.86rem; color: var(--d3-muted); }
+
+/* ------------------------------ Itinerary tabs --------------------------- */
+.d3-itin { display: grid; gap: 1rem; }
+.d3-tabs { display: grid; gap: 0.6rem; }
+.d3-tab {
+  text-align: left; cursor: pointer; font: inherit; color: var(--d3-text);
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.2rem 0.8rem;
+  padding: 0.9rem 1rem; border-radius: 16px; background: var(--d3-white); border: 2px solid var(--d3-line);
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.d3-tab b { font: 700 0.95rem var(--d3-head); color: var(--d3-ink-2); }
+.d3-tab span { font-size: 0.9rem; font-weight: 500; }
+.d3-tab i { font-style: normal; font-size: 0.74rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 999px; background: var(--d3-lav); color: var(--d3-ink-2); }
+.d3-tab:hover { border-color: var(--d3-coral); }
+.d3-tab:focus-visible { outline: 3px solid var(--d3-coral); outline-offset: 2px; }
+.d3-tab.is-active { background: var(--d3-ink); border-color: var(--d3-ink); color: #fff; }
+.d3-tab.is-active b { color: var(--d3-coral); }
+.d3-tab.is-active i { background: var(--d3-coral); color: var(--d3-coral-ink); }
+
+.d3-panel { background: var(--d3-white); border: 1px solid var(--d3-line); border-radius: var(--d3-radius); padding: clamp(1.25rem, 3vw, 2rem); }
+.d3-panel + .d3-panel { margin-top: 1rem; }
+.d3-panel-title { margin-bottom: 1.4rem; }
+.d3-steps { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 1.2rem; }
+.d3-steps::before { content: ""; position: absolute; left: 0.45rem; top: 0.4rem; bottom: 0.4rem; width: 2px; background: repeating-linear-gradient(var(--d3-line) 0 6px, transparent 6px 11px); }
+.d3-steps li { position: relative; padding-left: 2rem; display: grid; gap: 0.15rem; }
+.d3-steps li::before { content: ""; position: absolute; left: 0; top: 0.35rem; width: 0.95rem; height: 0.95rem; border-radius: 50%; background: var(--d3-white); border: 3px solid var(--d3-ink-2); }
+.d3-steps .d3-meal::before { background: var(--d3-coral); border-color: var(--d3-coral); }
+.d3-steps time { font: 600 0.78rem var(--d3-head); color: var(--d3-coral-dark); letter-spacing: 0.02em; }
+.d3-page main .d3-steps h4 { font-family: var(--d3-sans); font-size: 1rem; font-weight: 600; letter-spacing: 0; }
+.d3-steps p { font-size: 0.92rem; margin-top: 0.1rem; }
+.d3-tag { display: inline-block; margin-left: 0.35rem; font: 600 0.66rem/1 var(--d3-sans); text-transform: uppercase; letter-spacing: 0.06em; padding: 0.22rem 0.5rem; border-radius: 4px; background: var(--d3-lav); color: var(--d3-ink-2); vertical-align: middle; }
+.d3-tag-permit { background: #ffe6df; color: #a63a1e; }
+.d3-permit { display: flex; gap: 0.7rem; align-items: flex-start; margin-top: 1.4rem; padding: 0.9rem 1rem; border-radius: 12px; background: #fff3ef; border: 1px solid #ffd3c7; }
+.d3-page main .d3-permit span { font-size: 0.86rem; line-height: 1.5; color: #7a3320; }
+.d3-permit .d3-ico { stroke: var(--d3-coral-dark); margin-top: 2px; }
+.d3-note { margin-top: 1.25rem !important; font-size: 0.85rem !important; }
+
+/* With JS the tabs hide inactive panels; without it everything stacks. */
+.d3-js .d3-panel { display: none; }
+.d3-js .d3-panel.is-active { display: block; animation: d3-in 0.35s ease; }
+.d3-js .d3-panel + .d3-panel { margin-top: 0; }
+@keyframes d3-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+html:not(.d3-js) .d3-tabs { display: none; }
+html:not(.d3-js) .d3-itin { display: block !important; }
+
+/* -------------------------------- Bento ---------------------------------- */
+.d3-bento { display: grid; gap: 0.75rem; grid-template-columns: 1fr 1fr; }
+.d3-tile { position: relative; margin: 0; border-radius: var(--d3-radius); overflow: hidden; aspect-ratio: 1; background: var(--d3-ink); }
+.d3-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+.d3-tile:hover img { transform: scale(1.06); }
+.d3-tile figcaption { position: absolute; inset: auto 0 0 0; padding: 2.5rem 0.9rem 0.8rem; background: linear-gradient(transparent, rgba(14, 16, 44, 0.9)); color: #fff; font-weight: 600; font-size: 0.86rem; line-height: 1.3; }
+.d3-tile-day { position: absolute; top: 0.7rem; left: 0.7rem; padding: 0.25rem 0.65rem; border-radius: 999px; background: #fff; color: var(--d3-ink); font: 700 0.68rem var(--d3-head); letter-spacing: 0.06em; text-transform: uppercase; }
+.d3-tile-permit { background: var(--d3-coral); color: var(--d3-coral-ink); }
+.d3-tile-a, .d3-tile-e { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+.d3-tile-a figcaption, .d3-tile-e figcaption { font-size: 1rem; }
+
+/* ------------------------------ Included --------------------------------- */
+.d3-section-night .d3-head h2 { color: #fff; }
+.d3-section-night .d3-head p { color: rgba(255, 255, 255, 0.78); }
+.d3-section-night .d3-eyebrow { color: var(--d3-coral); }
+.d3-inc-body { display: grid; gap: 1.25rem; }
+.d3-inc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.d3-inc-list li { display: flex; gap: 0.8rem; padding: 0.95rem 1.1rem; border-radius: 14px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.12); font-weight: 600; font-size: 0.98rem; color: #fff; line-height: 1.4; }
+.d3-inc-list small { display: block; margin-top: 0.15rem; font-weight: 400; font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); }
+.d3-inc-list .d3-ico { stroke: var(--d3-yes); stroke-width: 2.6; width: 18px; height: 18px; margin-top: 3px; }
+.d3-excl { padding: 1.4rem; border-radius: var(--d3-radius); background: var(--d3-paper); align-self: start; }
+.d3-excl h3 { margin-bottom: 0.9rem; }
+.d3-excl ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
+.d3-excl li { display: flex; gap: 0.55rem; align-items: center; font-size: 0.94rem; color: var(--d3-text); }
+.d3-excl .d3-ico { stroke: #d6492a; stroke-width: 2.6; width: 16px; height: 16px; }
+.d3-page main .d3-excl p { margin-top: 1rem; font-size: 0.84rem; }
+
+/* -------------------------------- Pricing -------------------------------- */
+.d3-rows { display: grid; gap: 0.8rem; }
+.d3-row {
+  position: relative; display: grid; gap: 0.7rem; align-items: center; padding: 1.2rem 1.3rem;
+  border-radius: var(--d3-radius); background: var(--d3-white); border: 1px solid var(--d3-line);
+}
+.d3-row-name p { font-size: 0.9rem; margin-top: 0.15rem; }
+.d3-page main .d3-row-price { font-family: var(--d3-head); font-weight: 700; font-size: 1.7rem; color: var(--d3-ink-2); line-height: 1.1; }
+.d3-row-price small { font: 400 0.85rem var(--d3-sans); color: var(--d3-muted); }
+.d3-row-main { background: var(--d3-ink); border-color: var(--d3-ink); box-shadow: var(--d3-shadow); }
+.d3-page main .d3-row-main h3, .d3-page main .d3-row-main .d3-row-price { color: #fff; }
+.d3-page main .d3-row-main .d3-row-name p { color: rgba(255, 255, 255, 0.78); }
+.d3-row-main .d3-row-price small { color: rgba(255, 255, 255, 0.7); }
+.d3-row-badge { position: absolute; top: -0.8rem; left: 1.3rem; background: var(--d3-coral); color: var(--d3-coral-ink); font: 700 0.7rem var(--d3-head); letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 999px; }
+.d3-assure { display: flex; flex-wrap: wrap; gap: 0.5rem 1.6rem; margin: 1.5rem 0 0; padding: 0; list-style: none; font-size: 0.9rem; color: var(--d3-ink-2); font-weight: 500; }
+.d3-assure li { display: flex; gap: 0.4rem; align-items: center; }
+.d3-assure .d3-ico { stroke: #1f9f6a; width: 17px; height: 17px; stroke-width: 2.4; }
+
+/* -------------------------------- Steps ---------------------------------- */
+.d3-how { display: grid; gap: 1rem; padding: 0; margin: 0; list-style: none; counter-reset: how; }
+.d3-how li { position: relative; padding: 1.4rem 1.3rem 1.3rem; border-radius: var(--d3-radius); background: var(--d3-white); overflow: hidden; counter-increment: how; }
+.d3-how li::before { content: counter(how); position: absolute; right: 0.9rem; top: -0.4rem; font: 800 4.6rem/1 var(--d3-head); color: var(--d3-lav); }
+.d3-how h3 { position: relative; font-family: var(--d3-sans) !important; font-size: 1.02rem !important; font-weight: 600 !important; margin-bottom: 0.3rem; max-width: 80%; }
+.d3-how p { position: relative; font-size: 0.92rem !important; }
+
+/* ---------------------------------- FAQ ---------------------------------- */
+.d3-faq-layout { display: grid; gap: 2rem; }
+.d3-faq-side p { margin: 0.8rem 0 1.2rem; }
+.d3-faq-side .d3-btn { margin: 0 0.5rem 0.6rem 0; }
+.d3-faq { display: grid; gap: 0.7rem; align-content: start; }
+.d3-faq details { background: var(--d3-white); border: 1px solid var(--d3-line); border-radius: 16px; }
+.d3-faq details[open] { border-color: var(--d3-ink-2); }
+.d3-faq summary { list-style: none; cursor: pointer; padding: 1.05rem 3rem 1.05rem 1.25rem; position: relative; font-weight: 600; color: var(--d3-ink); font-size: 0.98rem; line-height: 1.4; }
+.d3-faq summary::-webkit-details-marker { display: none; }
+.d3-faq summary::after { content: ""; position: absolute; right: 1.25rem; top: 50%; width: 0.6rem; height: 0.6rem; border-right: 2px solid var(--d3-ink-2); border-bottom: 2px solid var(--d3-ink-2); transform: translateY(-70%) rotate(45deg); transition: transform 0.2s; }
+.d3-faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+.d3-faq summary:focus-visible { outline: 3px solid var(--d3-coral); outline-offset: 2px; border-radius: 16px; }
+.d3-faq details p { padding: 0 1.25rem 1.1rem; font-size: 0.94rem; }
+
+/* ------------------------------- Final CTA ------------------------------- */
+.d3-final { position: relative; isolation: isolate; text-align: center; color: #fff; padding-block: clamp(3.5rem, 8vw, 6rem); background: var(--d3-ink); }
+.d3-final img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.3; }
+.d3-page main .d3-final h2 { color: #fff; }
+.d3-page main .d3-final p { color: rgba(255, 255, 255, 0.88); max-width: 560px; margin: 1rem auto 1.75rem; }
+.d3-final .d3-actions { justify-content: center; margin-top: 0; }
+
+/* ------------------------ Sticky mobile action bar ----------------------- */
+.d3-mbar {
+  position: fixed; inset: auto 0 0 0; z-index: 90; display: flex; gap: 0.5rem; align-items: center;
+  padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
+  background: var(--d3-white); border-top: 1px solid var(--d3-line); box-shadow: 0 -8px 24px rgba(27, 31, 69, 0.14);
+  transform: translateY(110%); transition: transform 0.3s;
+}
+.d3-mbar.is-on { transform: none; }
+.d3-mbar .d3-btn { flex: 1; min-height: 46px; padding-inline: 0.75rem; font-size: 0.92rem; }
+.d3-mbar .d3-btn-call { flex: 0 0 48px; padding: 0; }
+.d3-page:has(.d3-mbar) .site-footer { padding-bottom: 4.5rem; }
+
+/* Scroll reveal (progressive enhancement: content is visible without JS) */
+.d3-js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.6s, transform 0.6s; }
+.d3-js [data-reveal].is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .d3-js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .d3-js .d3-panel.is-active { animation: none; }
+  .d3-tile img, .d3-btn, .d3-tab { transition: none; }
+}
+
+/* -------------------------------- Breakpoints ---------------------------- */
+@media (min-width: 640px) {
+  .d3-stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .d3-stats-grid > div { border-bottom: 0 !important; border-right: 1px solid var(--d3-line); }
+  .d3-stats-grid > div:last-child { border-right: 0; }
+  .d3-bento { grid-template-columns: repeat(4, 1fr); }
+  .d3-tile-a { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+  .d3-tile-e { grid-column: span 2; aspect-ratio: auto; }
+  .d3-tile-b, .d3-tile-c, .d3-tile-d, .d3-tile-f { aspect-ratio: 1; }
+  .d3-how { grid-template-columns: repeat(2, 1fr); }
+  .d3-row { grid-template-columns: 1fr auto auto; gap: 1.5rem; }
+}
+@media (min-width: 900px) {
+  .d3-hero-grid { grid-template-columns: 400px 1fr; gap: 4rem; }
+  .d3-hero .qf-card { order: -1; }
+  .d3-itin { grid-template-columns: 300px 1fr; gap: 1.75rem; align-items: start; }
+  .d3-tabs { position: sticky; top: 96px; }
+  .d3-tab { grid-template-columns: 1fr auto; padding: 1rem 1.1rem; }
+  .d3-tab span { grid-column: 1; grid-row: 2; }
+  .d3-tab i { grid-column: 2; grid-row: 1 / span 2; }
+  .d3-inc-body { grid-template-columns: 1.4fr 1fr; gap: 2rem; }
+  .d3-inc-list { grid-template-columns: 1fr 1fr; }
+  .d3-how { grid-template-columns: repeat(4, 1fr); }
+  .d3-faq-layout { grid-template-columns: 340px 1fr; gap: 4rem; }
+  .d3-faq-side { position: sticky; top: 96px; align-self: start; }
+  .d3-mbar { display: none; }
+  .d3-page:has(.d3-mbar) .site-footer { padding-bottom: 0; }
+}
+@media (max-width: 899px) {
+  .d3-tabs { grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0.4rem; }
+  .d3-tab { grid-template-columns: 1fr; padding: 0.7rem 0.6rem; text-align: center; }
+  .d3-tab span, .d3-tab i { display: none; }
+}
+@media (max-width: 430px) {
+  .d3-actions .d3-btn { width: 100%; }
+}
+
+/* ---------------------- Hero enquiry form (compact card) ----------------- */
+.d3-hero .qf-card {
+  --qf-primary: var(--d3-ink-2);
+  --qf-primary-dark: var(--d3-ink);
+  --qf-primary-soft: var(--d3-lav);
+  --qf-text: var(--d3-ink);
+  --qf-muted: var(--d3-muted);
+  --qf-border: var(--d3-line);
+  --qf-serif: var(--d3-head);
+  --qf-sans: var(--d3-sans);
+  width: 100%; max-width: 400px; justify-self: start;
+  padding: 18px 20px 14px; border: 0; border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(6, 8, 30, 0.45);
+}
+.d3-hero .qf-head { margin-bottom: 12px; padding-bottom: 10px; }
+.d3-hero .qf-card h3 { font-size: 1.12rem; }
+.d3-hero .qf-field { margin-bottom: 8px; }
+.d3-hero .qf-field label { font-size: 0.72rem; margin-bottom: 3px; }
+.d3-hero .qf-field input, .d3-hero .qf-field select, .d3-hero .qf-field textarea { border-radius: 8px; padding: 8px 9px; font-size: 0.85rem; }
+.d3-hero .qf-field textarea { height: 48px; overflow: hidden; }
+.d3-hero .qf-field input:focus, .d3-hero .qf-field select:focus, .d3-hero .qf-field textarea:focus { outline: 2px solid var(--d3-coral); outline-offset: 1px; border-color: var(--d3-coral); }
+.d3-hero .qf-actions { grid-template-columns: 1fr; gap: 8px; margin-top: 6px; }
+.d3-hero .qf-btn { min-height: 44px; border-radius: 999px; font-size: 0.92rem; }
+.d3-hero .qf-btn-primary { background: var(--d3-coral); color: var(--d3-coral-ink); }
+.d3-hero .qf-btn-primary:hover { background: var(--d3-coral-dark); }
+.d3-hero .qf-btn-secondary { background: #fff; color: #128a45; border-color: #1fa855; }
+.d3-hero .qf-btn-secondary:hover { background: #ecfaf1; }
+.d3-page main .d3-hero .qf-note { font-size: 0.72rem; line-height: 1.4; margin-top: 8px; }
+@media (max-width: 899px) {
+  .d3-hero .qf-card { max-width: 480px; justify-self: stretch; }
+}

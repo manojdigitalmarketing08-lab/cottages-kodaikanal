@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,10 +23,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/kodaikanal-1-day-tour-package.css" />
+  <link rel="stylesheet" href="css/enquiry-form.css" />
+  <link rel="stylesheet" href="css/two-day-tour.css" />
+
+  <script>document.documentElement.className += " d2-js";</script>
 
   <script type="application/ld+json">
   {
@@ -100,381 +102,302 @@
   }
   </script>
 </head>
-<body class="tp1-page">
+<body class="d2-page"
+  data-enquiry-price="Free Quote"
+  data-enquiry-price-note="Reply within a few hours"
+  data-enquiry-label="the Kodaikanal 2 Day Tour Package"
+  data-enquiry-trip="2 Day Tour"
+  data-enquiry-stay="Hotel"
+  data-enquiry-travellers="2 (Couple)">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <div id="site-header" data-include="partials/header.html"></div>
 
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="d2-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+    <symbol id="d2-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="d2-phone" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3.9c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z"/></symbol>
+    <symbol id="d2-wa" viewBox="0 0 24 24"><path d="M12 3.5c-4.7 0-8.5 3.8-8.5 8.5 0 1.5.4 2.9 1.1 4.2L3.5 20.5l4.5-1.1c1.2.6 2.6 1 4 1 4.7 0 8.5-3.8 8.5-8.5S16.7 3.5 12 3.5Z"/><path d="M9.3 8.8c.3 2.6 2.7 5 5.3 5.4"/></symbol>
+    <symbol id="d2-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></symbol>
+    <symbol id="d2-car" viewBox="0 0 24 24"><path d="m4 12 1.4-4.2A2 2 0 0 1 7.3 6.5h9.4a2 2 0 0 1 1.9 1.3L20 12"/><rect x="3" y="12" width="18" height="5" rx="1.6"/><circle cx="7.5" cy="17.5" r="1.4"/><circle cx="16.5" cy="17.5" r="1.4"/></symbol>
+    <symbol id="d2-bed" viewBox="0 0 24 24"><path d="M3 18V6M3 14h18v4M21 14v-2.5A2.5 2.5 0 0 0 18.5 9H11v5"/><circle cx="7" cy="11" r="1.6"/></symbol>
+    <symbol id="d2-meal" viewBox="0 0 24 24"><path d="M7 3v8M4.5 3v5a2.5 2.5 0 0 0 5 0V3M7 11v10M17 21V3c-2.2 1.2-3.5 3.8-3.5 7v3H17"/></symbol>
+    <symbol id="d2-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></symbol>
+    <symbol id="d2-toll" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="2"/><path d="M8 8V5h8v3M9 13.5h6"/></symbol>
+    <symbol id="d2-chat" viewBox="0 0 24 24"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-7l-4.5 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></symbol>
+  </svg>
+
   <main id="main-content">
 
     <!-- ============ HERO ============ -->
-    <section class="tp1-hero" id="hero">
-      <div class="tp1-hero-media">
-        <img src="images/destinations/destination-kodai-lake.webp" alt="Tourists boating on the star-shaped Kodaikanal Lake" />
-        <div class="tp1-hero-scrim"></div>
+    <section class="d2-hero" id="hero">
+      <div class="d2-hero-media">
+        <img src="images/scenery/hero-kodaikanal-hiker.webp" alt="Hikers walking a misty forest trail near Kodaikanal" fetchpriority="high" />
       </div>
-      <div class="container tp1-hero-content">
-        <p class="tp1-eyebrow" style="color:#fff" data-reveal>Kodaikanal &middot; 2 Day Tour Package</p>
-        <h1 data-reveal>Kodaikanal 2 Day Tour Package</h1>
-        <p class="tp1-hero-sub" data-reveal>A private cab, one night's stay and two relaxed days of sightseeing bundled into one simple booking &mdash; built for couples, families and small groups who want a bit more breathing room than a single-day trip.</p>
-        <div class="tp1-hero-cta" data-reveal>
-          <a href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Kodaikanal%202%20Day%20Tour%20Package" class="tp1-btn tp1-btn-primary" target="_blank" rel="noopener">Book This Package</a>
-          <a href="#pricing" class="tp1-btn tp1-btn-outline">View Pricing</a>
+      <div class="d2-wrap d2-hero-grid">
+        <div class="d2-hero-copy">
+          <nav class="d2-crumb" aria-label="Breadcrumb"><a href="/">Home</a> &rarr; <a href="tour-packages-in-kodaikanal.html">Tour Packages</a> &rarr; <span aria-current="page">2 Day</span></nav>
+          <span class="d2-eyebrow">2 Days / 1 Night &middot; Private cab &middot; Stay included</span>
+          <h1>Kodaikanal 2 Day <em>Tour Package</em></h1>
+          <p class="d2-hero-sub">One night in the hills, two unhurried days of sightseeing. The lake and viewpoints on day one, the forest and waterfalls on day two, in a single booking.</p>
+          <div class="d2-ribbon" aria-label="Trip shape">
+            <span><b>Day 1</b>Lake &amp; viewpoints</span>
+            <span class="d2-ribbon-night"><svg class="d2-ico"><use href="#d2-moon"/></svg>Night</span>
+            <span><b>Day 2</b>Forest &amp; falls</span>
+          </div>
+          <div class="d2-hero-price">From <strong>&#8377;XX,XXX</strong> per couple</div>
+          <div class="d2-actions">
+            <a class="d2-btn d2-btn-primary" href="#enquiry-form">Get My Free Quote</a>
+            <a class="d2-btn d2-btn-ghost" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Kodaikanal%202%20Day%20Tour%20Package" target="_blank" rel="noopener"><svg class="d2-ico"><use href="#d2-wa"/></svg>WhatsApp Us</a>
+          </div>
+        </div>
+        <div class="d2-hero-form" data-include="partials/enquiry-form.html"></div>
+      </div>
+    </section>
+
+    <!-- ============ QUICK FACTS (floating cards) ============ -->
+    <section class="d2-facts" aria-label="Package at a glance">
+      <div class="d2-wrap d2-facts-grid">
+        <div class="d2-fact"><strong>2 Days</strong><span>One night between</span></div>
+        <div class="d2-fact"><strong>Private Cab</strong><span>Both days, no sharing</span></div>
+        <div class="d2-fact"><strong>2 Meals</strong><span>Breakfast &amp; dinner</span></div>
+        <div class="d2-fact"><strong>11 Places</strong><span>Lake to Rose Garden</span></div>
+      </div>
+    </section>
+
+    <!-- ============ ITINERARY: two day cards ============ -->
+    <section class="d2-section" id="itinerary">
+      <div class="d2-wrap">
+        <div class="d2-head d2-head-center" data-reveal>
+          <span class="d2-eyebrow">The Route</span>
+          <h2>Two days, two different moods</h2>
+          <p>Day one stays close to the lake. Day two heads out to the forest and the falls. A night in between means nobody is rushing.</p>
+        </div>
+        <div class="d2-days">
+          <article class="d2-day d2-day-1" data-reveal>
+            <header class="d2-day-head">
+              <span class="d2-day-num" aria-hidden="true">01</span>
+              <div><span class="d2-day-kicker">Day 1 &middot; 5 stops</span><h3>Arrive, settle in &amp; the lakeside</h3></div>
+            </header>
+            <ol class="d2-steps">
+              <li><time>12:00 PM</time><div><h4>Arrival &amp; pickup</h4><p>Your driver meets you at your hotel, bus stand or railway station.</p></div></li>
+              <li><time>01:00 PM</time><div><h4>Hotel check-in</h4><p>Settle into your room and freshen up before heading out.</p></div></li>
+              <li><time>02:30 PM</time><div><h4>Kodaikanal Lake &amp; Bryant Park</h4><p>Boat on the star-shaped lake, then stroll through Bryant Park nearby.</p></div></li>
+              <li><time>04:15 PM</time><div><h4>Coaker&rsquo;s Walk, Upper Lake View &amp; Green Valley View</h4><p>A cliffside path linking three of the best panoramic viewpoints.</p></div></li>
+              <li class="d2-meal"><time>08:00 PM</time><div><h4>Dinner &amp; overnight stay <span class="d2-tag">Included</span></h4><p>Back at the hotel for dinner and a good night&rsquo;s rest.</p></div></li>
+            </ol>
+          </article>
+
+          <article class="d2-day d2-day-2" data-reveal>
+            <header class="d2-day-head">
+              <span class="d2-day-num" aria-hidden="true">02</span>
+              <div><span class="d2-day-kicker">Day 2 &middot; 5 stops</span><h3>Forest, falls &amp; a slow checkout</h3></div>
+            </header>
+            <ol class="d2-steps">
+              <li class="d2-meal"><time>07:30 AM</time><div><h4>Breakfast <span class="d2-tag">Included</span></h4><p>Breakfast at the hotel before setting out for the day.</p></div></li>
+              <li><time>08:30 AM</time><div><h4>Pillar Rocks, Pine Forest &amp; Guna Cave</h4><p>Three granite pillars, a shaded pine trail and the cave made famous by the film &ldquo;Guna.&rdquo;</p></div></li>
+              <li><time>10:30 AM</time><div><h4>Moir Point &amp; Pambar Falls</h4><p>A quieter ridge-top viewpoint, then a roadside waterfall stop.</p></div></li>
+              <li><time>12:00 PM</time><div><h4>Rose Garden</h4><p>A last walk through Rose Garden before wrapping up.</p></div></li>
+              <li><time>01:00 PM</time><div><h4>Checkout &amp; drop-off</h4><p>Check out and get dropped at your pickup point.</p></div></li>
+            </ol>
+          </article>
+        </div>
+        <div class="d2-night" data-reveal>
+          <span class="d2-night-ico"><svg class="d2-ico"><use href="#d2-moon"/></svg></span>
+          <p><strong>Like this plan?</strong> Tell us your date and group size. We check the stay and cab and send a firm price.</p>
+          <a class="d2-btn d2-btn-primary" href="#enquiry-form">Get My Free Quote</a>
+          <a class="d2-btn d2-btn-ghost-dark" href="tel:+917502345777"><svg class="d2-ico"><use href="#d2-phone"/></svg>Call +91 75023 45777</a>
+        </div>
+        <p class="d2-note">We confirm the exact order against travel time, weather and attraction timings.</p>
+      </div>
+    </section>
+
+    <!-- ============ INCLUDED ============ -->
+    <section class="d2-section d2-section-sand" id="included">
+      <div class="d2-wrap">
+        <div class="d2-head" data-reveal>
+          <span class="d2-eyebrow">What you pay for</span>
+          <h2>One booking covers the lot</h2>
+          <p>Stay, cab and meals are sorted together, so you are not juggling three bookings for a two-day trip.</p>
+        </div>
+        <div class="d2-tiles" data-reveal>
+          <div class="d2-tile"><span class="d2-tile-ico"><svg class="d2-ico"><use href="#d2-car"/></svg></span><h3>Private cab</h3><p>Pickup, sightseeing on both days and drop-off. No sharing with strangers.</p></div>
+          <div class="d2-tile"><span class="d2-tile-ico"><svg class="d2-ico"><use href="#d2-bed"/></svg></span><h3>One night&rsquo;s stay</h3><p>Matched to your budget, between the two sightseeing days.</p></div>
+          <div class="d2-tile"><span class="d2-tile-ico"><svg class="d2-ico"><use href="#d2-meal"/></svg></span><h3>Breakfast &amp; dinner</h3><p>No hunting for restaurants after a full day out.</p></div>
+          <div class="d2-tile"><span class="d2-tile-ico"><svg class="d2-ico"><use href="#d2-pin"/></svg></span><h3>Paced route</h3><p>Viewpoints, parks, forest and waterfall spread over two days.</p></div>
+          <div class="d2-tile"><span class="d2-tile-ico"><svg class="d2-ico"><use href="#d2-toll"/></svg></span><h3>Parking &amp; tolls</h3><p>Parking, toll and driver charges as per package terms.</p></div>
+          <div class="d2-tile"><span class="d2-tile-ico"><svg class="d2-ico"><use href="#d2-chat"/></svg></span><h3>One contact</h3><p>Stay, cab and route handled by one local team.</p></div>
+        </div>
+        <div class="d2-excl" data-reveal>
+          <h3>Not included</h3>
+          <ul>
+            <li><svg class="d2-ico"><use href="#d2-x"/></svg>Lunch</li>
+            <li><svg class="d2-ico"><use href="#d2-x"/></svg>Entrance tickets</li>
+            <li><svg class="d2-ico"><use href="#d2-x"/></svg>Boating &amp; optional activities</li>
+            <li><svg class="d2-ico"><use href="#d2-x"/></svg>Shopping &amp; personal expenses</li>
+            <li><svg class="d2-ico"><use href="#d2-x"/></svg>Services outside the package</li>
+          </ul>
+          <p>Exact inclusions can vary by the stay category you choose.</p>
         </div>
       </div>
     </section>
 
-    <!-- ============ TRUST STRIP ============ -->
-    <section class="tp1-trust">
-      <div class="container tp1-trust-inner">
-        <div class="tp1-trust-card" data-reveal>
-          <span class="tp1-trust-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 8V6a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-          <span class="tp1-trust-num">2 Days / 1 Night</span>
-          <p>A relaxed getaway sized to a long weekend</p>
-        </div>
-        <div class="tp1-trust-card" data-reveal>
-          <span class="tp1-trust-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12l1.4-4.7A2 2 0 0 1 6.3 6h7.4a2 2 0 0 1 1.9 1.3L17 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2.3" y="12" width="15.4" height="4" rx="1.4" stroke="currentColor" stroke-width="1.6"/><circle cx="6" cy="16.3" r="1.2" fill="currentColor"/><circle cx="14" cy="16.3" r="1.2" fill="currentColor"/></svg></span>
-          <span class="tp1-trust-num">Private Cab</span>
-          <p>One dedicated vehicle for pickup, sightseeing and drop</p>
-        </div>
-        <div class="tp1-trust-card" data-reveal>
-          <span class="tp1-trust-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11 12 4l8 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v10h12V10" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
-          <span class="tp1-trust-num">Stay Included</span>
-          <p>One night's accommodation, breakfast and dinner bundled in</p>
-        </div>
-        <div class="tp1-trust-card" data-reveal>
-          <span class="tp1-trust-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg></span>
-          <span class="tp1-trust-num">Free Quote</span>
-          <p>Personalised pricing back within hours</p>
+    <!-- ============ PLACES: scroll strip ============ -->
+    <section class="d2-section d2-places-sec" id="places">
+      <div class="d2-wrap">
+        <div class="d2-head" data-reveal>
+          <span class="d2-eyebrow">Destinations</span>
+          <h2>Where you&rsquo;ll go, day by day</h2>
         </div>
       </div>
-    </section>
-
-    <!-- ============ WHAT'S INCLUDED ============ -->
-    <section id="included">
-      <div class="container">
-        <div class="tp1-section-head tp1-section-head-center" data-reveal>
-          <p class="tp1-eyebrow tp1-eyebrow-center">The Package</p>
-          <h2>Everything You Need for a 2 Day Kodaikanal Getaway</h2>
-          <p class="tp1-section-sub">This package combines the practical parts of a two-day hill-station trip into one booking, so you can spend your time exploring instead of coordinating every transfer.</p>
-        </div>
-        <div class="tp1-guide-grid" data-reveal>
-          <div class="tp1-guide-card"><h4>Private Transportation</h4><p>A dedicated cab for pickup, sightseeing across both days and drop-off &mdash; no sharing with strangers.</p></div>
-          <div class="tp1-guide-card"><h4>One Night's Stay</h4><p>Comfortable accommodation for the night between your two sightseeing days, matched to your budget.</p></div>
-          <div class="tp1-guide-card"><h4>Breakfast &amp; Dinner</h4><p>Both meals included, so you're not hunting for restaurants after a full day out.</p></div>
-          <div class="tp1-guide-card"><h4>Local Sightseeing</h4><p>Major viewpoints, parks, forests and waterfalls covered across a paced two-day route.</p></div>
-          <div class="tp1-guide-card"><h4>Parking &amp; Tolls</h4><p>Applicable parking, toll and driver charges included as per package terms.</p></div>
-          <div class="tp1-guide-card"><h4>Local Coordination</h4><p>One point of contact for your stay, cab and itinerary &mdash; not three separate bookings.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ITINERARY ============ -->
-    <section class="tp1-itinerary" id="itinerary">
-      <div class="container">
-        <div class="tp1-section-head tp1-section-head-center" data-reveal>
-          <p class="tp1-eyebrow tp1-eyebrow-center">The Route</p>
-          <h2>2 Day / 1 Night Tour Experience</h2>
-          <p class="tp1-section-sub">A more relaxed pace: arrival, check-in and lakeside sightseeing on day one, then the forest and viewpoint loop on day two before drop-off.</p>
-        </div>
-        <div class="tp1-itin-days" data-reveal>
-          <div class="tp1-itin-day">
-            <div class="tp1-itin-day-head">
-              <h3 class="tp1-itin-day-title">Day 1 &middot; Arrival, Check-in &amp; Lake Sightseeing</h3>
-              <span class="tp1-itin-day-tag">5 Stops</span>
-            </div>
-            <div class="tp1-itin-steps">
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">12:00 PM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Arrival &amp; Pickup</h4><p>Our driver picks you up from your hotel, bus stand or railway station.</p></div>
-              </div>
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">01:00 PM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Hotel Check-in</h4><p>Settle into your room and freshen up before heading out.</p></div>
-              </div>
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">02:30 PM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Kodaikanal Lake &amp; Bryant Park</h4><p>Boating on the star-shaped lake, followed by a walk through the manicured Bryant Park nearby.</p></div>
-              </div>
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">04:15 PM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Coaker's Walk, Upper Lake View &amp; Green Valley View</h4><p>A cliffside walking path linking three of Kodaikanal's best panoramic viewpoints.</p></div>
-              </div>
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">08:00 PM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Dinner &amp; Overnight Stay</h4><p>Return to the hotel for dinner and rest for the night.</p></div>
-              </div>
-            </div>
-          </div>
-          <div class="tp1-itin-day">
-            <div class="tp1-itin-day-head">
-              <h3 class="tp1-itin-day-title">Day 2 &middot; Forest &amp; Viewpoint Loop + Checkout</h3>
-              <span class="tp1-itin-day-tag">5 Stops</span>
-            </div>
-            <div class="tp1-itin-steps">
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">07:30 AM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Breakfast</h4><p>Breakfast at the hotel before setting out for the day.</p></div>
-              </div>
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">08:30 AM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Pillar Rocks, Pine Forest &amp; Guna Cave</h4><p>Three granite pillars, a shaded pine forest trail and the cave made famous by the film &ldquo;Guna.&rdquo;</p></div>
-              </div>
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">10:30 AM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Moir Point &amp; Pambar Falls</h4><p>A quieter ridge-top viewpoint followed by a roadside waterfall stop.</p></div>
-              </div>
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">12:00 PM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Rose Garden</h4><p>A last walk through Rose Garden before wrapping up the trip.</p></div>
-              </div>
-              <div class="tp1-itin-step">
-                <div class="tp1-itin-time">01:00 PM</div>
-                <div class="tp1-itin-marker"></div>
-                <div class="tp1-itin-content"><h4>Checkout &amp; Drop-off</h4><p>Checkout from the hotel and drop-off at your pickup point.</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ ATTRACTIONS COVERED ============ -->
-    <section id="places">
-      <div class="container">
-        <div class="tp1-section-head tp1-section-head-center" data-reveal>
-          <p class="tp1-eyebrow tp1-eyebrow-center">Destinations</p>
-          <h2>Attractions Covered on This Tour</h2>
-          <p class="tp1-section-sub">The 2-day route covers the same core loop as our 1-day package &mdash; the star-shaped lake, ridge-top viewpoints, and the forest &amp; mountain stops &mdash; but spread across two unhurried days.</p>
-        </div>
-        <div data-reveal>
-          <div class="tp1-places-lead">
-            <img src="images/destinations/destination-kodai-lake.webp" alt="Star-shaped Kodaikanal Lake covered on the 2 day tour package" />
-            <span class="tp1-places-label">Kodaikanal Lake &amp; Rose Garden &mdash; the star-shaped centrepiece of the route.</span>
-          </div>
-          <div class="tp1-places-row">
-            <div class="tp1-place-tile">
-              <img src="images/destinations/destination-coakers-walk.webp" alt="Coaker's Walk viewpoint near Kodaikanal" />
-              <span class="tp1-place-label">Coaker's Walk &amp; Upper Lake View</span>
-            </div>
-            <div class="tp1-place-tile">
-              <img src="images/destinations/destination-bryant-park.webp" alt="Bryant Park gardens in Kodaikanal" />
-              <span class="tp1-place-label">Bryant Park &amp; Green Valley View</span>
-            </div>
-            <div class="tp1-place-tile">
-              <img src="images/destinations/destination-pillar-rocks.webp" alt="Pillar Rocks granite columns near Kodaikanal" />
-              <span class="tp1-place-label">Pillar Rocks, Pine Forest &amp; Guna Cave</span>
-            </div>
-            <div class="tp1-place-tile">
-              <img src="images/destinations/destination-vattakanal.webp" alt="Pambar Falls near Kodaikanal" />
-              <span class="tp1-place-label">Moir Point &amp; Pambar Falls</span>
-            </div>
-          </div>
-        </div>
+      <div class="d2-strip" data-reveal tabindex="0" aria-label="Places covered, scroll sideways">
+        <figure class="d2-place"><img src="images/destinations/destination-kodai-lake.webp" alt="Star-shaped Kodaikanal Lake" width="600" height="800" loading="lazy" /><span class="d2-place-day">Day 1</span><figcaption>Kodaikanal Lake</figcaption></figure>
+        <figure class="d2-place"><img src="images/destinations/destination-bryant-park.webp" alt="Bryant Park gardens" width="600" height="800" loading="lazy" /><span class="d2-place-day">Day 1</span><figcaption>Bryant Park &amp; Green Valley View</figcaption></figure>
+        <figure class="d2-place"><img src="images/destinations/destination-coakers-walk.webp" alt="Coaker's Walk viewpoint" width="600" height="800" loading="lazy" /><span class="d2-place-day">Day 1</span><figcaption>Coaker&rsquo;s Walk &amp; Upper Lake View</figcaption></figure>
+        <figure class="d2-place"><img src="images/destinations/destination-pillar-rocks.webp" alt="Pillar Rocks granite columns" width="600" height="800" loading="lazy" /><span class="d2-place-day d2-place-day-2">Day 2</span><figcaption>Pillar Rocks, Pine Forest &amp; Guna Cave</figcaption></figure>
+        <figure class="d2-place"><img src="images/destinations/destination-guna-caves.webp" alt="Guna Cave near Kodaikanal" width="600" height="800" loading="lazy" /><span class="d2-place-day d2-place-day-2">Day 2</span><figcaption>Guna Cave</figcaption></figure>
+        <figure class="d2-place"><img src="images/destinations/destination-vattakanal.webp" alt="Pambar Falls near Kodaikanal" width="600" height="800" loading="lazy" /><span class="d2-place-day d2-place-day-2">Day 2</span><figcaption>Moir Point &amp; Pambar Falls</figcaption></figure>
       </div>
     </section>
 
     <!-- ============ PRICING ============ -->
-    <section id="pricing">
-      <div class="container">
-        <div class="tp1-section-head tp1-section-head-center" data-reveal>
-          <p class="tp1-eyebrow tp1-eyebrow-center">Package Price</p>
-          <h2>Kodaikanal Tour Package Price</h2>
-          <p class="tp1-section-sub">Indicative pricing below &mdash; final rates depend on accommodation category, travel dates, season, vehicle type and availability.</p>
+    <section class="d2-section d2-section-pine" id="pricing">
+      <div class="d2-wrap">
+        <div class="d2-head d2-head-center" data-reveal>
+          <span class="d2-eyebrow">Package price</span>
+          <h2>Pick your trip length</h2>
+          <p>Indicative rates. The final price depends on stay category, dates, season and vehicle.</p>
         </div>
-        <div class="tp1-pricing-grid" style="flex-wrap:wrap; gap:1.75rem;" data-reveal>
-          <div class="tp1-price-card">
+        <div class="d2-price-grid" data-reveal>
+          <div class="d2-price">
             <h3>1 Day / 1 Night</h3>
-            <p class="tp1-price-value">&#8377;XX,XXX <span>/ couple</span></p>
-            <p class="tp1-price-includes">Accommodation &middot; Private cab &middot; Sightseeing &middot; Breakfast &middot; Dinner &middot; Pickup/drop</p>
-            <a href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20a%20price%20quote%20for%20the%20Kodaikanal%201%20Day%20Tour%20Package" class="tp1-btn tp1-btn-outline-dark" target="_blank" rel="noopener">Check Price</a>
+            <p class="d2-price-val">&#8377;XX,XXX <small>/ couple</small></p>
+            <ul>
+              <li><svg class="d2-ico"><use href="#d2-check"/></svg>One planned sightseeing day</li>
+              <li><svg class="d2-ico"><use href="#d2-check"/></svg>Stay, cab &amp; meals</li>
+            </ul>
+            <a class="d2-btn d2-btn-line d2-btn-block" href="kodaikanal-1-day-tour-package.html">See 1 Day Package</a>
           </div>
-          <div class="tp1-price-card">
-            <p class="tp1-price-tag">Most Booked</p>
+          <div class="d2-price d2-price-main">
+            <span class="d2-price-badge">You&rsquo;re viewing</span>
             <h3>2 Days / 1 Night</h3>
-            <p class="tp1-price-value">&#8377;XX,XXX <span>/ couple</span></p>
-            <p class="tp1-price-includes">Accommodation &middot; Private cab &middot; 2 sightseeing days &middot; Breakfast &middot; Dinner &middot; Pickup/drop</p>
-            <a href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20a%20price%20quote%20for%20the%20Kodaikanal%202%20Day%20Tour%20Package" class="tp1-btn tp1-btn-outline-dark" target="_blank" rel="noopener">Check Price</a>
+            <p class="d2-price-val">&#8377;XX,XXX <small>/ couple</small></p>
+            <ul>
+              <li><svg class="d2-ico"><use href="#d2-check"/></svg>One night&rsquo;s stay</li>
+              <li><svg class="d2-ico"><use href="#d2-check"/></svg>Private cab for both days</li>
+              <li><svg class="d2-ico"><use href="#d2-check"/></svg>Breakfast &amp; dinner</li>
+              <li><svg class="d2-ico"><use href="#d2-check"/></svg>Pickup &amp; drop</li>
+            </ul>
+            <a class="d2-btn d2-btn-primary d2-btn-block" href="#enquiry-form">Get My Free Quote</a>
+            <p class="d2-price-note">No payment needed to enquire</p>
           </div>
-          <div class="tp1-price-card">
+          <div class="d2-price">
             <h3>3 Days / 2 Nights</h3>
-            <p class="tp1-price-value">&#8377;XX,XXX <span>/ couple</span></p>
-            <p class="tp1-price-includes">Accommodation &middot; Private cab &middot; 3 sightseeing days &middot; Breakfast &middot; Dinner &middot; Pickup/drop</p>
-            <a href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20a%20price%20quote%20for%20the%20Kodaikanal%203%20Day%20Tour%20Package" class="tp1-btn tp1-btn-outline-dark" target="_blank" rel="noopener">Check Price</a>
+            <p class="d2-price-val">&#8377;XX,XXX <small>/ couple</small></p>
+            <ul>
+              <li><svg class="d2-ico"><use href="#d2-check"/></svg>Three sightseeing days</li>
+              <li><svg class="d2-ico"><use href="#d2-check"/></svg>Covers the farther sights</li>
+            </ul>
+            <a class="d2-btn d2-btn-line d2-btn-block" href="kodaikanal-3-day-tour-package.html">See 3 Day Package</a>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ NOT INCLUDED ============ -->
-    <section id="exclusions" class="bg-alt">
-      <div class="container">
-        <div class="tp1-section-head tp1-section-head-center" data-reveal>
-          <p class="tp1-eyebrow tp1-eyebrow-center">Good to Know</p>
-          <h2>What's Not Included</h2>
-          <p class="tp1-section-sub">Exact inclusions and exclusions may vary by selected accommodation category.</p>
-        </div>
-        <div class="tp1-exclusions-grid" data-reveal>
-          <div class="tp1-exclusion-item">Lunch</div>
-          <div class="tp1-exclusion-item">Attraction entrance tickets</div>
-          <div class="tp1-exclusion-item">Personal expenses</div>
-          <div class="tp1-exclusion-item">Shopping</div>
-          <div class="tp1-exclusion-item">Optional activities</div>
-          <div class="tp1-exclusion-item">Services outside the package</div>
         </div>
       </div>
     </section>
 
     <!-- ============ HOW IT WORKS ============ -->
-    <section id="book">
-      <div class="container">
-        <div class="tp1-section-head tp1-section-head-center" data-reveal>
-          <p class="tp1-eyebrow tp1-eyebrow-center">Booking</p>
-          <h2>How Booking Works</h2>
-          <p class="tp1-section-sub">Four simple steps, and none of them involve waiting days for a callback.</p>
+    <section class="d2-section" id="book">
+      <div class="d2-wrap">
+        <div class="d2-head d2-head-center" data-reveal>
+          <span class="d2-eyebrow">Booking</span>
+          <h2>Four steps to lock it in</h2>
         </div>
-        <div class="tp1-timeline" data-reveal>
-          <div class="tp1-timeline-step">
-            <span class="tp1-step-num">01</span>
-            <h4>Choose This Package</h4>
-            <p>Confirm the 2 Day / 1 Night tour.</p>
-          </div>
-          <div class="tp1-timeline-line"></div>
-          <div class="tp1-timeline-step">
-            <span class="tp1-step-num">02</span>
-            <h4>Share Your Details</h4>
-            <p>Travel dates, number of guests and pickup location.</p>
-          </div>
-          <div class="tp1-timeline-line"></div>
-          <div class="tp1-timeline-step">
-            <span class="tp1-step-num">03</span>
-            <h4>Confirm Stay &amp; Cab</h4>
-            <p>We check availability and confirm pricing.</p>
-          </div>
-          <div class="tp1-timeline-line"></div>
-          <div class="tp1-timeline-step">
-            <span class="tp1-step-num">04</span>
-            <h4>Enjoy Kodaikanal</h4>
-            <p>Arrive, check in, explore over two days and travel back comfortably.</p>
-          </div>
-        </div>
+        <ol class="d2-how" data-reveal>
+          <li><h3>Send your details</h3><p>Travel date, guests and pickup point. It takes a minute.</p></li>
+          <li><h3>We check availability</h3><p>We confirm the stay and cab for both days.</p></li>
+          <li><h3>Get your price</h3><p>A firm quote arrives, usually within a few hours.</p></li>
+          <li><h3>Enjoy Kodaikanal</h3><p>Arrive, check in and explore. We handle the rest.</p></li>
+        </ol>
       </div>
     </section>
 
     <!-- ============ FAQ ============ -->
-    <section id="faq" class="bg-alt">
-      <div class="container">
-        <div class="tp1-section-head tp1-section-head-center" data-reveal>
-          <p class="tp1-eyebrow tp1-eyebrow-center">Questions</p>
-          <h2>Frequently Asked Questions</h2>
+    <section class="d2-section d2-section-sand" id="faq">
+      <div class="d2-wrap">
+        <div class="d2-head d2-head-center" data-reveal>
+          <span class="d2-eyebrow">Questions</span>
+          <h2>Before you book</h2>
         </div>
-        <div class="tp1-faq-columns" data-reveal>
-          <div class="tp1-faq-column">
-            <h4 class="tp1-faq-col-heading">Package</h4>
-            <div class="tp1-faq-item">
-              <button class="tp1-faq-question">How many nights of accommodation are included? <span>+</span></button>
-              <div class="tp1-faq-answer"><p>This package includes one night of accommodation between the two sightseeing days. The exact room category depends on the tier you choose.</p></div>
-            </div>
-            <div class="tp1-faq-item">
-              <button class="tp1-faq-question">Can the itinerary be customised? <span>+</span></button>
-              <div class="tp1-faq-answer"><p>Customisation between the two days is offered where confirmed service terms allow it. Route sequencing may also change due to weather, traffic and attraction timings.</p></div>
-            </div>
-          </div>
-          <div class="tp1-faq-column">
-            <h4 class="tp1-faq-col-heading">Inclusions</h4>
-            <div class="tp1-faq-item">
-              <button class="tp1-faq-question">Is the sightseeing vehicle private? <span>+</span></button>
-              <div class="tp1-faq-answer"><p>Yes, the service is built around private cab travel for both sightseeing days. Confirm vehicle type and capacity while booking.</p></div>
-            </div>
-            <div class="tp1-faq-item">
-              <button class="tp1-faq-question">Are attraction entrance tickets included? <span>+</span></button>
-              <div class="tp1-faq-answer"><p>Entrance tickets are generally excluded unless specifically stated in the confirmed package.</p></div>
-            </div>
-          </div>
-          <div class="tp1-faq-column">
-            <h4 class="tp1-faq-col-heading">Booking</h4>
-            <div class="tp1-faq-item">
-              <button class="tp1-faq-question">How quickly do I get a price confirmation? <span>+</span></button>
-              <div class="tp1-faq-answer"><p>We check real availability and usually send pricing within a few hours of your enquiry.</p></div>
-            </div>
-            <div class="tp1-faq-item">
-              <button class="tp1-faq-question">Do you offer shorter or longer tour packages too? <span>+</span></button>
-              <div class="tp1-faq-answer"><p>Yes &mdash; see our 1 Day, 3 Day and Group tour packages, on the home page, if you'd prefer a faster trip, more time in Kodaikanal, or a group-friendly plan.</p></div>
-            </div>
-          </div>
+        <div class="d2-faq" data-reveal>
+          <details open><summary>How many nights of stay are included?</summary><p>One night, between the two sightseeing days. The room category depends on the tier you choose.</p></details>
+          <details><summary>Are lunch and entrance tickets included?</summary><p>No. Lunch and attraction entrance tickets are paid on the day unless your confirmed package says otherwise.</p></details>
+          <details><summary>Is the cab private?</summary><p>Yes. The package is built around a private cab for both days. Confirm the vehicle type and seating capacity when you book.</p></details>
+          <details><summary>Can the itinerary be changed?</summary><p>Yes, where the confirmed terms allow it. The order can also shift with weather, traffic and attraction timings.</p></details>
+          <details><summary>Can I be picked up from Madurai, Coimbatore or Palani?</summary><p>Yes. Pickup is available from Coimbatore, Madurai, Dindigul, Palani and Kodai Road, and from your hotel, bus stand or railway station in Kodaikanal.</p></details>
+          <details><summary>How fast will I get a price?</summary><p>We check real availability for your dates and group size, and usually reply within a few hours.</p></details>
+        </div>
+        <div class="d2-more" data-reveal>
+          <a href="kodaikanal-1-day-tour-package.html"><span>1 Day / 1 Night<small>Short on time? One planned day</small></span><span aria-hidden="true">&rarr;</span></a>
+          <a href="kodaikanal-3-day-tour-package.html"><span>3 Days / 2 Nights<small>Slower pace, farther sights</small></span><span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </section>
 
     <!-- ============ FINAL CTA ============ -->
-    <section class="tp1-final-cta">
-      <div class="tp1-final-cta-media">
-        <img src="images/packages/package-hill-escape.webp" alt="Kodaikanal viewpoint at sunset" />
-        <div class="tp1-final-cta-scrim"></div>
-      </div>
-      <div class="container tp1-final-cta-content">
-        <h2 data-reveal>Plan Your Kodaikanal Getaway</h2>
-        <p data-reveal>Spend two relaxed days exploring Kodaikanal's lakes, viewpoints, forests and waterfalls &mdash; stay, cab and sightseeing in one convenient booking.</p>
-        <div class="tp1-hero-cta" data-reveal>
-          <a href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Kodaikanal%202%20Day%20Tour%20Package" class="tp1-btn tp1-btn-primary" target="_blank" rel="noopener">Book Your Kodaikanal Tour</a>
-          <a href="tel:+917502345777" class="tp1-btn tp1-btn-outline">Call for Package Details</a>
+    <section class="d2-final">
+      <div class="d2-final-img"><img src="images/destinations/destination-guna-caves.webp" alt="" loading="lazy" /></div>
+      <div class="d2-final-copy">
+        <h2 data-reveal>Two days is all it takes</h2>
+        <p data-reveal>Share your date and group size. We&rsquo;ll hold the stay, cab and route together and send a firm quote.</p>
+        <div class="d2-actions" data-reveal>
+          <a class="d2-btn d2-btn-primary" href="#enquiry-form">Get My Free Quote</a>
+          <a class="d2-btn d2-btn-ghost" href="tel:+917502345777"><svg class="d2-ico"><use href="#d2-phone"/></svg>Call +91 75023 45777</a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <div id="site-footer" data-include="partials/footer.html"></div>
+  <div class="d2-mbar" id="d2-mbar">
+    <a class="d2-btn d2-btn-line d2-btn-call" href="tel:+917502345777" aria-label="Call +91 75023 45777"><svg class="d2-ico"><use href="#d2-phone"/></svg></a>
+    <a class="d2-btn d2-btn-wa" href="https://wa.me/917502345777?text=Hi%2C%20I%27d%20like%20to%20book%20the%20Kodaikanal%202%20Day%20Tour%20Package" target="_blank" rel="noopener"><svg class="d2-ico"><use href="#d2-wa"/></svg>WhatsApp</a>
+    <a class="d2-btn d2-btn-primary" href="#enquiry-form">Get Quote</a>
+  </div>
 
-  <div id="site-floating-cta" data-include="partials/floating-cta.html"></div>
+  <div id="site-footer" data-include="partials/footer.html"></div>
 
   <script src="js/include.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/enquiry-form.js"></script>
   <script>
     (function () {
       "use strict";
-
-      function initPage() {
-        var revealEls = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
-        if (revealEls.length && "IntersectionObserver" in window) {
-          var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("is-visible");
-                observer.unobserve(entry.target);
-              }
+      function init() {
+        var els = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
             });
-          }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-          revealEls.forEach(function (el) { observer.observe(el); });
+          }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+          els.forEach(function (el) { io.observe(el); });
         } else {
-          revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+          els.forEach(function (el) { el.classList.add("is-visible"); });
         }
 
-        var faqItems = Array.prototype.slice.call(document.querySelectorAll(".tp1-faq-item"));
-        faqItems.forEach(function (item) {
-          var question = item.querySelector(".tp1-faq-question");
-          question.addEventListener("click", function () {
-            var wasOpen = item.classList.contains("is-open");
-            faqItems.forEach(function (other) { other.classList.remove("is-open"); });
-            if (!wasOpen) item.classList.add("is-open");
-          });
-        });
+        // Sticky mobile bar: show once the hero has scrolled away, hide while the form is on screen.
+        var bar = document.getElementById("d2-mbar");
+        var hero = document.getElementById("hero");
+        var form = document.getElementById("enquiry-form");
+        if (bar && hero && "IntersectionObserver" in window) {
+          var heroGone = false, formOn = false;
+          var sync = function () { bar.classList.toggle("is-on", heroGone && !formOn); };
+          new IntersectionObserver(function (en) { heroGone = !en[0].isIntersecting; sync(); }).observe(hero);
+          if (form) new IntersectionObserver(function (en) { formOn = en[0].isIntersecting; sync(); }, { threshold: 0.2 }).observe(form);
+        } else if (bar) {
+          bar.classList.add("is-on");
+        }
       }
-
-      if (document.getElementById("site-header")) {
-        document.addEventListener("partials:loaded", initPage, { once: true });
-      } else {
-        initPage();
-      }
+      document.addEventListener("partials:loaded", init, { once: true });
     })();
   </script>
 </body>
